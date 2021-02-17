@@ -1,5 +1,7 @@
 # Présentation des premières data visualisation des données RAKUTEN
 
+Les fichiers images (.PNG) sont disponibles [ici](https://github.com/JulienJ-44/rakuteam/tree/main/Pictures)
+
 ## Répartition des classes
 On voit qu'il y a 27 classes différentes
 

@@ -3,7 +3,7 @@
 Les fichiers images (.PNG) sont disponibles [ici](https://github.com/JulienJ-44/rakuteam/tree/main/Pictures)
 
 ## Répartition des classes
-Parmis les 27 classes différentes, ont peut constater que:
+Parmi les 27 classes du jeux de données, ont peut constater que:
 * la classe 2583 / PISCINE & ACCESSOIRES est surreprésentée avec plus de 10 000 articles 
 * 18 classes ont entre 2000 et 5 000 articles.
 * 8 classes ont moins de 2000 articles

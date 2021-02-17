@@ -32,7 +32,7 @@ La présence est testée par la recherche des expressions régulières suivantes
 
 *Lecture de la heatmap: 63% des articles de la classe 60 contiennent au moins un nombres à au moins 2 chiffres.*
 
-## Visualisation de pourcentage des pixels noirs et blancs des images par classe
+## Part des pixels noirs et blancs des images par classe
 Parmi les 27 classes du jeux de données:
 * la classe 2705 / ROMAN: Livre histoire a le plus de pourcentage des pixels blancs en moyenne (~67%)
 * la classe 2403 / LIVRES MAGASINES: histoire, info, musées, spirou a le moins de pourcentage des pixels blancs en moyenne (~32%)
@@ -44,3 +44,11 @@ et,
 * la classe 1301 / VETEMENTS ENFANTS/BEBE a le moins de pourcentage des pixels noirs en moyenne (~0.2%)
 
 ![Voir l'image](https://github.com/JulienJ-44/rakuteam/blob/main/Pictures/Pourcentage%20des%20pixels%20noirs%20sur%20les%20images.png)
+
+## Moyennes des couleurs R,G et B sur des images par classe
+
+![Voir l'image](https://github.com/JulienJ-44/rakuteam/blob/main/Pictures/Moyenne%20de%20valeur%20R%20sur%20les%20images.png)
+
+![Voir l'image](https://github.com/JulienJ-44/rakuteam/blob/main/Pictures/Moyenne%20de%20valeur%20G%20sur%20les%20images.png)
+
+![Voir l'image](https://github.com/JulienJ-44/rakuteam/blob/main/Pictures/Moyenne%20de%20valeur%20B%20sur%20les%20images.png)

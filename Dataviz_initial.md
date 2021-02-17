@@ -16,19 +16,21 @@ On génère une heatmap pour étudier (cf. les expressions régulières de la li
 1. **"2chiffres+"**: présence d'un nombre à au moins 2 chiffres
 1. **"poids"**: présence d'une unité de poids (kg, g, ..)
 1. **"longueur"**: présence d'une unité de longueur (cm,m,..)
-1. **"dimension"**: présence d'une valeur de dimension sous la forme [nombre1] x [nombre 2]
 1. **"volume"**: présence d'une unité de volume (L, cl, ..)
-1. **"ans"**: présence d'une valeur années (an, ans, ..)
+1. **"ans_mois"**: présence d'une valeur années/mois (ans, mois, ..)
 1. **"N°"**: présence d'un N° suivi d'un nombre (N° XX..)
+1. **"pourcent"**: présence d'une valeur en pourcentage
+1. **"pièces**: présence d'un nombre de pièces ( XX pcs ..)
 
 La présence est testée par la recherche des expressions régulières suivantes:
 1. [0-9]{2,}
 1. ([\d.]+)\s+(KG|Kg|g|kg|mg)
-1. ([\d.]+)\s+(cm|mm|m|M)
-1. ([\d.]+)\s+[xX]\s+[\d.]+
-1. ([\d.]+)\s+(mL|L|ml|l|cl)
-1. ([\d.]+)\s+(an|ans)
+1. ([\d.]+)\s?(cm|mm|m|M)[\s.]
+1. ([\d.]+)\s+(mL|L|ml|l|cl)[\s.]
+1. ([\d.]+)\s?(an|ans|An|Ans|mois|Mois)[\s.]
 1. [Nn][°]?[ ]?[\d]+
+1. ([\d.]+)\s?%[\s.]
+1. ([\d.]+)\s?(pc|pcs|pièces|pièce)[\s.]
 
 *Lecture de la heatmap: 63% des articles de la classe 60 contiennent au moins un nombres à au moins 2 chiffres.*
 

@@ -4,7 +4,7 @@
 On voit qu'il y a 27 classes différentes
 
 ## Fréquences d'unités par classes
-On étudie (cf. les expressions régulières de la liste suivante) le nombre d'articles contenant une des expressions de mesures suivantes:
+On génère une heatmpa pour étudier (cf. les expressions régulières de la liste suivante) le nombre d'articles contenant une des expressions de mesures suivantes:
 1. **"2chiffres+"**: présence d'un nombre à au moins 2 chiffres
 1. **"poids"**: présence d'une unité de poids (kg, g, ..)
 1. **"longueur"**: présence d'une unité de longueur (cm,m,..)
@@ -21,3 +21,5 @@ La présence est testée par la recherche des expressions régulières suivantes
 1. ([\d.]+)\s+(mL|L|ml|l|cl)
 1. ([\d.]+)\s+(an|ans)
 1. [Nn][°]?[ ]?[\d]+
+
+*Lecture de la heatmap: 63% des articles de la classe 60 contiennent au moins un nombres à au moins 2 chiffres.*

@@ -7,7 +7,7 @@ On voit qu'il y a 27 classes différentes
 ![Répartition des classes](https://github.com/JulienJ-44/rakuteam/blob/main/Pictures/Nb%20articles%20par%20classe.png)
 
 ## Fréquences d'unités par classes
-[Voir l'image](https://github.com/JulienJ-44/rakuteam/blob/main/Pictures/Frequence_unites_par_classe.png)
+![Voir l'image](https://github.com/JulienJ-44/rakuteam/blob/main/Pictures/Frequence_unites_par_classe.png)
 
 On génère une heatmap pour étudier (cf. les expressions régulières de la liste suivante) le nombre d'articles contenant une des expressions de mesures suivantes:
 1. **"2chiffres+"**: présence d'un nombre à au moins 2 chiffres

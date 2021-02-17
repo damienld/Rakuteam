@@ -3,7 +3,7 @@
 Les fichiers images (.PNG) sont disponibles [ici](https://github.com/JulienJ-44/rakuteam/tree/main/Pictures)
 
 ## Répartition des classes
-On voit qu'il y a 27 classes différentes
+On voit qu'il y a 27 classes différentes, dont une qui est surreprésentée (classe 2583 / PISCINE & ACCESSOIRES) avec plus de 10 000 articles alors que les suivantes ont autrour de 5 000 articles.
 ![Répartition des classes](https://github.com/JulienJ-44/rakuteam/blob/main/Pictures/Nb%20articles%20par%20classe.png)
 
 ## Fréquences d'unités par classes

@@ -54,3 +54,11 @@ et,
 ![Voir l'image](https://github.com/JulienJ-44/rakuteam/blob/main/Pictures/Moyenne%20de%20valeur%20G%20sur%20les%20images.png)
 
 ![Voir l'image](https://github.com/JulienJ-44/rakuteam/blob/main/Pictures/Moyenne%20de%20valeur%20B%20sur%20les%20images.png)
+
+## Affichage 20 image des différentes classes
+**Classe: 40 
+2508  éléments
+JEUX VIDEOS: import slmt?**
+
+
+

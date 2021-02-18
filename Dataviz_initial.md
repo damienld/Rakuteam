@@ -9,7 +9,17 @@ Parmi les 27 classes du jeux de données, ont peut constater que:
 * 8 classes ont moins de 2 000 articles
 ![Répartition des classes](https://github.com/JulienJ-44/rakuteam/blob/main/Pictures/Nb%20articles%20par%20classe.png)
 
-##
+## Dénombrement des mots les plus fréquents du champ *Désignation*
+Nous avons construit un Barplot représentant, pour chaque classe, le nombre d'occurrences des 15 mots les plus fréquents présents dans le champs *Désignation*. 
+Voici un extrait de ces résultats pour les 2 classes les plus importantes en termes de nombre d'articles:
+![Voir l'image](https://github.com/JulienJ-44/rakuteam/blob/main/Pictures/Nb%20mot%20d%C3%A9signation%20classe%202583.png)
+![Voir l'image](https://github.com/JulienJ-44/rakuteam/blob/main/Pictures/Nb%20mot%20d%C3%A9signation%20classe%201560.png)
+
+## Dénombrement des mots les plus fréquents du champ *Description*
+Nous avons construit un Barplot représentant, pour chaque classe, le nombre d'occurrences des 15 mots les plus fréquents présents dans le champs *Description*. 
+Voici un extrait de ces résultats pour les 2 classes les plus importantes en termes de nombre d'articles:
+![Voir l'image](https://github.com/JulienJ-44/rakuteam/blob/main/Pictures/Nb%20mot%20d%C3%A9scription%20classe%202583.png)
+![Voir l'image](https://github.com/JulienJ-44/rakuteam/blob/main/Pictures/Nb%20mot%20d%C3%A9scription%20classe%201560.png)
 
 ## Fréquences d'unités par classes
 ![Voir l'image](https://github.com/JulienJ-44/rakuteam/blob/main/Pictures/Frequence_unites_par_classe.png)

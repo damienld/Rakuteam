@@ -1,0 +1,7 @@
+-desc_length/desi_length = nbr de caractères (pour chaque champ)
+-desi_nb_phrases/desc_nb_phrases = nbr de phrases (pour chaque champ)
+-desi_nb_mots+/desc_nb_mots+ = nbr de mots (de + de 2 caract., pour chaque champ)
+En +:
+-les unités
+-les tfidf pour chaque classe
+-la colonne best_tfidf

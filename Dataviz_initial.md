@@ -62,7 +62,7 @@ et,
  10209  éléments-
 PISCINE: piscine et accessoires**
 
-![Voir l'image](https://github.com/JulienJ-44/rakuteam/blob/mainPictures/subplot%classe%2583.png)
+![Voir l'image](https://github.com/JulienJ-44/rakuteam/blob/main/Pictures/subplot%classe%2583.png)
 
 **Classe: 1560- 
  5073  éléments-

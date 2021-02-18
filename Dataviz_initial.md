@@ -168,7 +168,7 @@ LOISIRS/EQUIPEMENT extérieur: camping, pêche, trampo**
 
 **Classe: 1281 -
  2070  éléments-
-JEUX EDUCATIFS ENFANTS, jeux de cartes **
+JEUX EDUCATIFS ENFANTS, jeux de cartes**
 
 ![Voir l'image](https://github.com/JulienJ-44/rakuteam/blob/mainPictures/subplot_classe_1281.png)
 
@@ -198,7 +198,7 @@ CONSOLES de jeux**
 
 **Classe: 2220 -
  824  éléments-
-Accessoires ANIMAUX domestiques **
+Accessoires ANIMAUX domestiques**
 
 ![Voir l'image](https://github.com/JulienJ-44/rakuteam/blob/mainPictures/subplot_classe_2220.png)
 

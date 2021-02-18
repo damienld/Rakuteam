@@ -18,8 +18,8 @@ Voici un extrait de ces résultats pour les 2 classes les plus importantes en te
 ## Dénombrement des mots les plus fréquents du champ *Description*
 Nous avons construit un Barplot représentant, pour chaque classe, le nombre d'occurrences des 15 mots les plus fréquents présents dans le champs *Description*. 
 Voici un extrait de ces résultats pour les 2 classes les plus importantes en termes de nombre d'articles:
-![Voir l'image](https://github.com/JulienJ-44/rakuteam/blob/main/Pictures/Nb%20mot%20d%C3%A9scription%20classe%202583.png)
-![Voir l'image](https://github.com/JulienJ-44/rakuteam/blob/main/Pictures/Nb%20mot%20d%C3%A9scription%20classe%201560.png)
+![Voir l'image](https://github.com/JulienJ-44/rakuteam/blob/main/Pictures/Nb%20mot%20d%C3%A9scription%20classe_%202583.png)
+![Voir l'image](https://github.com/JulienJ-44/rakuteam/blob/main/Pictures/Nb%20mot%20d%C3%A9scription%20classe_%201560.png)
 
 ## Fréquences d'unités par classes
 ![Voir l'image](https://github.com/JulienJ-44/rakuteam/blob/main/Pictures/Frequence_unites_par_classe.png)

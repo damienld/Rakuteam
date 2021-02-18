@@ -9,6 +9,8 @@ Parmi les 27 classes du jeux de données, ont peut constater que:
 * 8 classes ont moins de 2 000 articles
 ![Répartition des classes](https://github.com/JulienJ-44/rakuteam/blob/main/Pictures/Nb%20articles%20par%20classe.png)
 
+##
+
 ## Fréquences d'unités par classes
 ![Voir l'image](https://github.com/JulienJ-44/rakuteam/blob/main/Pictures/Frequence_unites_par_classe.png)
 
@@ -56,14 +58,10 @@ et,
 ![Voir l'image](https://github.com/JulienJ-44/rakuteam/blob/main/Pictures/Moyenne%20de%20valeur%20B%20sur%20les%20images.png)
 
 ## Affichage d'un échantillon de 20 images par classes par éléments croissants
-
-
 **Classe: 2583-
  10209  éléments-
 PISCINE: piscine et accessoires**
-
 ![Voir l'image](https://github.com/JulienJ-44/rakuteam/blob/main/Pictures/subplot_classe_2583.png)
-
 **Classe: 1560- 
  5073  éléments-
 MAISON: cusine, fournitures, mobiliers, rangement**

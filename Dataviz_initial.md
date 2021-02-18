@@ -69,7 +69,7 @@ et,
 
 ![Voir l'image](https://github.com/JulienJ-44/rakuteam/blob/main/Pictures/Moyenne%20de%20valeur%20B%20sur%20les%20images.png)
 
-## Affichage d'un échantillon de 20 images par classes par éléments croissants
+## Affichage d'un échantillon de 20 images de la classe ayant le plus d'éléments
 **Classe: 2583-
  10209  éléments-
 PISCINE: piscine et accessoires**

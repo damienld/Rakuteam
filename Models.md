@@ -8,6 +8,7 @@ Ce score est calculé de la manière suivante:
 - pour chaque classe on conserve les 15 mots avec le meilleur tf_idf
 - pour chaque article on calcule les 27 scores (pour chacune des 27 classes)
 - le score est l'addition du nombre d'occurences du mot clé (parmi la liste des 15) multiplié par son nombre d'occurences dans la **désignation** de l'article
+- dans le cas où tous les scores sont nuls, on affecte l'article à la classe majoritaire: 2583
 ### Exemple: 
 Les meilleurs mots clés (15 meilleurs tf_idf) de la classe 1940 sont:
 - bio 0.473

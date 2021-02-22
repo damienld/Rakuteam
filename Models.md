@@ -236,8 +236,8 @@ RandomForestClassifier(n_jobs=-1, random_state=321)
         2905       0.99      0.99      0.99       165
 
     accuracy                           0.77     16984
-   macro avg       0.79      0.72      0.75     16984
-weighted avg       0.77      0.77      0.76     16984
+    macro avg       0.79      0.72      0.75     16984
+    weighted avg       0.77      0.77      0.76     16984
 	
 #### Heatmap de la matrice de confusion
 ![Heatmap](https://github.com/JulienJ-44/rakuteam/blob/main/Pictures/Heatmap_RandomForest.png)
@@ -285,8 +285,8 @@ VotingClassifier(estimators=[('rf',
         2905       0.95      0.96      0.96       165
 
     accuracy                           0.75     16984
-   macro avg       0.76      0.71      0.73     16984
-weighted avg       0.76      0.75      0.75     16984
+    macro avg       0.76      0.71      0.73     16984
+    weighted avg       0.76      0.75      0.75     16984
 
 #### Heatmap de la matrice de confusion
 ![Heatmap](https://github.com/JulienJ-44/rakuteam/blob/main/Pictures/Heatmap_VotingSoft.png)
@@ -333,8 +333,8 @@ precision    recall  f1-score   support
         2905       1.00      0.69      0.82       165
 
     accuracy                           0.77     16984
-   macro avg       0.78      0.73      0.73     16984
-weighted avg       0.80      0.77      0.76     16984
+    macro avg       0.78      0.73      0.73     16984
+    weighted avg       0.80      0.77      0.76     16984
 
 #### Heatmap de la matrice de confusion
 ![Heatmap](https://github.com/JulienJ-44/rakuteam/blob/main/Pictures/Heatmap_VotingSoft.png)

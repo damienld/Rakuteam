@@ -242,6 +242,31 @@ RandomForestClassifier(n_jobs=-1, random_state=321)
        macro avg       0.79      0.72      0.75     16984
     weighted avg       0.77      0.77      0.76     16984
 	
+
+#### Importance par feature (Top 20)
+
+				Importance
+	class_2583		0.044457
+	desi_capitals		0.042364
+	blanc			0.034393
+	class_1300		0.034078
+	class_1920		0.028432
+	B			0.026205
+	G			0.025577
+	desi_word_density	0.025452
+	R			0.025192
+	noir			0.024079
+	desi_char_count (w/o space)	0.022967
+	desi_length		0.022933
+	desi_char_count		0.022904
+	desi_total_length	0.022601
+	class_1160		0.021263
+	desi_num_symbols	0.020023
+	desi_nb_mots+		0.018874
+	class_2060		0.017385
+	class_2522		0.017129
+	desi_num_unique_words	0.015823
+
 #### Heatmap de la matrice de confusion
 ![Heatmap](https://github.com/JulienJ-44/rakuteam/blob/main/Pictures/Heatmap_RandomForest.png)
 

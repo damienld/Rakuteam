@@ -102,7 +102,7 @@ Classes prédites  10    40    50    60    1140  ...  2582  2583  2585  2705  29
 Classes réelles                                 ...                              
 
 #### Heatmap de la matrice de confusion
-
+![Heatmap](https://github.com/JulienJ-44/rakuteam/blob/main/Pictures/Heatmap%20Gradient%20Boosting%20Classifier.png)
 ## Modèle SVM Classifier 
 
 ### Présentation

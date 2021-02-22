@@ -6,7 +6,7 @@
  | Best_tfidf       |                   |    **0.48** |
  | GradientBoosting |                   |    **0.72** |
  | SVM              |                   |    **0.68** |
- | Rég. Log.        | *liblinear*       |    **0.48** |
+ | Rég. Log.        | *liblinear*       |    **0.55** |
  | Random Forest    |                   |    **0.77** |
  | Voting - Soft    | *rf, lr, knn*     |    **0.75** |
  | Voting - Hard    | *rf, lr, knn*     |    **0.77** |

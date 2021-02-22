@@ -96,7 +96,7 @@ Paramètres par défauts
 
     accuracy                           0.72     16984
     macro avg       0.72      0.69      0.70     16984
-    weighted avg       0.72      0.72      0.71     16984
+    weighted avg    0.72      0.72      0.71     16984
 
 Classes prédites  10    40    50    60    1140  ...  2582  2583  2585  2705  2905
 Classes réelles                                 ...                              
@@ -142,7 +142,7 @@ precision    recall  f1-score   support
 
     accuracy                           0.68     16984
     macro avg       0.71      0.65      0.67     16984
-    weighted avg       0.70      0.68      0.68     16984
+    weighted avg    0.70      0.68      0.68     16984
 
 #### Heatmap de la matrice de confusion
 

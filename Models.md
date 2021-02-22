@@ -1,7 +1,7 @@
 # Modèles
 ## Récapitulatif
 
- | Modèle           |     Paramètres    |   F1-score  |
+ | Modèle           |     Paramètres    |   Accuracy  |
  | -----------------|:----------------: | :---------: |
  | Best_tfidf       |                   |    **0.48** |
  | GradientBoosting |                   |    **0.72** |

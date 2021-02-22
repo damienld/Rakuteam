@@ -1,12 +1,21 @@
 # Modèles
 ## Récapitulatif
 
-| Modèle    |     Paramètres    |   F1-score |
-| ------------- |: ----------------: | ---------: |
-| Best_tfidf     | - |      **0.48** |
-| GradientBoosting        |        -        |      **0.72** |
-| SVM      |        -        |      **0.68** |
-| Rég. Log.      | 'liblinear' |      **0.48** |
+<br>
+<table>
+<thead>
+<tr><td><b> Modèle </b></td><td><b> Paramètres </b></td><td><b> F1-score </b></td></tr>
+</thead>
+<tbody>
+<tr><td> Best_tfidf </td><td> - </td><td> 0.48 </td></tr>
+<tr><td> GradientBoosting </td><td> - </td><td> 0.72 </td></tr>
+<tr><td> SVM </td><td> - </td><td> 0.68 </td></tr>
+<tr><td> Rég. Log.  </td><td> 'liblinear' </td><td> 0.55 </td></tr>
+<tr><td>   </td><td>  </td><td>  </td></tr>
+<tr><td>   </td><td>  </td><td>  </td></tr>
+<tr><td>   </td><td>  </td><td>  </td></tr>
+</tbody>
+</table>
 
 ## Modèle best_tf_idf 
 

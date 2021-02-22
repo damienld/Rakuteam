@@ -1,4 +1,12 @@
 # Modèles
+## Récapitulatif
+
+| Modèle    |     Paramètres    |   F1-score |
+| ------------- |: ----------------: | ---------: |
+| Best_tfidf     | - |      **0.48** |
+| GradientBoosting        |        -        |      **0.72** |
+| SVM      |        -        |      **0.68** |
+| Rég. Log.      | 'liblinear' |      **0.48** |
 
 ## Modèle best_tf_idf 
 
@@ -144,3 +152,47 @@ precision    recall  f1-score   support
 #### Heatmap de la matrice de confusion
 ![Heatmap](https://github.com/JulienJ-44/rakuteam/blob/main/Pictures/Heatmap%20SVM%20Classifier.png)
 
+
+## Modèle Régression Logistique
+
+### Présentation
+linear_model.LogisticRegression(random_state = 0, solver = 'liblinear', multi_class = 'auto')
+
+### Résultats du modèle
+#### Scores par classe
+       precision    recall  f1-score   support
+
+          10       0.25      0.35      0.29       623
+          40       0.52      0.32      0.39       502
+          50       0.75      0.28      0.41       336
+          60       0.93      0.72      0.81       166
+        1140       0.69      0.48      0.57       534
+        1160       0.59      0.75      0.66       791
+        1180       0.93      0.08      0.16       153
+        1280       0.53      0.49      0.51       974
+        1281       0.55      0.09      0.16       414
+        1300       0.82      0.77      0.79      1009
+        1301       0.90      0.50      0.64       161
+        1302       0.82      0.36      0.50       498
+        1320       0.83      0.09      0.16       648
+        1560       0.39      0.37      0.38      1015
+        1920       0.80      0.78      0.79       861
+        1940       0.68      0.42      0.52       161
+        2060       0.52      0.63      0.57       999
+        2220       0.92      0.33      0.49       165
+        2280       0.53      0.76      0.63       952
+        2403       0.48      0.72      0.58       955
+        2462       0.68      0.64      0.66       284
+        2522       0.46      0.47      0.47       998
+        2582       0.51      0.34      0.41       518
+        2583       0.53      0.86      0.66      2042
+        2585       0.75      0.15      0.25       499
+        2705       0.46      0.60      0.52       552
+        2905       0.84      0.79      0.82       174
+
+    accuracy                           0.55     16984
+    macro avg       0.65      0.49      0.51     16984
+    weighted avg    0.59      0.55      0.53     16984
+
+#### Heatmap de la matrice de confusion
+![Heatmap](https://github.com/JulienJ-44/rakuteam/blob/main/Pictures/Heatmap_regressionlog1.png)

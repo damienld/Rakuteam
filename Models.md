@@ -145,5 +145,5 @@ precision    recall  f1-score   support
     weighted avg    0.70      0.68      0.68     16984
 
 #### Heatmap de la matrice de confusion
-
+![Heatmap]https://github.com/JulienJ-44/rakuteam/blob/main/Pictures/Heatmap%20SVM%20Classifier.png
 

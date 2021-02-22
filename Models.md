@@ -7,6 +7,9 @@
  | GradientBoosting |                   |    **0.72** |
  | SVM              |                   |    **0.68** |
  | Rég. Log.        | *liblinear*       |    **0.48** |
+ | Random Forest    |                   |    **0.77** |
+ | Voting - Soft    | *rf, lr, knn*     |    **0.75** |
+ | Voting - Hard    | *rf, lr, knn*     |    **0.77** |
 
 ## Modèle best_tf_idf 
 
@@ -235,8 +238,8 @@ RandomForestClassifier(n_jobs=-1, random_state=321)
         2705       0.67      0.89      0.76       536
         2905       0.99      0.99      0.99       165
 
-    accuracy                           0.77     16984
-    macro avg       0.79      0.72      0.75     16984
+        accuracy                           0.77     16984
+       macro avg       0.79      0.72      0.75     16984
     weighted avg       0.77      0.77      0.76     16984
 	
 #### Heatmap de la matrice de confusion
@@ -284,8 +287,8 @@ VotingClassifier(estimators=[('rf',
         2705       0.76      0.83      0.80       536
         2905       0.95      0.96      0.96       165
 
-    accuracy                           0.75     16984
-    macro avg       0.76      0.71      0.73     16984
+        accuracy                           0.75     16984
+       macro avg       0.76      0.71      0.73     16984
     weighted avg       0.76      0.75      0.75     16984
 
 #### Heatmap de la matrice de confusion
@@ -332,8 +335,8 @@ precision    recall  f1-score   support
         2705       1.00      0.53      0.70       536
         2905       1.00      0.69      0.82       165
 
-    accuracy                           0.77     16984
-    macro avg       0.78      0.73      0.73     16984
+        accuracy                           0.77     16984
+       macro avg       0.78      0.73      0.73     16984
     weighted avg       0.80      0.77      0.76     16984
 
 #### Heatmap de la matrice de confusion

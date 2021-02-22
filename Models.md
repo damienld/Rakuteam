@@ -64,7 +64,7 @@ Paramètres par défauts
 
 ### Résultats du modèle
 #### Scores par classe
-   precision    recall  f1-score   support
+     precision    recall  f1-score   support
 
           10       0.45      0.56      0.50       615
           40       0.65      0.60      0.62       490
@@ -95,8 +95,11 @@ Paramètres par défauts
         2905       0.99      0.99      0.99       181
 
     accuracy                           0.72     16984
-   macro avg       0.72      0.69      0.70     16984
-weighted avg       0.72      0.72      0.71     16984
+    macro avg       0.72      0.69      0.70     16984
+    weighted avg       0.72      0.72      0.71     16984
+
+Classes prédites  10    40    50    60    1140  ...  2582  2583  2585  2705  2905
+Classes réelles                                 ...                              
 
 #### Heatmap de la matrice de confusion
 
@@ -138,8 +141,8 @@ precision    recall  f1-score   support
         2905       1.00      0.98      0.99       161
 
     accuracy                           0.68     16984
-   macro avg       0.71      0.65      0.67     16984
-weighted avg       0.70      0.68      0.68     16984
+    macro avg       0.71      0.65      0.67     16984
+    weighted avg       0.70      0.68      0.68     16984
 
 #### Heatmap de la matrice de confusion
 

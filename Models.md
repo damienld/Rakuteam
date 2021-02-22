@@ -205,3 +205,40 @@ linear_model.LogisticRegression(random_state = 0, solver = 'liblinear', multi_cl
 
 #### Heatmap de la matrice de confusion
 ![Heatmap](https://github.com/JulienJ-44/rakuteam/blob/main/Pictures/Heatmap_regressionlog1.png)
+
+
+## Modèle Random Forest 
+
+### Présentation
+clf1 = RandomForestClassifier(n_jobs = -1,random_state = 321)
+clf1.fit(X_train, y_train)
+
+### Résultats du modèle
+clf1.score(X_test,y_test) = 0.7657206782854451
+
+
+## Modèle Voting Classifier
+
+### Présentation
+clf1 = RandomForestClassifier(n_jobs = -1,random_state = 321)
+
+clf2 = KNeighborsClassifier(n_neighbors=3)
+
+clf3 = LogisticRegression(max_iter=1000)
+
+vclf = VotingClassifier(estimators=[('rf', clf1), ('knn', clf2),('lr', clf3)],  voting='soft')
+
+vclf_hard = VotingClassifier(estimators=[('rf', clf1), ('knn', clf2),('lr', clf3)],  voting='hard')
+
+### Résultats du modèle
+clf1.score(X_test,y_test) = 0.7657206782854451
+clf2.score(X_test,y_test) = 0.5987399905793688
+clf3.score(X_test,y_test) = 0.12040744229863401
+
+vclf.score(X_test,y_test) = 0.6423692887423458
+vclf_hard.score(X_test,y_test) = 0.6423692887423458
+
+
+
+
+

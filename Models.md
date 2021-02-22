@@ -1,21 +1,12 @@
 # Modèles
 ## Récapitulatif
 
-<br>
-<table>
-<thead>
-<tr><td><b> Modèle </b></td><td><b> Paramètres </b></td><td><b> F1-score </b></td></tr>
-</thead>
-<tbody>
-<tr><td> Best_tfidf </td><td> - </td><td> 0.48 </td></tr>
-<tr><td> GradientBoosting </td><td> - </td><td> 0.72 </td></tr>
-<tr><td> SVM </td><td> - </td><td> 0.68 </td></tr>
-<tr><td> Rég. Log.  </td><td> 'liblinear' </td><td> 0.55 </td></tr>
-<tr><td>   </td><td>  </td><td>  </td></tr>
-<tr><td>   </td><td>  </td><td>  </td></tr>
-<tr><td>   </td><td>  </td><td>  </td></tr>
-</tbody>
-</table>
+| Modèle    |     Paramètres    |   F1-score |
+| ------------- |: ----------------: | ---------: |
+| Best_tfidf     | - |      **0.48** |
+| GradientBoosting        |        -        |      **0.72** |
+| SVM      |        -        |      **0.68** |
+| Rég. Log.      | 'liblinear' |      **0.48** |
 
 ## Modèle best_tf_idf 
 
@@ -214,7 +205,7 @@ clf1 = RandomForestClassifier(n_jobs = -1,random_state = 321)
 clf1.fit(X_train, y_train)
 
 ### Résultats du modèle
-clf1.score(X_test,y_test) = 0.7657206782854451
+clf1.score(X_test,y_test) = 0.77
 
 
 ## Modèle Voting Classifier
@@ -231,12 +222,16 @@ vclf = VotingClassifier(estimators=[('rf', clf1), ('knn', clf2),('lr', clf3)],  
 vclf_hard = VotingClassifier(estimators=[('rf', clf1), ('knn', clf2),('lr', clf3)],  voting='hard')
 
 ### Résultats du modèle
-clf1.score(X_test,y_test) = 0.7657206782854451
-clf2.score(X_test,y_test) = 0.5987399905793688
-clf3.score(X_test,y_test) = 0.12040744229863401
+clf1.score(X_test,y_test) = 0.77
 
-vclf.score(X_test,y_test) = 0.6423692887423458
-vclf_hard.score(X_test,y_test) = 0.6423692887423458
+clf2.score(X_test,y_test) = 0.60
+
+clf3.score(X_test,y_test) = 0.12
+
+
+vclf.score(X_test,y_test) = 0.64
+
+vclf_hard.score(X_test,y_test) = 0.64
 
 
 

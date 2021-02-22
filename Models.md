@@ -196,3 +196,149 @@ linear_model.LogisticRegression(random_state = 0, solver = 'liblinear', multi_cl
 
 #### Heatmap de la matrice de confusion
 ![Heatmap](https://github.com/JulienJ-44/rakuteam/blob/main/Pictures/Heatmap_regressionlog1.png)
+
+
+## Modèle Random Forest
+
+### Présentation
+RandomForestClassifier(n_jobs=-1, random_state=321)
+
+### Résultats du modèle
+#### Scores par classe
+	precision    recall  f1-score   support
+
+          10       0.54      0.64      0.59       601
+          40       0.69      0.64      0.67       475
+          50       0.78      0.64      0.71       341
+          60       0.97      0.82      0.89       176
+        1140       0.68      0.65      0.67       552
+        1160       0.82      0.89      0.86       791
+        1180       0.78      0.45      0.57       139
+        1280       0.65      0.69      0.67       944
+        1281       0.67      0.48      0.56       415
+        1300       0.92      0.88      0.90      1006
+        1301       0.91      0.69      0.79       154
+        1302       0.93      0.65      0.76       505
+        1320       0.66      0.55      0.60       635
+        1560       0.63      0.80      0.71       967
+        1920       0.91      0.87      0.89       866
+        1940       0.86      0.70      0.77       175
+        2060       0.78      0.74      0.76      1060
+        2220       0.93      0.51      0.66       151
+        2280       0.78      0.79      0.78       964
+        2403       0.70      0.80      0.75       979
+        2462       0.81      0.75      0.78       298
+        2522       0.71      0.76      0.74       993
+        2582       0.80      0.62      0.70       524
+        2583       0.86      0.96      0.91      2045
+        2585       0.93      0.61      0.74       527
+        2705       0.67      0.89      0.76       536
+        2905       0.99      0.99      0.99       165
+
+    accuracy                           0.77     16984
+   macro avg       0.79      0.72      0.75     16984
+weighted avg       0.77      0.77      0.76     16984
+	
+#### Heatmap de la matrice de confusion
+![Heatmap](https://github.com/JulienJ-44/rakuteam/blob/main/Pictures/Heatmap_RandomForest.png)
+
+## Modèle Voting Classifier (Soft)
+
+### Présentation
+VotingClassifier(estimators=[('rf',
+                              RandomForestClassifier(n_jobs=-1,
+                                                     random_state=321)),
+                             ('knn', KNeighborsClassifier(n_neighbors=3)),
+                             ('lr', LogisticRegression(max_iter=1000))],
+                 voting='soft')
+
+### Résultats du modèle
+#### Scores par classe
+	precision    recall  f1-score   support
+
+          10       0.59      0.51      0.55       601
+          40       0.63      0.57      0.60       475
+          50       0.72      0.56      0.63       341
+          60       0.97      0.83      0.89       176
+        1140       0.63      0.60      0.62       552
+        1160       0.66      0.75      0.70       791
+        1180       0.64      0.47      0.54       139
+        1280       0.69      0.67      0.68       944
+        1281       0.70      0.53      0.60       415
+        1300       0.87      0.84      0.86      1006
+        1301       0.86      0.79      0.82       154
+        1302       0.85      0.69      0.76       505
+        1320       0.72      0.66      0.69       635
+        1560       0.76      0.84      0.80       967
+        1920       0.89      0.88      0.88       866
+        1940       0.71      0.58      0.64       175
+        2060       0.81      0.79      0.80      1060
+        2220       0.83      0.67      0.74       151
+        2280       0.74      0.71      0.73       964
+        2403       0.57      0.69      0.62       979
+        2462       0.73      0.61      0.67       298
+        2522       0.77      0.82      0.79       993
+        2582       0.85      0.77      0.80       524
+        2583       0.81      0.96      0.88      2045
+        2585       0.83      0.70      0.76       527
+        2705       0.76      0.83      0.80       536
+        2905       0.95      0.96      0.96       165
+
+    accuracy                           0.75     16984
+   macro avg       0.76      0.71      0.73     16984
+weighted avg       0.76      0.75      0.75     16984
+
+#### Heatmap de la matrice de confusion
+![Heatmap](https://github.com/JulienJ-44/rakuteam/blob/main/Pictures/Heatmap_VotingSoft.png)
+
+## Modèle Voting Classifier (Hard)
+
+### Présentation
+VotingClassifier(estimators=[('rf',
+                              RandomForestClassifier(n_jobs=-1,
+                                                     random_state=321)),
+                             ('knn', KNeighborsClassifier(n_neighbors=3)),
+                             ('lr', LogisticRegression(max_iter=1000))])
+
+### Résultats du modèle
+#### Scores par classe
+precision    recall  f1-score   support
+
+          10       0.50      1.00      0.67       601
+          40       0.55      0.85      0.67       475
+          50       0.55      0.91      0.69       341
+          60       0.81      0.95      0.88       176
+        1140       0.55      0.84      0.66       552
+        1160       0.57      0.73      0.64       791
+        1180       0.51      0.64      0.57       139
+        1280       0.69      0.81      0.74       944
+        1281       0.68      0.74      0.71       415
+        1300       0.83      0.85      0.84      1006
+        1301       0.89      0.81      0.85       154
+        1302       0.80      0.80      0.80       505
+        1320       0.74      0.75      0.75       635
+        1560       0.80      0.83      0.82       967
+        1920       0.88      0.88      0.88       866
+        1940       0.77      0.55      0.64       175
+        2060       0.90      0.77      0.83      1060
+        2220       0.86      0.62      0.72       151
+        2280       0.91      0.67      0.77       964
+        2403       0.82      0.36      0.50       979
+        2462       0.69      0.20      0.31       298
+        2522       0.97      0.71      0.82       993
+        2582       0.97      0.70      0.82       524
+        2583       0.90      1.00      0.95      2045
+        2585       1.00      0.64      0.78       527
+        2705       1.00      0.53      0.70       536
+        2905       1.00      0.69      0.82       165
+
+    accuracy                           0.77     16984
+   macro avg       0.78      0.73      0.73     16984
+weighted avg       0.80      0.77      0.76     16984
+
+#### Heatmap de la matrice de confusion
+![Heatmap](https://github.com/JulienJ-44/rakuteam/blob/main/Pictures/Heatmap_VotingSoft.png)
+
+
+
+

@@ -10,7 +10,7 @@
  | Random Forest    |                   |    **0.77** |
  | Voting - Soft    | *rf, lr, knn*     |    **0.75** |
  | Voting - Hard    | *rf, lr, knn*     |    **0.77** |
-
+ | KNN		    | *k = 3*		|    **0.65** |
 ## Modèle best_tf_idf 
 
 ### Présentation

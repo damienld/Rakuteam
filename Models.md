@@ -111,6 +111,7 @@ Paramètres par défauts
 
 #### Heatmap de la matrice de confusion
 ![Heatmap](https://github.com/JulienJ-44/rakuteam/blob/main/Pictures/Heatmap%20Gradient%20Boosting%20Classifier.png)
+
 ## Modèle SVM Classifier 
 
 ### Présentation

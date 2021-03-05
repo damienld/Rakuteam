@@ -368,6 +368,49 @@ precision    recall  f1-score   support
 #### Heatmap de la matrice de confusion
 ![Heatmap](https://github.com/JulienJ-44/rakuteam/blob/main/Pictures/Heatmap_VotingSoft.png)
 
+## Modèle Word2vec
+
+### Présentation
+Calcul de la moyenne en utilisant la base word2vec FastText pré-entraînée.
+
+### Résultats du modèle
+#### Scores par classe
+              precision    recall  f1-score   support
+
+          10       0.27      0.35      0.30       614
+          40       0.50      0.29      0.37       457
+          50       0.82      0.27      0.41       333
+          60       0.96      0.78      0.86       167
+        1140       0.46      0.34      0.39       535
+        1160       0.48      0.68      0.56       778
+        1180       0.89      0.09      0.17       175
+        1280       0.43      0.37      0.40       998
+        1281       0.61      0.14      0.22       410
+        1300       0.67      0.70      0.69       997
+        1301       1.00      0.57      0.72       153
+        1302       0.75      0.41      0.53       500
+        1320       0.71      0.34      0.46       633
+        1560       0.49      0.64      0.55      1056
+        1920       0.89      0.71      0.79       858
+        1940       1.00      0.09      0.17       155
+        2060       0.48      0.64      0.55       982
+        2220       0.92      0.14      0.24       158
+        2280       0.60      0.73      0.66       956
+        2403       0.37      0.64      0.47       945
+        2462       0.74      0.50      0.60       312
+        2522       0.69      0.50      0.58      1010
+        2582       0.73      0.37      0.49       517
+        2583       0.54      0.87      0.66      2013
+        2585       0.90      0.28      0.43       505
+        2705       0.65      0.46      0.54       594
+        2905       0.92      0.90      0.91       173
+
+    accuracy                           0.55     16984
+   macro avg       0.68      0.47      0.51     16984
+weighted avg       0.61      0.55      0.54     16984
+
+#### Heatmap de la matrice de confusion
+![Heatmap](https://github.com/JulienJ-44/rakuteam/blob/main/Pictures/Heatmap_word2vec1.png)
 
 
 

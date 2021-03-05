@@ -406,8 +406,8 @@ Calcul de la moyenne en utilisant la base word2vec FastText pré-entraînée.
         2905       0.92      0.90      0.91       173
 
     accuracy                           0.55     16984
-   macro avg       0.68      0.47      0.51     16984
-	weighted avg   0.61      0.55      0.54     16984
+    macro avg      0.68      0.47      0.51     16984
+    weighted avg   0.61      0.55      0.54     16984
 
 #### Heatmap de la matrice de confusion
 ![Heatmap](https://github.com/JulienJ-44/rakuteam/blob/main/Pictures/Heatmap_word2vec1.png)

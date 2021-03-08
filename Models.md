@@ -412,5 +412,67 @@ Calcul de la moyenne en utilisant la base word2vec FastText pré-entraînée.
 #### Heatmap de la matrice de confusion
 ![Heatmap](https://github.com/JulienJ-44/rakuteam/blob/main/Pictures/Heatmap_word2vec1.png)
 
+## Modèle LeNet sur les Images
 
+### Présentation
+Entrainement d'un modèle de base similaire au LeNet sur les images téléchagées en format 128x128x3:
+
+lenet = Sequential()
+
+conv_1 = Conv2D(filters = 30,kernel_size = (5, 5), padding = 'valid', input_shape = (128, 128, 3), activation = 'relu')
+
+max_pool_1 = MaxPooling2D(pool_size = (2, 2))
+
+conv_2 = Conv2D(filters = 16, kernel_size = (3, 3), padding = 'valid',activation = 'relu')
+
+max_pool_2 = MaxPooling2D(pool_size = (2, 2))
+
+flatten = Flatten()
+
+dropout = Dropout(rate = 0.2)
+
+dense_1 = Dense(units = 128, activation = 'relu')
+
+dense_2 = Dense(units = 28, activation = 'softmax')
+
+Compile avec loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy']
+
+Fit avec epochs = 5,batch_size = 200
+
+### Résultats du modèle
+#### Scores par classe
+
+precision    recall  f1-score   support
+
+           1       0.51      0.42      0.46       601
+           2       0.55      0.67      0.60       964
+           3       0.22      0.16      0.18       341
+           4       0.19      0.23      0.20       944
+           5       0.71      0.77      0.74       536
+           6       0.39      0.47      0.43       993
+           7       0.43      0.13      0.20       524
+           8       0.28      0.37      0.32       967
+           9       0.14      0.11      0.12       415
+          10       0.59      0.60      0.59       866
+          11       0.40      0.46      0.43       979
+          12       0.35      0.24      0.28       552
+          13       0.43      0.80      0.56      2045
+          14       0.19      0.08      0.11       139
+          15       0.39      0.40      0.40      1006
+          16       0.35      0.13      0.19       298
+          17       0.71      0.78      0.74       791
+          18       0.39      0.23      0.28      1060
+          19       0.49      0.34      0.40       475
+          20       0.30      0.15      0.20       176
+          21       0.27      0.18      0.22       635
+          22       0.18      0.10      0.13       505
+          23       0.18      0.02      0.04       151
+          24       0.89      0.81      0.84       165
+          25       0.44      0.13      0.20       527
+          26       0.40      0.08      0.13       175
+          27       0.41      0.11      0.17       154
+
+        accuracy                           0.42     16984
+       macro avg       0.40      0.33      0.34     16984
+    weighted avg       0.41      0.42      0.40     16984
 

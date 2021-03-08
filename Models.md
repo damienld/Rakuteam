@@ -442,7 +442,7 @@ Fit avec epochs = 5,batch_size = 200
 ### Résultats du modèle
 #### Scores par classe
 
-precision    recall  f1-score   support
+		precision    recall  f1-score   support
 
            1       0.51      0.42      0.46       601
            2       0.55      0.67      0.60       964

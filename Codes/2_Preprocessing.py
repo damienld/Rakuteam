@@ -205,3 +205,45 @@ df['desc_pieces']=df['description'].apply(lambda x: min(1,len(r.findall(x))))
 r = re.compile("([\d.]+)\s?%[\s.]") 
 #df['desi_pourcent']=df['designation'].apply(lambda x: min(1,len(r.findall(x))))
 df['desc_pourcent']=df['description'].apply(lambda x: min(1,len(r.findall(x))))
+
+#TODO merger création features ci-dessus à la fonction  feature?
+def feature(df) :
+    df['desi_word_count'] = df['designation'].apply(lambda x : len(str(x).split()))
+    df['desi_char_count (w/o space)'] = df['designation'].apply(lambda x : len(x.replace(" ","")))
+    df['desi_word_density'] = df['desi_word_count'] / (df['desi_char_count'] + 1)
+    df['desi_total_length'] = df['designation'].apply(len)
+    df['desi_capitals'] = df['designation'].apply(lambda comment: sum(1 for c in comment if c.isupper()))
+    # df['desi_caps_vs_length'] = df.apply(lambda row: float(row['desi_capitals'])/float(row['desi_total_length']),axis=1)
+    df['desi_num_exclamation_marks'] =df['designation'].apply(lambda x: x.count('!'))
+    df['desi_num_question_marks'] = df['designation'].apply(lambda x: x.count('?'))
+    df['desi_num_punctuation'] = df['designation'].apply(lambda x: sum(x.count(w) for w in '.,;:'))
+    df['desi_num_symbols'] = df['designation'].apply(lambda x: sum(x.count(w) for w in '*&$%+-/'))
+    df['desi_num_unique_words'] = df['designation'].apply(lambda x: len(set(w for w in x.split())))
+    df['desi_words_vs_unique'] = df['desi_num_unique_words'] / df['desi_word_count']
+    df["desi_word_unique_percent"] =  df["desi_num_unique_words"]*100/df['desi_word_count']
+    
+    df['descri_word_count'] = df['description'].apply(lambda x : len(str(x).split()))
+    df['descri_char_count (w/o space)'] = df['description'].apply(lambda x : len(str(x).replace(" ","")))
+    df['descri_word_density'] = df['descri_word_count'] / (df['descri_char_count'] + 1)
+    df['descri_total_length'] = df['description'].apply(lambda x :len(str(x)))
+    df['descri_capitals'] = df['description'].apply(lambda comment: sum(1 for c in str(comment) if c.isupper()))
+    # df['descri_caps_vs_length'] = df.apply(lambda row: float(row['descri_capitals'])/float(row['descri_total_length']),axis=1)
+    df['descri_num_exclamation_marks'] =df['description'].apply(lambda x: str(x).count('!'))
+    df['descri_num_question_marks'] = df['description'].apply(lambda x: str(x).count('?'))
+    df['descri_num_punctuation'] = df['description'].apply(lambda x: sum(str(x).count(w) for w in '.,;:'))
+    df['descri_num_symbols'] = df['description'].apply(lambda x: sum(str(x).count(w) for w in '*&$%'))
+    df['descri_num_unique_words'] = df['description'].apply(lambda x: len(set(w for w in str(x).split())))
+    df['descri_words_vs_unique'] = df['descri_num_unique_words'] / df['descri_word_count']
+    df["descri_word_unique_percent"] =  df["descri_num_unique_words"]*100/df['descri_word_count']
+    return df
+
+
+feature(df)
+
+df = df.drop(columns='Unnamed: 0' )
+
+
+
+
+
+

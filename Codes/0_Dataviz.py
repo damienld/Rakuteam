@@ -11,6 +11,10 @@ import seaborn as sns
 from sklearn.preprocessing import StandardScaler
 from sklearn import preprocessing
 
+#*****************************************************************************
+
+#Création d'une Heatmap de la fréquence d'occurence des caractères spéciaux et des symboles dans les champs designation et déscription
+
 #Création dictionnaire de correspondance entre code et désignation des classes
 tab_designation = {2583:'PISCINE & ACCESSOIRES',1560:'MAISON: cusine, mobiliers',1300:'JOUETS RADIO COMMANDES'
 ,2060:'LUMINAIRES, DECO',2522:'FOURNITURE de BUREAU',1280:'JOUETS ENFANTS',2403:'LIVRES & MAGASINES: histoire, musées'

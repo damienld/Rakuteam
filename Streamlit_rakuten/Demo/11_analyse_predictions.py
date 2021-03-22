@@ -141,7 +141,7 @@ def calc_y_pred(model_index):
 from sklearn.metrics import accuracy_score
 from sklearn import metrics
 
-def get_classif_report(index_model):
+def get_classifreport_crosstab(index_model):
   model_index=index_model
   y_test=get_ytest()
   y_train=get_ytrain()
@@ -158,23 +158,38 @@ def get_classif_report(index_model):
   # Pour ajouter une dimension en plus
   y_pred = np.reshape(y_pred, (-1, 1))
   return(metrics.classification_report(y_test, y_pred))
-print("Evaluation détaillée de la Classification :\n \n" , get_classif_report("3"))
 
-# y_test = y_test.replace({'prdtypecode': {10: 1, 2280:2,   50:3, 1280:4, 2705:5, 2522:6, 2582:7, 1560:8, 1281:9, 1920:10, 2403:11,
-#        1140:12, 2583:13, 1180:14, 1300:15, 2462:16, 1160:17, 2060:18,   40:19,   60:20, 1320:21, 1302:22,
-#        2220:23, 2905:24, 2585:25, 1940:26, 1301:0}})
+print("Evaluation détaillée de la Classification :\n \n" , get_classif_report("4"))
 
-# Crosstab avec ravel pr enlever dimension et eviter message d'erreur (Error: If using all scalar values, you must pass an index)
-dfcross = pd.crosstab(y_test.ravel(), y_pred.ravel(), rownames=['Classe réelle'], colnames=['Classe prédite'],normalize = 0) #TODO remettre ,normalize = 0
-dfcross = dfcross.sort_index(axis=0)
-dfcross = dfcross.sort_index(axis=1)
-dfcross.columns = df_code_designation['désignation']
-dfcross.index = df_code_designation['désignation']
+def get_crosstab(index_model):
+  model_index=index_model
+  y_test=get_ytest()
+  y_train=get_ytrain()
+  model_selected=set_model_name(index_model)
+  y_pred_proba=calc_y_pred(index_model)
+  #preparation des données pour le crosstab
+  # Convertir Dataframe en array
+  y_pred_proba_arr = y_pred_proba.to_numpy()
+  y_test = y_test.to_numpy()
+  # on prend l'index de la proba la + élevée
+  # pour récupérer les classes
+  y_pred = y_pred_proba_arr.argmax(axis=1)
+  y_pred
+  # Pour ajouter une dimension en plus
+  y_pred = np.reshape(y_pred, (-1, 1))
+  # Crosstab avec ravel pr enlever dimension et eviter message d'erreur (Error: If using all scalar values, you must pass an index)
+  dfcross = pd.crosstab(y_test.ravel(), y_pred.ravel(), rownames=['Classe réelle'], colnames=['Classe prédite'],normalize = 0) #TODO remettre ,normalize = 0  
+  dfcross = dfcross.sort_index(axis=0)
+  dfcross = dfcross.sort_index(axis=1)
+  dfcross.columns = df_code_designation['désignation']
+  dfcross.index = df_code_designation['désignation']
+  return dfcross
 
 import seaborn as sns
-# Matrice de confusion
+cross=get_crosstab("3")
+print("Heatmap:")
 plt.figure(figsize=(25,25))
-g = sns.heatmap(dfcross,  annot=True, cmap="YlGnBu");
+g = sns.heatmap(cross,  annot=True, cmap="YlGnBu");
 plt.xticks(rotation=90);
 
 #chargement de ytest et des features pour récuérer l'échantillon d articles tests utilisé pour les modèles
@@ -207,8 +222,6 @@ X_test=X_test.sort_index(axis=0)
 y_test_analyse = y_test_analyse.replace({'prdtypecode': {10: 1, 2280:2,   50:3, 1280:4, 2705:5, 2522:6, 2582:7, 1560:8, 1281:9, 1920:10, 2403:11,
        1140:12, 2583:13, 1180:14, 1300:15, 2462:16, 1160:17, 2060:18,   40:19,   60:20, 1320:21, 1302:22,
        2220:23, 2905:24, 2585:25, 1940:26, 1301:0}})
-
-y_test_analyse.head()
 
 Global_df_analysis = pd.concat([X_test.drop("prdtypecode_x", axis=1),y_test_analyse], axis = 1)
 ligne_erreur = Global_df_analysis[Global_df_analysis['prdtypecode']!=Global_df_analysis['prédiction']]

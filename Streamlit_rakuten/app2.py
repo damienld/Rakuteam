@@ -38,7 +38,6 @@ if classifier=='1-RF':
     model_index = "1"
 
 elif classifier == '2-CNN image':
-
     model_index = "2"
 
 elif classifier == 'DNN texte':
@@ -49,11 +48,10 @@ elif classifier == 'weighted voting':
     
 st.text(get_classifreport(model_index))
 
-cross=get_crosstab("3")
+cross=get_crosstab(model_index)
+#st.text(cross)
 
-fig, axes = plt.subplots(1,1, sharex=True)
-fig.suptitle("Heatmap")
-plt.figure(figsize=(25,25))
-sns.heatmap(cross,  annot=True, cmap="YlGnBu");
+fig=plt.figure(figsize=(25,25))
+sns.heatmap(cross, annot=True, cmap="YlGnBu");
 plt.xticks(rotation=90);
-#st.plotly_chart(fig, use_container_width=True, figsize=(12,8))
+st.pyplot(fig)

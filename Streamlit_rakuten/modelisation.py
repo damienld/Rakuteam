@@ -88,14 +88,11 @@ def get_ytrain():
 
 def set_model_name(model_index):
   if (model_index == "1"):
-    model_selected="Random Forest"
-    
+    model_selected="Random Forest"    
   elif (model_index == "2"):
-    model_selected="CNN images"
-    
+    model_selected="CNN images"  
   elif (model_index == "3"):
-    model_selected="DNN texte"
-    
+    model_selected="DNN texte"  
   else:
     model_selected="weighted voting"
   return model_selected
@@ -150,12 +147,9 @@ def get_classifreport(index_model):
   # on prend l'index de la proba la + élevée
   # pour récupérer les classes
   y_pred = y_pred_proba_arr.argmax(axis=1)
-  y_pred
   # Pour ajouter une dimension en plus
   y_pred = np.reshape(y_pred, (-1, 1))
   return(metrics.classification_report(y_test, y_pred))
-
-print("Evaluation détaillée de la Classification :\n \n" , get_classifreport("4"))
 
 def get_crosstab(index_model):
   model_index=index_model
@@ -170,7 +164,6 @@ def get_crosstab(index_model):
   # on prend l'index de la proba la + élevée
   # pour récupérer les classes
   y_pred = y_pred_proba_arr.argmax(axis=1)
-  y_pred
   # Pour ajouter une dimension en plus
   y_pred = np.reshape(y_pred, (-1, 1))
   # Crosstab avec ravel pr enlever dimension et eviter message d'erreur (Error: If using all scalar values, you must pass an index)
@@ -178,9 +171,6 @@ def get_crosstab(index_model):
   dfcross = dfcross.sort_index(axis=0)
   dfcross = dfcross.sort_index(axis=1)
   df_code_designation = load_df_code_designation()
-  print(len(df_code_designation))
   dfcross.columns = df_code_designation['désignation']
   dfcross.index = df_code_designation['désignation']
   return dfcross
-
-

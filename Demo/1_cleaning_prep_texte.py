@@ -33,7 +33,7 @@ def creerDataframePourArticleManuel(madescription, madesignation):
 if (not isManualDataFrame):
   url = "https://raw.githubusercontent.com/JulienJ-44/rakuteam/main/Datasets/Dataset_challenge.csv"
   download = requests.get(url).content
-  X=pd.read_csv(io.StringIO(download.decode('utf-8')))
+  X=pd.read_csv(io.StringIO(download.decode('utf-8')),index_col=0)
 else:
   #OU création d'un dataframe
   X=creerDataframePourArticleManuel(madescription, madesignation)
@@ -281,7 +281,7 @@ import re
 
 #nombre de nombres à 2 chiffres ou +
 r = re.compile("[0-9]{2,}") 
-#df['desi_nb2chiffres+']= df['designation'].apply(lambda x: min(1,len(r.findall(x))))
+df['desi_nb2chiffres+']= df['designation'].apply(lambda x: min(1,len(r.findall(x))))
 df['desc_nb2chiffres+']= df['description'].apply(lambda x: min(1,len(r.findall(x))))
 #XGo ou XMo ou XTo
 #r = re.compile("([\d.]+)\s?(go|mo|to|Go|Mo|To|giga|gigas)") 
@@ -289,31 +289,31 @@ df['desc_nb2chiffres+']= df['description'].apply(lambda x: min(1,len(r.findall(x
 #df['desc_Go']=df['description'].apply(lambda x: min(1,len(r.findall(x))))
 #N°X
 r = re.compile("(numéro )") 
-#df['desi_num']=df['designation'].apply(lambda x: min(1,len(r.findall(x))))
+df['desi_num']=df['designation'].apply(lambda x: min(1,len(r.findall(x))))
 df['desi_num']=df['designation'].apply(lambda x: min(1,len(r.findall(x))))
 r = re.compile("[Nn][°]\s?[\d]+") 
 #df['desi_num']=df['designation'].apply(lambda x: min(1,len(r.findall(x))))
-df['desc_num']=df['description'].apply(lambda x: min(1,len(r.findall(x))))
+#df['desc_num']=df['description'].apply(lambda x: min(1,len(r.findall(x))))
 #Poids kg Kg mg g
 #r = re.compile("[0-9\.]+[kKm]?[g]") #([\d.]+)\s+(lbs?|oz|g|kg) 
 r = re.compile("([\d.]+)\s?(KG|Kg|g|kg|mg)[\s.]") #(nombres ou .)+ / (espace)+ / (kg mg ..)
-#df['desi_poids']=df['designation'].apply(lambda x: min(1,len(r.findall(x))))
+df['desi_poids']=df['designation'].apply(lambda x: min(1,len(r.findall(x))))
 df['desc_poids']=df['description'].apply(lambda x: min(1,len(r.findall(x))))
 #Taille cm mm m
 r = re.compile("([\d.]+)\s?(cm|mm|m|M)[\s.]") 
-#df['desi_long']=df['designation'].apply(lambda x: min(1,len(r.findall(x))))
+df['desi_long']=df['designation'].apply(lambda x: min(1,len(r.findall(x))))
 df['desc_long']=df['description'].apply(lambda x: min(1,len(r.findall(x))))
 #Volume mL cL dL
 r = re.compile("([\d.]+)\s?(mL|L|ml|l|cl)[\s.]") 
-#df['desi_vol']=df['designation'].apply(lambda x: min(1,len(r.findall(x))))
+df['desi_vol']=df['designation'].apply(lambda x: min(1,len(r.findall(x))))
 df['desc_vol']=df['description'].apply(lambda x: min(1,len(r.findall(x))))
 #Age
 r = re.compile("([\d.]+)\s?(an|ans|An|Ans|mois|Mois)[\s.]") 
-#df['desi_ans_mois']=df['designation'].apply(lambda x: min(1,len(r.findall(x))))
+df['desi_ans_mois']=df['designation'].apply(lambda x: min(1,len(r.findall(x))))
 df['desc_ans_mois']=df['description'].apply(lambda x: min(1,len(r.findall(x))))
 #Pièces
 r = re.compile("([\d.]+)\s?(pc|pcs|pièces|pièce)[\s.]") 
-#df['desi_pieces']=df['designation'].apply(lambda x: min(1,len(r.findall(x))))
+df['desi_pieces']=df['designation'].apply(lambda x: min(1,len(r.findall(x))))
 df['desc_pieces']=df['description'].apply(lambda x: min(1,len(r.findall(x))))
 #%
 #r = re.compile("([\d.]+)\s?%") 
@@ -350,7 +350,7 @@ def feature(df) :
     df['descri_words_vs_unique'] = df['descri_num_unique_words'] / df['descri_word_count']
     df["descri_word_unique_percent"] =  df["descri_num_unique_words"]*100/df['descri_word_count']
     return df
-
+feature(df)
 df.head()
 
 if (isSaveData):

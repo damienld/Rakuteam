@@ -49,8 +49,6 @@ elif classifier == 'weighted voting':
 st.text(get_classifreport(model_index))
 
 cross=get_crosstab(model_index)
-#st.text(cross)
-
 fig=plt.figure(figsize=(25,25))
 sns.heatmap(cross, annot=True, cmap="YlGnBu");
 plt.xticks(rotation=90);

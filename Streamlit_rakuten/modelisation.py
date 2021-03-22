@@ -31,7 +31,7 @@ model_index = 1#input("Select a model: 1-RF, 2-CNN image, 3-DNN texte, default-w
 print(model_index)
 
 def load_df_code_designation():
-  url = "https://raw.githubusercontent.com/JulienJ-44/rakuteam/main/Demo/df_classes_avec_code_libelle_code026.csv"
+  url = "https://raw.githubusercontent.com/JulienJ-44/rakuteam/main/Streamlit_rakuten/Demo/df_classes_avec_code_libelle_code026.csv"
   download = requests.get(url).content
   df = pd.read_csv(io.StringIO(download.decode('utf-8')), index_col=0)
   return df
@@ -178,8 +178,9 @@ def get_crosstab(index_model):
   dfcross = dfcross.sort_index(axis=0)
   dfcross = dfcross.sort_index(axis=1)
   df_code_designation = load_df_code_designation()
-  #dfcross.columns = df_code_designation['désignation']
-  #dfcross.index = df_code_designation['désignation']
+  print(len(df_code_designation))
+  dfcross.columns = df_code_designation['désignation']
+  dfcross.index = df_code_designation['désignation']
   return dfcross
 
 

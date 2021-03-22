@@ -9,7 +9,7 @@ Created on Thu Mar 18 01:45:08 2021
 import streamlit as st
 
 def app():
-    st.title('MODELISATION')
+    st.title('PREDICTION')
     st.write('Selection du modèle')
     
     # creating a file uploader 

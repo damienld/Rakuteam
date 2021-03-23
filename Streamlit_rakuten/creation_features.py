@@ -177,16 +177,23 @@ if (not isManualData):
   create_features_loadedd(df)
 '''
 def add_imgfeatures(df, imgpath):
-    image = np.array([np.array(Image.open(imgpath))])
-    n_white_pix = np.sum(image == [255, 255, 255])/750000
-    n_black_pix = np.sum(image == [0,0,0])/750000
-    image_mean = np.mean(image, axis=(0, 1))  
-    df['blanc']=n_white_pix
-    df['noir']=n_black_pix
-    print("image_mean:",image_mean)
-    df['R']= image_mean[0]
-    df['G']= image_mean[1]
-    df['B']= image_mean[2]
+    if (not (imgpath == "")):
+        image = np.array(Image.open(imgpath))
+        n_white_pix = np.sum(image == [255, 255, 255])/750000
+        n_black_pix = np.sum(image == [0,0,0])/750000
+        image_mean = np.mean(image, axis=(0, 1))  
+        df['blanc']=n_white_pix
+        df['noir']=n_black_pix
+        #print("image_mean:",image_mean)
+        df['R']= image_mean[0]
+        df['G']= image_mean[1]
+        df['B']= image_mean[2]
+    else:
+        df['blanc']=0
+        df['noir']=0
+        df['R']= 0
+        df['G']= 0
+        df['B']= 0
     return df
     
 def add_features_to_manualdf(df, imgpath):

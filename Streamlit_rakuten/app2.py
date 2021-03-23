@@ -32,20 +32,20 @@ def app():
     st.radio("Selection du modèle",(Models))
     
 
-alg = ['1-RF', '2-CNN image', '3-DNN texte', 'weighted voting']
-classifier = st.selectbox('Selection du modèle', alg)
-if classifier=='1-RF':
-    model_index = "1"
-
-elif classifier == '2-CNN image':
-    model_index = "2"
-
-elif classifier == 'DNN texte':
-    model_index = "3"
-
-elif classifier == 'weighted voting':
-    model_index = "4"
+    alg = ['1-RF', '2-CNN image', '3-DNN texte', 'weighted voting']
+    classifier = st.selectbox('Selection du modèle', alg)
+    if classifier=='1-RF':
+        model_index = "1"
     
+    elif classifier == '2-CNN image':
+        model_index = "2"
+    
+    elif classifier == '3-DNN texte':
+        model_index = "3"
+    
+    elif classifier == 'weighted voting':
+        model_index = "4"
+        
 st.text(get_classifreport(model_index))
 
 cross=get_crosstab(model_index)

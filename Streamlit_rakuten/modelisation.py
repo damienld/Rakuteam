@@ -30,10 +30,10 @@ import io
 model_index = 1#input("Select a model: 1-RF, 2-CNN image, 3-DNN texte, default-weighted voting")
 print(model_index)
 
-def load_df_code_designation():
+def load_df_code_designation(index=0):
   url = "https://raw.githubusercontent.com/JulienJ-44/rakuteam/main/Streamlit_rakuten/Demo/df_classes_avec_code_libelle_code026.csv"
   download = requests.get(url).content
-  df = pd.read_csv(io.StringIO(download.decode('utf-8')), index_col=0)
+  df = pd.read_csv(io.StringIO(download.decode('utf-8')), index_col=index)
   return df
 
 df_code_designation = load_df_code_designation()

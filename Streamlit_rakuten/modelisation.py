@@ -38,7 +38,15 @@ def load_df_code_designation(index=0):
 
 df_code_designation = load_df_code_designation()
 
-def display_keywords(name_classe_reelle, name_classe_predite):
+def display_keywords_fromclasscodes(code_classe_reelle, code_classe_predite):
+  dataf_code_designation=load_df_code_designation()
+  classe_reelle_name=dataf_code_designation[dataf_code_designation["prdtypecode"]==code_classe_reelle].désignation
+  classe_predite_name=(dataf_code_designation[dataf_code_designation["prdtypecode"]==code_classe_predite]).désignation
+  print(classe_reelle_name)
+  print(classe_predite_name)
+  display_keywords_fromclassnames(classe_reelle_name,classe_predite_name)
+
+def display_keywords_fromclassnames(name_classe_reelle, name_classe_predite):
   dataf_code_designation=load_df_code_designation()
   classe_reelle_code026=dataf_code_designation[dataf_code_designation["désignation"]==name_classe_reelle].code_0a26
   classe_predite_code026=(dataf_code_designation[dataf_code_designation["désignation"]==name_classe_predite]).code_0a26

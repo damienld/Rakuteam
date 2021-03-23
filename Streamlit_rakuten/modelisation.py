@@ -39,11 +39,11 @@ def load_df_code_designation():
 df_code_designation = load_df_code_designation()
 
 def display_keywords(name_classe_reelle, name_classe_predite):
-  dataf_code_designation=load_df_code_designation
-  classe_predite_code026=dataf_code_designation[dataf_code_designation["désignation"]==name_classe_reelle].code_0a26
-  classe_reelle_code026=(dataf_code_designation[dataf_code_designation["désignation"]==name_classe_predite]).code_0a26
-  classe_predite_code=dataf_code_designation[dataf_code_designation["désignation"]==name_classe_reelle].prdtypecode
-  classe_reelle_code=(dataf_code_designation[dataf_code_designation["désignation"]==name_classe_predite]).prdtypecode
+  dataf_code_designation=load_df_code_designation()
+  classe_reelle_code026=dataf_code_designation[dataf_code_designation["désignation"]==name_classe_reelle].code_0a26
+  classe_predite_code026=(dataf_code_designation[dataf_code_designation["désignation"]==name_classe_predite]).code_0a26
+  classe_reelle_code=dataf_code_designation[dataf_code_designation["désignation"]==name_classe_reelle].prdtypecode
+  classe_predite_code=(dataf_code_designation[dataf_code_designation["désignation"]==name_classe_predite]).prdtypecode
 
   import pickle
 
@@ -53,17 +53,17 @@ def display_keywords(name_classe_reelle, name_classe_predite):
   # reconstructing the data as dictionary 
   lst_keywords_byclass = pickle.loads(data) 
 
-  print("Classe:",classe_reelle_code, " ", classe_reelle_code026)
-  print(lst_keywords_byclass[int(classe_reelle_code)])
-  print("Classe:",classe_predite_code, " ", classe_predite_code026)
-  print(lst_keywords_byclass[int(classe_predite_code)])
+  #print("Classe:",classe_reelle_code, " ", classe_reelle_code026)
+  #print(lst_keywords_byclass[int(classe_reelle_code)])
+  #print("Classe:",classe_predite_code, " ", classe_predite_code026)
+  #print(lst_keywords_byclass[int(classe_predite_code)])
   #df_comparekeywords[classe_reelle_code]=lst_keywords_byclass[int(classe_reelle_code)]
   df_comparekeywords=pd.DataFrame(index=np.arange(15))
   df_comparekeywords[classe_reelle_code]=[key for key in lst_keywords_byclass[int(classe_reelle_code)]]
-  df_comparekeywords[classe_reelle_code+"_"]=[lst_keywords_byclass[key] for key in lst_keywords_byclass[int(classe_reelle_code)]]
+  #df_comparekeywords[classe_reelle_code+"_"]=[lst_keywords_byclass[key] for key in lst_keywords_byclass[int(classe_reelle_code)]]
   df_comparekeywords[classe_predite_code]=[key for key in lst_keywords_byclass[int(classe_predite_code)]]
-  df_comparekeywords[classe_predite_code+"_"]=[lst_keywords_byclass[key] for key in lst_keywords_byclass[int(classe_predite_code)]]
-  print(df_comparekeywords.head(15))
+  #df_comparekeywords[classe_predite_code+"_"]=[lst_keywords_byclass[key] for key in lst_keywords_byclass[int(classe_predite_code)]]
+  return (df_comparekeywords)
 
 def get_ytest():
   url = "https://raw.githubusercontent.com/JulienJ-44/rakuteam/main/y_pred_proba/y_test.csv"# Make sure the url is the raw version of the file on GitHub
@@ -103,7 +103,7 @@ def calc_y_pred(model_index):
     download = requests.get(url).content
     y_pred_proba= pd.read_csv(io.StringIO(download.decode('utf-8')))
   elif (model_index == "2"):
-    url = "https://raw.githubusercontent.com/JulienJ-44/rakuteam/main/y_pred_proba/ypred_proba_Image_score_0_55_correct.csv"
+    url = "https://raw.githubusercontent.com/JulienJ-44/rakuteam/main/y_pred_proba/ypred_proba_model_image_final_train_test.csv"
     download = requests.get(url).content
     y_pred_proba= pd.read_csv(io.StringIO(download.decode('utf-8')))
   elif (model_index == "3"):

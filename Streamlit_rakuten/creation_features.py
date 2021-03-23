@@ -14,6 +14,9 @@ import requests
 import io
 from nltk.tokenize import PunktSentenceTokenizer
 import nltk as nltk
+import PIL
+from PIL import Image
+import numpy as np
 
 #DEBUT PREPROCESSING
 isManualData=True
@@ -173,7 +176,20 @@ if (not isManualData):
   df['description']=df['description'].fillna("")
   create_features_loadedd(df)
 '''
-def add_features_to_manualdf(df):
+def add_imgfeatures(df, imgpath):
+    image = np.array([np.array(Image.open(imgpath))])
+    n_white_pix = np.sum(image == [255, 255, 255])/750000
+    n_black_pix = np.sum(image == [0,0,0])/750000
+    image_mean = np.mean(image, axis=(0, 1))  
+    df['blanc']=n_white_pix
+    df['noir']=n_black_pix
+    print("image_mean:",image_mean)
+    df['R']= image_mean[0]
+    df['G']= image_mean[1]
+    df['B']= image_mean[2]
+    return df
+    
+def add_features_to_manualdf(df, imgpath):
   df=add_nb_phrases(df)
   df["best_idf"]=0
   #lst_keywords_byclass contient: {1180:[mot1 mot2 mot3 ...], 2520:[mot1 mot2 mot3 ...] ...}
@@ -185,6 +201,7 @@ def add_features_to_manualdf(df):
   df=add_bestidf(df)
   df=add_regex1(df)
   df=add_regex2(df)
+  df=add_imgfeatures(df, imgpath)
   return df
 '''
 #TEST  add_features_to_manualdf

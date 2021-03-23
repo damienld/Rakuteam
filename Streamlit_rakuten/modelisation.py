@@ -103,7 +103,7 @@ def calc_y_pred(model_index):
     download = requests.get(url).content
     y_pred_proba= pd.read_csv(io.StringIO(download.decode('utf-8')))
   elif (model_index == "2"):
-    url = "https://raw.githubusercontent.com/JulienJ-44/rakuteam/main/y_pred_proba/ypred_proba_Image_score_0_55_correct.csv"
+    url = "https://raw.githubusercontent.com/JulienJ-44/rakuteam/main/y_pred_proba/ypred_proba_model_image_final_train_test.csv"
     download = requests.get(url).content
     y_pred_proba= pd.read_csv(io.StringIO(download.decode('utf-8')))
   elif (model_index == "3"):

@@ -29,27 +29,38 @@ Models = ["Modèle RF",
 # app2.py
 def app():
     st.title('MODELISATION')
-    st.radio("Selection du modèle",(Models))
-    
 
     alg = ['1-RF', '2-CNN image', '3-DNN texte', 'weighted voting']
     classifier = st.selectbox('Selection du modèle', alg)
     if classifier=='1-RF':
         model_index = "1"
-    
+        st.text(get_classifreport(model_index))   
+        cross=get_crosstab(model_index)
+        fig=plt.figure(figsize=(25,25))
+        sns.heatmap(cross, annot=True, cmap="YlGnBu");
+        plt.xticks(rotation=90);
+        st.pyplot(fig)    
     elif classifier == '2-CNN image':
         model_index = "2"
-    
+        st.text(get_classifreport(model_index))   
+        cross=get_crosstab(model_index)
+        fig=plt.figure(figsize=(25,25))
+        sns.heatmap(cross, annot=True, cmap="YlGnBu");
+        plt.xticks(rotation=90);
+        st.pyplot(fig)    
     elif classifier == '3-DNN texte':
         model_index = "3"
-    
+        st.text(get_classifreport(model_index))   
+        cross=get_crosstab(model_index)
+        fig=plt.figure(figsize=(25,25))
+        sns.heatmap(cross, annot=True, cmap="YlGnBu");
+        plt.xticks(rotation=90);
+        st.pyplot(fig)    
     elif classifier == 'weighted voting':
         model_index = "4"
-        
-st.text(get_classifreport(model_index))
-
-cross=get_crosstab(model_index)
-fig=plt.figure(figsize=(25,25))
-sns.heatmap(cross, annot=True, cmap="YlGnBu");
-plt.xticks(rotation=90);
-st.pyplot(fig)
+        st.text(get_classifreport(model_index))   
+        cross=get_crosstab(model_index)
+        fig=plt.figure(figsize=(25,25))
+        sns.heatmap(cross, annot=True, cmap="YlGnBu");
+        plt.xticks(rotation=90);
+        st.pyplot(fig)    

@@ -9,14 +9,11 @@ Original file is located at
 
 #CONNEXION à google drive
 import pandas as pd
-from google.colab import drive
 
 
 import re  
 import requests
 import io
-import pandas as pd
-from nltk.tokenize import PunktSentenceTokenizer
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 import nltk as nltk
@@ -96,7 +93,7 @@ def filtrer_mots_inutiles(texte,lststopwords):
 
 #3 ways to clean data
 
-def clean_manualdata(madescription, madesignation):
+def clean_manualdata(madesignation, madescription):
   """
   input: madescription & madesignation are used
   """
@@ -131,7 +128,7 @@ def load_data_cleaned():
 #TEST function clean_manualdata()
 #madescription="voici ma description d'article"
 #madesignation="voici ma désignation d'article"
-#df=clean_manualdata(madescription, madesignation)
+#df=clean_manualdata(madesignation,madescription)
 #df
 
 #TEST2 function clean_data()

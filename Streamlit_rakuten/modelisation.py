@@ -13,19 +13,9 @@ Original file is located at
 # Commented out IPython magic to ensure Python compatibility.
 import pandas as pd
 import numpy as np
-
-from sklearn import preprocessing
-from sklearn.model_selection import train_test_split, cross_val_score, cross_validate
-from sklearn.metrics import mean_squared_error
-
-import matplotlib.pyplot as plt
-# %matplotlib inline
-import seaborn as sns
-
-from sklearn.decomposition import PCA
-from sklearn.model_selection import train_test_split
 import requests
 import io
+import streamlit as st
 
 model_index = 1#input("Select a model: 1-RF, 2-CNN image, 3-DNN texte, default-weighted voting")
 print(model_index)
@@ -38,38 +28,50 @@ def load_df_code_designation(index=0):
 
 df_code_designation = load_df_code_designation()
 
-def display_keywords_fromclasscodes(code_classe_reelle, code_classe_predite):
+def display_keywords_fromclasscodes(code_classe_reelle):#, code_classe_predite):
   dataf_code_designation=load_df_code_designation()
-  classe_reelle_name=dataf_code_designation[dataf_code_designation["prdtypecode"]==code_classe_reelle].désignation
-  classe_predite_name=(dataf_code_designation[dataf_code_designation["prdtypecode"]==code_classe_predite]).désignation
-  print(classe_reelle_name)
-  print(classe_predite_name)
-  display_keywords_fromclassnames(classe_reelle_name,classe_predite_name)
+  print(dataf_code_designation.head())
+  ligne=dataf_code_designation[dataf_code_designation["prdtypecode"]==code_classe_reelle]
+  classe_reelle_name=str(ligne.iloc[0,1])
+  print("classe réelle:", classe_reelle_name)
+  #ligne=dataf_code_designation[dataf_code_designation["prdtypecode"]==code_classe_predite]
+  #classe_predite_name=str(ligne.iloc[0,1])
+  #print("classe prédite:", classe_predite_name)
+  return display_keywords_fromclassnames(classe_reelle_name)#,classe_predite_name)
 
-def display_keywords_fromclassnames(name_classe_reelle, name_classe_predite):
+def display_keywords_fromclassnames(name_classe_reelle):#, name_classe_predite):
+  print(name_classe_reelle)
   dataf_code_designation=load_df_code_designation()
-  classe_reelle_code026=dataf_code_designation[dataf_code_designation["désignation"]==name_classe_reelle].code_0a26
-  classe_predite_code026=(dataf_code_designation[dataf_code_designation["désignation"]==name_classe_predite]).code_0a26
-  classe_reelle_code=dataf_code_designation[dataf_code_designation["désignation"]==name_classe_reelle].prdtypecode
-  classe_predite_code=(dataf_code_designation[dataf_code_designation["désignation"]==name_classe_predite]).prdtypecode
+  ligne=dataf_code_designation[dataf_code_designation["désignation"]==name_classe_reelle]
+  classe_reelle_code026=str(ligne.iloc[0,2])
+  print(classe_reelle_code026)
+  #classe_predite_code026=(dataf_code_designation[dataf_code_designation["désignation"]==name_classe_predite]).code_0a26
+  classe_reelle_code=str(ligne.iloc[0,0])
+  print(classe_reelle_code)
+  #classe_predite_code=(dataf_code_designation[dataf_code_designation["désignation"]==name_classe_predite]).prdtypecode
 
   import pickle
 
   # reading the dictionnary des 15 keyword
-  with open(f'dico_keywords_tfidf_15.pkl', 'rb') as handle: 
+  with open('dico_keywords_tfidf_15.pkl', 'rb') as handle: 
     data = handle.read() 
   # reconstructing the data as dictionary 
   lst_keywords_byclass = pickle.loads(data) 
-
   #print("Classe:",classe_reelle_code, " ", classe_reelle_code026)
   #print(lst_keywords_byclass[int(classe_reelle_code)])
   #print("Classe:",classe_predite_code, " ", classe_predite_code026)
   #print(lst_keywords_byclass[int(classe_predite_code)])
   #df_comparekeywords[classe_reelle_code]=lst_keywords_byclass[int(classe_reelle_code)]
-  df_comparekeywords=pd.DataFrame(index=np.arange(15))
-  df_comparekeywords[classe_reelle_code]=[key for key in lst_keywords_byclass[int(classe_reelle_code)]]
+  df_comparekeywords=pd.DataFrame(index=np.arange(15)+1)
+  print(df_comparekeywords.head())
+  lst=[key for key in lst_keywords_byclass[int(classe_reelle_code)]]
+  lst2=list(lst_keywords_byclass[int(classe_reelle_code)].values())
+  print(lst2)
+  df_comparekeywords[name_classe_reelle]=lst
+  df_comparekeywords["tfidf"]=lst2
+  print(df_comparekeywords.head())
+  #df_comparekeywords[classe_predite_code]=[key for key in lst_keywords_byclass[int(classe_predite_code)]]
   #df_comparekeywords[classe_reelle_code+"_"]=[lst_keywords_byclass[key] for key in lst_keywords_byclass[int(classe_reelle_code)]]
-  df_comparekeywords[classe_predite_code]=[key for key in lst_keywords_byclass[int(classe_predite_code)]]
   #df_comparekeywords[classe_predite_code+"_"]=[lst_keywords_byclass[key] for key in lst_keywords_byclass[int(classe_predite_code)]]
   return (df_comparekeywords)
 
@@ -142,6 +144,7 @@ def calc_y_pred(model_index):
 from sklearn.metrics import accuracy_score
 from sklearn import metrics
 
+@st.cache
 def get_classifreport(index_model):
   model_index=index_model
   y_test=get_ytest()
@@ -159,6 +162,7 @@ def get_classifreport(index_model):
   y_pred = np.reshape(y_pred, (-1, 1))
   return(metrics.classification_report(y_test, y_pred))
 
+@st.cache
 def get_crosstab(index_model):
   model_index=index_model
   y_test=get_ytest()

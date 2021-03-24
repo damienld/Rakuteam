@@ -14,78 +14,88 @@ import io
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report
 from sklearn.model_selection import train_test_split
+import streamlit as st
 
-#PARAMETERS before launching
-#define if we should keep the part "X_test_challenge" from the loaded file or ignore it
-Ignore_X_test_challenge = True
-isUseJoblib = True
+@st.cache
+def initRF():
+    #PARAMETERS before launching
+    #define if we should keep the part "X_test_challenge" from the loaded file or ignore it
+    Ignore_X_test_challenge = True
+    isUseJoblib = True
+    
+    # 
+    #Downloading the csv file from your GitHub account
+    
+    url = "https://raw.githubusercontent.com/JulienJ-44/rakuteam/main/Features/data_features_final.csv" # Make sure the url is the raw version of the file on GitHub
+    download = requests.get(url).content
+    df = pd.read_csv(io.StringIO(download.decode('utf-8')), index_col=0)
+    df['description']=df['description'].fillna("")
+    df['desi_words_vs_unique']=df['desi_words_vs_unique'].fillna(0)
+    df['desi_word_unique_percent']=df['desi_word_unique_percent'].fillna(0)
+    df['descri_words_vs_unique']=df['descri_words_vs_unique'].fillna(0)
+    df['descri_word_unique_percent']=df['descri_word_unique_percent'].fillna(0)
+    #Drop useless columns
+    df = df.drop(["prdtypecode_y","productid", "designation","description", "best_idf"], axis=1)
+    df = df.replace({'prdtypecode_x': {10: 1, 2280:2,   50:3, 1280:4, 2705:5, 2522:6, 2582:7, 1560:8, 1281:9, 1920:10, 2403:11,
+           1140:12, 2583:13, 1180:14, 1300:15, 2462:16, 1160:17, 2060:18,   40:19,   60:20, 1320:21, 1302:22,
+           2220:23, 2905:24, 2585:25, 1940:26, 1301:0}})
+    df.head()
+    
+    import numpy as np
+    
+    if (Ignore_X_test_challenge):
+      df =df.dropna(subset=['prdtypecode_x'])
+      y = df['prdtypecode_x'].values
+      df =df.drop('prdtypecode_x', axis=1)
+      X_train, X_test, y_train, y_test = train_test_split(
+            df, y, test_size=0.2, random_state=123)
+    else:
+      X_train = df.dropna(subset=["prdtypecode_x"], axis=0)
+      y_train = X_train['prdtypecode_x'].values
+      X_train =X_train.drop('prdtypecode_x', axis=1)
+      X_test = df[np.isnan(df["prdtypecode_x"])]
+      X_test =X_test.drop('prdtypecode_x', axis=1)
+      y_test = None
+      
+      
+    print("X train:", len(X_train))
+    print("Y train:", len(X_train))
+    print("X test:", len(X_test))
+    
+    from sklearn.preprocessing import StandardScaler
+    scaler = StandardScaler().fit(X_train)
+    
+    X_train  = scaler.transform(X_train)
+    X_test = scaler.transform(X_test)
 
-# 
-#Downloading the csv file from your GitHub account
-"""
-url = "https://raw.githubusercontent.com/JulienJ-44/rakuteam/main/Features/data_features_final.csv" # Make sure the url is the raw version of the file on GitHub
-download = requests.get(url).content
-
-# Reading the downloaded content and turning it into a pandas dataframe
-
-df = pd.read_csv(io.StringIO(download.decode('utf-8')), index_col=0)
-df['description']=df['description'].fillna("")
-df['desi_words_vs_unique']=df['desi_words_vs_unique'].fillna(0)
-df['desi_word_unique_percent']=df['desi_word_unique_percent'].fillna(0)
-df['descri_words_vs_unique']=df['descri_words_vs_unique'].fillna(0)
-df['descri_word_unique_percent']=df['descri_word_unique_percent'].fillna(0)
-df=df.drop(["prdtypecode","designation","description","productid","best_idf"], axis=1)
-df.info()
-
-#Drop useless columns
-df = df.drop(["prdtypecode_y","productid", "designation","description", "best_idf"], axis=1)
-df = df.replace({'prdtypecode_x': {10: 1, 2280:2,   50:3, 1280:4, 2705:5, 2522:6, 2582:7, 1560:8, 1281:9, 1920:10, 2403:11,
-       1140:12, 2583:13, 1180:14, 1300:15, 2462:16, 1160:17, 2060:18,   40:19,   60:20, 1320:21, 1302:22,
-       2220:23, 2905:24, 2585:25, 1940:26, 1301:0}})
-df.head()
-
-import numpy as np
-
-if (Ignore_X_test_challenge):
-  df =df.dropna(subset=['prdtypecode_x'])
-  y = df['prdtypecode_x'].values
-  df =df.drop('prdtypecode_x', axis=1)
-  X_train, X_test, y_train, y_test = train_test_split(
-        df, y, test_size=0.2, random_state=123)
-else:
-  X_train = df.dropna(subset=["prdtypecode_x"], axis=0)
-  y_train = X_train['prdtypecode_x'].values
-  X_train =X_train.drop('prdtypecode_x', axis=1)
-  X_test = df[np.isnan(df["prdtypecode_x"])]
-  X_test =X_test.drop('prdtypecode_x', axis=1)
-  y_test = None
-  
-  
-print("X train:", len(X_train))
-print("Y train:", len(X_train))
-print("X test:", len(X_test))
-
-from sklearn.preprocessing import StandardScaler
-scaler = StandardScaler().fit(X_train)
-
-X_train  = scaler.transform(X_train)
-X_test = scaler.transform(X_test)
-"""
+    #return X_train, y_train, X_test, y_test
+    clf1 = RandomForestClassifier(max_features ='sqrt', n_jobs = -1,n_estimators = 50)
+    clf1.fit(X_train, y_train)
+    return clf1, scaler
+    
 import joblib
 from time import time
 
-def RF_predict(isUseJoblib, df):
+def RF_predict(isUseJoblib, df, X_train, y_train):
     t0 = time()
     # {}
     if (isUseJoblib):
-      clf1 = joblib.load('randomforest85000_50.joblib')
+        #from sklearn.preprocessing import StandardScaler
+        #scaler = StandardScaler().transform(X_test)
+        clf1 = joblib.load('randomforest85000_50.joblib')
     else:
-      clf1 = RandomForestClassifier(max_features ='sqrt', n_jobs = -1,n_estimators = 50)
-      clf1.fit(X_train, y_train)
+        clf1 = RandomForestClassifier(max_features ='sqrt', n_jobs = -1,n_estimators = 50)
+        clf1.fit(X_train, y_train)
     
     ypred_proba = clf1.predict_proba(df)
     print('Processing time: {} mins'.format(round((time() - t0) / 60, 2)))
     return ypred_proba
+
+#X_train, y_train, X_test, y_test = initRF()
+#modelRF=initRF()
+#RF_predict(False, None, X_train, y_train)
+
+
 """
 RF_predict(True)
 y_pred = clf1.predict(X_test)

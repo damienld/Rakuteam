@@ -15,9 +15,9 @@ def get_random_article(classe=-1, nbrows=1):
     if (classe >= 0):
         df=df[df["prdtypecode"]==classe]
     listchoix=random.sample(range(len(df)), nbrows)
-    print(listchoix)
+    #print(listchoix)
     df=df.iloc[listchoix]
-    print("longueur ", len(df))
+    #print("longueur ", len(df))
     for i in range(len(df)):
         print(i)
         path="/images/"

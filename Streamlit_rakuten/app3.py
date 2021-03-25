@@ -85,8 +85,6 @@ def app():
     st.pyplot(fig_2)
     
     
-    from modelisation import *
-    from sample import *
     
     df_code = load_df_code_designation(1)
     

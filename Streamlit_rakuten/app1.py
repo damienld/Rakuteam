@@ -71,6 +71,7 @@ def predict(desi, descr, img, clf1, scaler):
     df_ypred_proba=df_ypred_proba.drop("index",axis=1)
     #df_ypred_proba.sort()
     #print(df_ypred_proba.head(5))
+    st.markdown("**Classe prédite: **"+str(int(df_ypred_proba.iloc[0,1]))+" "+str(df_ypred_proba.iloc[0,2]))
     st.write("Probabilités des différents modèles par classe")
     df_ypred_proba = df_ypred_proba.astype({'classe': object})
     st.dataframe(df_ypred_proba.style.highlight_max(axis=0))
@@ -78,6 +79,7 @@ def predict(desi, descr, img, clf1, scaler):
     df_keywords=display_keywords_fromclasscodes(classe_code_best_proba)#,2583)
     st.write("Mots-clés de la classe prédite")
     st.dataframe(df_keywords)
+    #st.markdown("**Classe réelle: **"+str(int(df_ypred_proba.iloc[0,1]))+" "+str(df_ypred_proba.iloc[0,2]))
 
 
 #predict("bébé","","",clf1,scaler)
@@ -104,6 +106,8 @@ def app():
             img=file_input
         if st.button("Chercher"):
             predict(desi, descr, img, clf1,scaler)
+            #st.markdown("**Classe réelle: **"+int(df_ypred_proba.iloc[0,0])+" "+str(ligne.iloc[0,1]))
+
     else:
         st.subheader("Mode Aléatoire")
         df=get_random_article()

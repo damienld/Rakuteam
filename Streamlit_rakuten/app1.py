@@ -12,6 +12,7 @@ from creation_features import add_features_to_manualdf
 from creation_features import add_imgfeatures
 from Random_Forest import RF_predict,initRF
 from DNN_texte import Dnntexte_predict
+from CNN_image import Cnnimage_predict
 from modelisation import load_df_code_designation, display_keywords_fromclasscodes
 import cv2
 import numpy as np
@@ -54,7 +55,7 @@ print (ypred_proba_RF)"""
 
 clf1, scaler=initRF()
     
-def predict(desi, descr, img, clf1, scaler):
+def predict(desi, descr, img, clf1, scaler, file_input):
     dfcleaned=clean_manualdata(desi,descr)
     print("RF")
     weightRF=0.73
@@ -71,6 +72,14 @@ def predict(desi, descr, img, clf1, scaler):
     df_ypred_proba_RF = pd.DataFrame(ypred_proba_RF).T
     df_ypred_proba_RF=df_ypred_proba_RF.sort_index(axis=0)
     print (ypred_proba_RF)
+
+    print("CNN")
+    weightCNN=0.54
+    ypred_proba_CNN=Cnnimage_predict(file_input)
+    df_ypred_proba_CNN = pd.DataFrame(ypred_proba_CNN).T
+    df_ypred_proba_CNN = df_ypred_proba_CNN.sort_index(axis=0)
+    print (ypred_proba_CNN)    
+    
     
     print("DNN")
     weightDNN=0.82
@@ -80,16 +89,16 @@ def predict(desi, descr, img, clf1, scaler):
     print (ypred_proba_DNN)
     
     print("Voting")
-    ypred_proba=(ypred_proba_DNN*weightDNN+ypred_proba_RF*weightRF)/(weightDNN+weightRF)
+    ypred_proba=(ypred_proba_DNN*weightDNN+ypred_proba_RF*weightRF+ypred_proba_CNN*weightCNN)/(weightDNN+weightRF+weightCNN)
     df_ypred_proba = pd.DataFrame(ypred_proba).T
     df_ypred_proba =df_ypred_proba.sort_index(axis=0)
     print (ypred_proba)
     
     
     df_code = load_df_code_designation(3).sort_index(axis=0)
-    df_ypred_proba=pd.concat([df_ypred_proba,df_code,df_ypred_proba_RF,df_ypred_proba_DNN],axis=1)
+    df_ypred_proba=pd.concat([df_ypred_proba,df_code,df_ypred_proba_RF,df_ypred_proba_DNN,df_ypred_proba_CNN],axis=1)
     df_ypred_proba=df_ypred_proba.drop("Unnamed: 0", axis=1)
-    df_ypred_proba.columns=["Voting","classe","libellé","RF","DNN"]
+    df_ypred_proba.columns=["Voting","classe","libellé","RF","DNN","CNN Img"]
     df_ypred_proba=df_ypred_proba.sort_values(by='Voting', ascending=False)
     df_ypred_proba=df_ypred_proba.reset_index()
     df_ypred_proba=df_ypred_proba.drop("index",axis=1)
@@ -113,6 +122,7 @@ def app():
     
     alg = ['Manuel','Aléatoire']
     classifier = st.selectbox('Sélection:', alg)
+    
     if classifier=='Manuel':
         st.subheader("Mode Manuel")
         desi=st.text_area("Entrer la désignation")
@@ -126,7 +136,7 @@ def app():
             st.image(opencv_image, channels="BGR")
             img=file_input
         if st.button("Chercher"):
-            predict(desi, descr, img, clf1,scaler)
+            predict(desi, descr, img, clf1,scaler, file_input)
     else:
         st.subheader("Mode Aléatoire")
         df=get_random_article()
@@ -139,4 +149,4 @@ def app():
         img=file_input2
         st.image(img)
         st.markdown("**Classe réelle: **"+str(df.iloc[0,4]))
-        predict(desi, descr, img, clf1,scaler)
+        predict(desi, descr, img, clf1,scaler, file_input2)

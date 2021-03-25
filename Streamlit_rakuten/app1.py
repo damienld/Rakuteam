@@ -76,7 +76,7 @@ def predict(desi, descr, img, clf1, scaler, file_input):
 
     print("CNN")
     weightCNN=0.54
-    ypred_proba_CNN=Cnnimage_predict(file_input)
+    ypred_proba_CNN=Cnnimage_predict(img)
     df_ypred_proba_CNN = pd.DataFrame(ypred_proba_CNN).T
     df_ypred_proba_CNN = df_ypred_proba_CNN.sort_index(axis=0)
     print (ypred_proba_CNN)    
@@ -113,6 +113,10 @@ def predict(desi, descr, img, clf1, scaler, file_input):
     st.write("Mots-clés de la classe prédite")
     st.dataframe(df_keywords)
     st.write("Echantillon d'image")
+    df2=get_sample_img_classe()
+    file_input3="."+df2.iloc[0,1]
+    img2=file_input3
+    st.image(img2)
 
 
 #predict("bébé","","",clf1,scaler)
@@ -151,9 +155,5 @@ def app():
         file_input2="."+df.iloc[0,5]
         img=file_input2
         st.image(img)
-        df2=get_sample_img_classe()
-        file_input3=df2.iloc[0,1]
-        img2=file_input3
-        st.image(img2)
         st.markdown("**Classe réelle: **"+str(df.iloc[0,4]))
         predict(desi, descr, img, clf1,scaler, file_input2)

@@ -62,6 +62,7 @@ def predict(desi, descr, img, clf1, scaler):
     df_ypred_proba =df_ypred_proba.sort_index(axis=0)
     print (ypred_proba)
     
+
     df_code = load_df_code_designation(3).sort_index(axis=0)
     df_ypred_proba=pd.concat([df_ypred_proba,df_code,df_ypred_proba_RF,df_ypred_proba_DNN,df_ypred_proba_CNN],axis=1)
     df_ypred_proba=df_ypred_proba.drop("Unnamed: 0", axis=1)
@@ -72,14 +73,16 @@ def predict(desi, descr, img, clf1, scaler):
     #df_ypred_proba.sort()
     #print(df_ypred_proba.head(5))
     st.markdown("**Classe prédite: **"+str(int(df_ypred_proba.iloc[0,1]))+" "+str(df_ypred_proba.iloc[0,2]))
-    st.write("Probabilités des différents modèles par classe")
+    st.markdown("** DataFrame Features Textes & Image **")
+    st.dataframe(df)
+    st.markdown("**Probabilités des différents modèles par classe**")
     df_ypred_proba = df_ypred_proba.astype({'classe': object})
     st.dataframe(df_ypred_proba.style.highlight_max(axis=0))
     classe_code_best_proba=int(df_ypred_proba.iloc[0,1])
     df_keywords=display_keywords_fromclasscodes(classe_code_best_proba)#,2583)
-    st.write("Mots-clés de la classe prédite")
+    st.markdown("**Mots-clés de la classe prédite**")
     st.dataframe(df_keywords)
-    st.write("Echantillon d'images de la classe réelle")
+    st.markdown("**Echantillon d'images de la classe réelle**")
     path="./echantillons/subplot_classe_" + str(int(df_ypred_proba.iloc[0,1])) +".png"
     st.image(path)
     #st.markdown("**Classe réelle: **"+str(int(df_ypred_proba.iloc[0,1]))+" "+str(df_ypred_proba.iloc[0,2]))

@@ -31,16 +31,12 @@ def displayclassif_and_cross(model_index):
     st.markdown("**Confusion Matrix Heatmap: **")
     st.pyplot(fig)   
     
-Models = ["Modèle RF", 
-         "Modèle NN Text", 
-         "Modèle NN Image", 
-         "Voting Classifier (3modèles)"]
-   
+
 # app2.py
 def app():
     st.title('MODELISATION')
 
-    alg = ['1-RF', '2-CNN image', '3-DNN texte', 'weighted voting']
+    alg = ['1-RF', '2-CNN image', '3-DNN texte', '4-Voting Classifier']
     classifier = st.selectbox('Selection du modèle', alg)
     if classifier=='1-RF':
         model_index = "1"
@@ -51,6 +47,6 @@ def app():
     elif classifier == '3-DNN texte':
         model_index = "3"
         displayclassif_and_cross(model_index)
-    elif classifier == 'weighted voting':
+    elif classifier == '4-Voting Classifier':
         model_index = "4"
         displayclassif_and_cross(model_index)

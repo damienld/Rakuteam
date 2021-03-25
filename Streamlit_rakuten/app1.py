@@ -79,6 +79,9 @@ def predict(desi, descr, img, clf1, scaler):
     df_keywords=display_keywords_fromclasscodes(classe_code_best_proba)#,2583)
     st.write("Mots-clés de la classe prédite")
     st.dataframe(df_keywords)
+    st.write("Echantillon d'images de la classe réelle")
+    path="./echantillons/subplot_classe_" + str(int(df_ypred_proba.iloc[0,1])) +".png"
+    st.image(path)
     #st.markdown("**Classe réelle: **"+str(int(df_ypred_proba.iloc[0,1]))+" "+str(df_ypred_proba.iloc[0,2]))
 
 
@@ -127,7 +130,5 @@ def app():
         st.markdown("**Classe réelle: **"+str(codeclasse)+" "+classe_reelle_name) #TODO ajouter libellé classe
         predict(desi, descr, img, clf1,scaler)
         
-        st.write("Echantillon d'images de la classe réelle")
+
         
-        path="./echantillons/subplot_classe_" + str(codeclasse) +".png"
-        st.image(path)

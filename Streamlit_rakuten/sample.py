@@ -29,13 +29,13 @@ def get_random_article(classe=-1, nbrows=1):
 def get_sample_img_classe(classe=-1, nbrows=1):
     url = "https://raw.githubusercontent.com/JulienJ-44/rakuteam/main/Datasets/echantillons_streamlit.csv"
     download = requests.get(url).content
-    df=pd.read_csv(io.StringIO(download.decode('utf-8')), index_col=0)
-    for i in range(len(df)):
+    df2=pd.read_csv(io.StringIO(download.decode('utf-8')), index_col=0)
+    for i in range(len(df2)):
         print(i)
         path="/echantillons/"
-        img = df.iloc[i,3]
-        df.iloc[i,3]=path+img
-    return df
+        img = df2.iloc[i,1]
+        df2.iloc[i,1]=path+img
+    return df2
 
 
 get_sample_img_classe()

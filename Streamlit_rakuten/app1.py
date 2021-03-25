@@ -19,6 +19,7 @@ import numpy as np
 import streamlit as st
 import pandas as pd
 from sample import get_random_article
+from sample import get_sample_img_classe
 from sklearn.preprocessing import StandardScaler
 
 desiinit="jeu chaise longue pcs textilène noir noir"
@@ -111,6 +112,8 @@ def predict(desi, descr, img, clf1, scaler, file_input):
     df_keywords=display_keywords_fromclasscodes(classe_code_best_proba)#,2583)
     st.write("Mots-clés de la classe prédite")
     st.dataframe(df_keywords)
+    st.write("Echantillon d'image")
+
 
 #predict("bébé","","",clf1,scaler)
 
@@ -148,5 +151,9 @@ def app():
         file_input2="."+df.iloc[0,5]
         img=file_input2
         st.image(img)
+        df2=get_sample_img_classe()
+        file_input3=df2.iloc[0,1]
+        img2=file_input3
+        st.image(img2)
         st.markdown("**Classe réelle: **"+str(df.iloc[0,4]))
         predict(desi, descr, img, clf1,scaler, file_input2)

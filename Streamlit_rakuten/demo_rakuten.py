@@ -12,10 +12,10 @@ import app4
 
 
 PAGES = {
-    "Modélisation": app2,
-    "Prédiction": app1,
+    "Démarche": app4,
     "Dataviz reporting": app3,
-    "Démarche": app4
+    "Modélisation": app2,
+    "Prédiction": app1
 }
 
 st.sidebar.title('Navigation')

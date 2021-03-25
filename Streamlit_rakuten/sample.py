@@ -25,6 +25,27 @@ def get_random_article(classe=-1, nbrows=1):
         df.iloc[i,5]=path+img
     return df
 
+
+def get_sample_img_classe(classe=-1, nbrows=1):
+    url = "https://raw.githubusercontent.com/JulienJ-44/rakuteam/main/Datasets/echantillons_streamlit.csv"
+    download = requests.get(url).content
+    df2=pd.read_csv(io.StringIO(download.decode('utf-8')), index_col=0)
+    if (classe >= 0):
+        df2=df2[df2["Classe"]==classe]
+        listchoix=sample(range(len(df2)), nbrows)
+        df2=df2.iloc[listchoix]
+    for i in range(len(df2)):
+        print(i)
+        path="/echantillons/"
+        img = df2.iloc[i,1]
+        df2.iloc[i,1]=path+img
+    return df2
+
+
+
+
+
+
 #df=get_random_article(2583, 3)
 #print(df.head())
 """

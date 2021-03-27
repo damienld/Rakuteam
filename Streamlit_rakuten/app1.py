@@ -16,15 +16,37 @@ from CNN_image import Cnnimage_predict
 from modelisation import load_df_code_designation, display_keywords_fromclasscodes
 import cv2
 import numpy as np
-import streamlit as st
 import pandas as pd
 from sample import get_random_article
-from sklearn.preprocessing import StandardScaler
-
 
 clf1, scaler=initRF()
+
+from bs4 import BeautifulSoup
+import requests
+ 
+
+
+#imgpath="https://images-na.ssl-images-amazon.com/images/I/71pVfExlo4L._AC_SL1500_.jpg"
+#image = image_url_to_numpy_array_skimage(imgpath)
+#print(image)
+def getAmazon(URL):
     
+    HEADERS = ({'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)  Chrome/44.0.2403.157 Safari/537.36',
+                               'Accept-Language': 'en-US, en;q=0.5'})  
+    webpage = requests.get(URL, headers=HEADERS)
+    soup = BeautifulSoup(webpage.content, "lxml")
+    desi=soup.find('h1', attrs={'id': 'title'}).text.strip()
+    try:
+        desc=soup.find('div', attrs={'id': 'feature-bullets'}).text.strip().replace('\n', ' ').replace('À propos de cet article', '').replace('Voir plus de détails', '')
+    except:
+        desc=""
+    img=soup.find('img', attrs={'id': 'landingImage'})['data-old-hires']
+    return desi, desc, img
+
+
 def predict(desi, descr, img, clf1, scaler):
+    
+    print("img:",img)
     dfcleaned=clean_manualdata(desi,descr)
     print("RF")
     weightRF=0.73
@@ -73,6 +95,9 @@ def predict(desi, descr, img, clf1, scaler):
     #df_ypred_proba.sort()
     #print(df_ypred_proba.head(5))
     st.markdown("**Classe prédite: **"+str(int(df_ypred_proba.iloc[0,1]))+" "+str(df_ypred_proba.iloc[0,2]))
+    st.markdown("**Echantillon d'images de la classe prédite**")
+    path="./echantillons/subplot_classe_" + str(int(df_ypred_proba.iloc[0,1])) +".png"
+    st.image(path, width=600)
     st.markdown("** DataFrame Features Textes & Image **")
     st.dataframe(df)
     st.markdown("**Probabilités des différents modèles par classe**")
@@ -82,23 +107,36 @@ def predict(desi, descr, img, clf1, scaler):
     df_keywords=display_keywords_fromclasscodes(classe_code_best_proba)#,2583)
     st.markdown("**Mots-clés de la classe prédite**")
     st.dataframe(df_keywords)
-    st.markdown("**Echantillon d'images de la classe réelle**")
-    path="./echantillons/subplot_classe_" + str(int(df_ypred_proba.iloc[0,1])) +".png"
-    st.image(path)
     #st.markdown("**Classe réelle: **"+str(int(df_ypred_proba.iloc[0,1]))+" "+str(df_ypred_proba.iloc[0,2]))
 
+#predict("bébé","","https://www.amazon.fr/Support-Perlegear-%C3%A9crans-Inclinable-orientable/dp/B01MS4N45A",clf1, scaler)
 
 #predict("bébé","","",clf1,scaler)
-
+#import streamlit.components.v1 as components
 def app():
     file_input2=""
     #desiinit="jeu chaise longue pcs textilène noir noir"
     #descinit="cet ensemble deux chaises longues haute qualité petite table assortie idéal passer après-midi détente jardin camping chaises longues durables faciles nettoyer revêtues textilène doux confortable construites cadre acier robuste deux chaises longues d'extérieur durables résistants intempéries l'ensemble complété table assortie élégant dessus table verre lequel pouvez mettre boissons garder livre téléphone portée main cet ensemble excellent ajout espace vie extérieur couleur noir matériau chaise longue structure acier 43 siège dossier textilène dimensions chaise longue 200 58 32 cm dimensions table 30 30 295 cm hauteur dossier réglable 62/72/80/89/95 cm comprend table dessus table verre mm d'épaisseur résistance intempéries matériel polyester 30 pvc 70"
     st.title('PREDICTION')
     
-    alg = ['Manuel','Aléatoire']
+    alg = ['Amazon','Manuel','Aléatoire']
     classifier = st.selectbox('Sélection:', alg)
-    if classifier=='Manuel':
+    if classifier=='Amazon':
+        st.subheader("Amazon")
+        import streamlit.components.v1 as components
+        components.html('<a href="https://www.amazon.fr/gcx/Cadeaux-pour-Femmes-et-Hommes/gfhz/">Page Amazon</a>')
+        url=st.text_area("URL")
+        if (url != ""):
+            indexref=url.find("/ref=")
+            if (indexref > -1):
+                url=url[:indexref]
+            st.text(url)
+            desi,descr,img=getAmazon(url)
+            desi=st.text_area("Entrer la désignation", desi)
+            descr=st.text_area('Entrer la description', descr)
+            st.image(img, width=200)
+            predict(desi, descr, img, clf1,scaler)
+    elif classifier=='Manuel':
         st.subheader("Mode Manuel")
         desi=st.text_area("Entrer la désignation")
         descr=st.text_area('Entrer la description')

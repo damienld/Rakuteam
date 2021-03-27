@@ -8,12 +8,9 @@ Created on Wed Mar 24 15:45:33 2021
 import numpy as np
 import pandas as pd
 import cv2
-import random
-import matplotlib.pyplot as plt
 from PIL import Image
-import cv2 
 from keras.models import load_model
-import streamlit as st
+from utils import image_url_to_numpy_array_skimage
 
 def Cnnimage_predict(imgpath):
     X_img=[]
@@ -22,7 +19,10 @@ def Cnnimage_predict(imgpath):
     
     #file_bytes = np.asarray(bytearray(imgpath.read()), dtype=np.uint8)
     #img=cv2.imread(imgpath)
-    img = np.array(Image.open(imgpath))
+    if (imgpath.startswith("http")):
+        img=image=image_url_to_numpy_array_skimage(imgpath)
+    else:
+        img = np.array(Image.open(imgpath))
     #img = Image.open(imgpath)
     # Resize image
     print(img.shape)

@@ -17,6 +17,7 @@ import nltk as nltk
 import PIL
 from PIL import Image
 import numpy as np
+from utils import image_url_to_numpy_array_skimage
 
 #DEBUT PREPROCESSING
 isManualData=True
@@ -176,9 +177,13 @@ if (not isManualData):
   df['description']=df['description'].fillna("")
   create_features_loadedd(df)
 '''
+
 def add_imgfeatures(df, imgpath):
     if (not (imgpath == "")):
-        image = np.array(Image.open(imgpath))
+        if (imgpath.startswith("http")):
+            image=image_url_to_numpy_array_skimage(imgpath)
+        else:
+            image = np.array(Image.open(imgpath))
         n_white_pix = np.sum(image == [255, 255, 255])/750000
         n_black_pix = np.sum(image == [0,0,0])/750000
         image_mean = np.mean(image, axis=(0, 1))  

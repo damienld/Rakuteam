@@ -17,13 +17,15 @@ import requests
 import io
 import streamlit as st
 
+  
+#y_pred_proba= pd.read_csv("../y_pred_proba/ypred_proba_RandomForest_Global_score0_74.csv")#(io.StringIO(download.decode('utf-8')))
+#y_pred_proba.head()
 model_index = 1#input("Select a model: 1-RF, 2-CNN image, 3-DNN texte, default-weighted voting")
 print(model_index)
 
 def load_df_code_designation(index=0):
-  url = "https://raw.githubusercontent.com/JulienJ-44/rakuteam/main/Streamlit_rakuten/Demo/df_classes_avec_code_libelle_code026.csv"
-  download = requests.get(url).content
-  df = pd.read_csv(io.StringIO(download.decode('utf-8')), index_col=index)
+  url = "./Demo/df_classes_avec_code_libelle_code026.csv"
+  df = pd.read_csv(url, index_col=index)
   return df
 
 df_code_designation = load_df_code_designation()
@@ -76,9 +78,8 @@ def display_keywords_fromclassnames(name_classe_reelle):#, name_classe_predite):
   return (df_comparekeywords)
 
 def get_ytest():
-  url = "https://raw.githubusercontent.com/JulienJ-44/rakuteam/main/y_pred_proba/y_test.csv"# Make sure the url is the raw version of the file on GitHub
-  download = requests.get(url).content
-  y_test = pd.read_csv(io.StringIO(download.decode('utf-8')))
+  url = "../y_pred_proba/y_test.csv"# Make sure the url is the raw version of the file on GitHub
+  y_test = pd.read_csv(url)
   # Remplacer les labels de 0 à 26
   y_test = y_test.replace({'prdtypecode': {10: 1, 2280:2,   50:3, 1280:4, 2705:5, 2522:6, 2582:7, 1560:8, 1281:9, 1920:10, 2403:11,
         1140:12, 2583:13, 1180:14, 1300:15, 2462:16, 1160:17, 2060:18,   40:19,   60:20, 1320:21, 1302:22,
@@ -88,14 +89,15 @@ def get_ytest():
   except:
     print("(2)no columns Unnamed: 0")
   return y_test
-
+@st.cache
 def get_ytrain():
-  url = "https://raw.githubusercontent.com/JulienJ-44/rakuteam/main/y_pred_proba/y_train.csv"# Make sure the url is the raw version of the file on GitHub
-  download = requests.get(url).content
-  y_train = pd.read_csv(io.StringIO(download.decode('utf-8')))
+  #url = "https://raw.githubusercontent.com/JulienJ-44/rakuteam/main/y_pred_proba/y_train.csv"# Make sure the url is the raw version of the file on GitHub
+  #download = requests.get(url).content
+  #y_train = pd.read_csv(io.StringIO(download.decode('utf-8')))
+  y_train= pd.read_csv("../y_pred_proba/y_train.csv")
   # Remplacer les labels de 0 à 26
   return y_train
-
+@st.cache
 def set_model_name(model_index):
   if (model_index == "1"):
     model_selected="Random Forest"    
@@ -106,30 +108,20 @@ def set_model_name(model_index):
   else:
     model_selected="weighted voting"
   return model_selected
-
+@st.cache
 def calc_y_pred(model_index):
   if (model_index == "1"):
-    url = "https://raw.githubusercontent.com/JulienJ-44/rakuteam/main/y_pred_proba/ypred_proba_RandomForest_Global_score0_74.csv"
-    download = requests.get(url).content
-    y_pred_proba= pd.read_csv(io.StringIO(download.decode('utf-8')))
+    #url = "https://raw.githubusercontent.com/JulienJ-44/rakuteam/main/y_pred_proba/ypred_proba_RandomForest_Global_score0_74.csv"
+    #download = requests.get(url).content
+    y_pred_proba= pd.read_csv("../y_pred_proba/ypred_proba_RandomForest_Global_score0_74.csv")#(io.StringIO(download.decode('utf-8')))
   elif (model_index == "2"):
-    url = "https://raw.githubusercontent.com/JulienJ-44/rakuteam/main/y_pred_proba/ypred_proba_model_image_final_train_test.csv"
-    download = requests.get(url).content
-    y_pred_proba= pd.read_csv(io.StringIO(download.decode('utf-8')))
+    y_pred_proba= pd.read_csv("../y_pred_proba/ypred_proba_model_image_final_train_test.csv")
   elif (model_index == "3"):
-    url = "https://raw.githubusercontent.com/JulienJ-44/rakuteam/main/y_pred_proba/ypred_proba_DnnText_score0_82.csv"
-    download = requests.get(url).content
-    y_pred_proba= pd.read_csv(io.StringIO(download.decode('utf-8')))
+    y_pred_proba= pd.read_csv("../y_pred_proba/ypred_proba_DnnText_score0_82.csv")
   else:
-    url = "https://raw.githubusercontent.com/JulienJ-44/rakuteam/main/y_pred_proba/ypred_proba_RandomForest_Global_score0_74.csv" # Make sure the url is the raw version of the file on GitHub
-    download = requests.get(url).content
-    y_pred_proba_rf = pd.read_csv(io.StringIO(download.decode('utf-8')))
-    url = "https://raw.githubusercontent.com/JulienJ-44/rakuteam/main/y_pred_proba/ypred_proba_DnnText_score0_82.csv" # Make sure the url is the raw version of the file on GitHub
-    download = requests.get(url).content
-    y_pred_proba_dnntext = pd.read_csv(io.StringIO(download.decode('utf-8')))
-    url = "https://raw.githubusercontent.com/JulienJ-44/rakuteam/main/y_pred_proba/ypred_proba_Image_score_0_55_correct.csv"# Make sure the url is the raw version of the file on GitHub
-    download = requests.get(url).content
-    y_pred_proba_img = pd.read_csv(io.StringIO(download.decode('utf-8')))
+    y_pred_proba_rf = pd.read_csv("../y_pred_proba/ypred_proba_RandomForest_Global_score0_74.csv")
+    y_pred_proba_dnntext = pd.read_csv("../y_pred_proba/ypred_proba_DnnText_score0_82.csv")
+    y_pred_proba_img = pd.read_csv("../y_pred_proba/ypred_proba_model_image_final_train_test.csv")
     score1_rf = 0.74
     score2_dnntext = 0.82
     score3_img = 0.58
@@ -164,6 +156,7 @@ def get_classifreport(index_model):
 
 @st.cache
 def get_crosstab(index_model):
+  print("0")    
   model_index=index_model
   y_test=get_ytest()
   y_train=get_ytrain()
@@ -179,9 +172,11 @@ def get_crosstab(index_model):
   # Pour ajouter une dimension en plus
   y_pred = np.reshape(y_pred, (-1, 1))
   # Crosstab avec ravel pr enlever dimension et eviter message d'erreur (Error: If using all scalar values, you must pass an index)
+  print("1")    
   dfcross = pd.crosstab(y_test.ravel(), y_pred.ravel(), rownames=['Classe réelle'], colnames=['Classe prédite'],normalize = 0) #TODO remettre ,normalize = 0  
   dfcross = dfcross.sort_index(axis=0)
   dfcross = dfcross.sort_index(axis=1)
+  print("2")    
   df_code_designation = load_df_code_designation()
   dfcross.columns = df_code_designation['désignation']
   dfcross.index = df_code_designation['désignation']

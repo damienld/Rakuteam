@@ -38,3 +38,15 @@ def get_pixel_value_counts(x_2):
 
   test = class_pix_mean.join(df_code).sort_values('Pourcentage moyen de pixels', ascending=False)
   return test
+
+
+@st.cache
+def get_regex_sample(val_regex):
+    df_code = load_df_code_designation(1)
+    df = get_dataset_cleaned()
+    df = df[df['designation'].notnull()]
+    df_1 = df[df['designation'].str.contains(val_regex)]
+    # class_nb = pd.DataFrame(df_1['prdtypecode_x'].value_counts())
+    # class_nb.columns = ["Nombre d'articles"]
+    # test = class_nb.join(df_code)
+    return df_1.head(10).reset_index()

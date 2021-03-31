@@ -81,24 +81,24 @@ def app():
         df_regex = df_regex['designation']
         import re
         s = ""
-   
-        st.write('Voici quelques exemples de désignations contenant le mot '+mot)  
-        for sentence in df_regex:
-            x = re.split("\s",sentence)
-            for word in x:
-                v = word
+        if mot != "": 
+            st.write('Voici quelques exemples de désignations contenant le mot '+mot)  
+            for sentence in df_regex:
+                x = re.split("\s",sentence)
+                for word in x:
+                    v = word
+                    
+                    if word == mot:
+                        
+                        v = '**' +word.upper() + '**' 
+                        
+                    myTuple = (s, v)
+    
+                    s = " ".join(myTuple)
                 
-                if word == mot:
-                    
-                    v = word.upper()  
-                    
-                myTuple = (s, v)
-
-                s = " ".join(myTuple)
-            
-            st.text(s)
-            s=""
-            # st.text(s.replace(mot1, '\033[44;33m{}\033[m'.format(mot)))
+                st.markdown(s)
+                s=""
+                # st.text(s.replace(mot1, '\033[44;33m{}\033[m'.format(mot)))
         
         st.bokeh_chart(p1)
         
@@ -117,7 +117,14 @@ def app():
         selection = st.radio("Sélectionner le motif à rechercher", list(PAGES.keys()))
         x = PAGES[selection]
         
-      
+        df_regex = get_regex_sample(x)
+        
+        df_regex = df_regex['designation']
+        if x != ".": 
+            st.write('Voici quelques exemples de désignations contenant le mot '+x)
+            for sentence in df_regex:
+                st.text(sentence)
+        
         regex = get_regex_value_counts(x)
         regex = regex.sort_values("Nombre d'articles",ascending = True)
     

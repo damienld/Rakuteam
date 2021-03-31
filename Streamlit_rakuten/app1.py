@@ -154,9 +154,9 @@ def app():
     #descinit="cet ensemble deux chaises longues haute qualité petite table assortie idéal passer après-midi détente jardin camping chaises longues durables faciles nettoyer revêtues textilène doux confortable construites cadre acier robuste deux chaises longues d'extérieur durables résistants intempéries l'ensemble complété table assortie élégant dessus table verre lequel pouvez mettre boissons garder livre téléphone portée main cet ensemble excellent ajout espace vie extérieur couleur noir matériau chaise longue structure acier 43 siège dossier textilène dimensions chaise longue 200 58 32 cm dimensions table 30 30 295 cm hauteur dossier réglable 62/72/80/89/95 cm comprend table dessus table verre mm d'épaisseur résistance intempéries matériel polyester 30 pvc 70"
     st.title('PREDICTION')
     st.subheader("Modèles")
-    chkRF=st.checkbox('Random Forest: accu=0.73%, features utilisées:regexp, nb mots/phrases, moy. couleurs ...', True)
-    chkCNN=st.checkbox('CNN: accu=0.54%, feature utilisée: image de l''article', True)
-    chkDNN=st.checkbox('DNN: accu=0.82%, features utilisées: désignation et description de l''article', True)
+    chkRF=st.checkbox("Random Forest: accu=0.73%, features utilisées:regexp, nb mots/phrases, moy. couleurs ...", True)
+    chkCNN=st.checkbox("CNN: accu=0.54%, feature utilisée: image de l''article", True)
+    chkDNN=st.checkbox("DNN: accu=0.82%, features utilisées: désignation et description de l'article", True)
     alg = ['Aléatoire','Manuel','Site: Amazon']
     classifier = st.selectbox('Sélection:', alg)
     if classifier=='Site: Amazon':

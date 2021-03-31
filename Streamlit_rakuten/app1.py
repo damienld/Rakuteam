@@ -23,8 +23,7 @@ clf1, scaler=initRF()
 
 from bs4 import BeautifulSoup
 import requests
- 
-
+import streamlit.components.v1 as components
 
 #imgpath="https://images-na.ssl-images-amazon.com/images/I/71pVfExlo4L._AC_SL1500_.jpg"
 #image = image_url_to_numpy_array_skimage(imgpath)
@@ -35,50 +34,68 @@ def getAmazon(URL):
                                'Accept-Language': 'en-US, en;q=0.5'})  
     webpage = requests.get(URL, headers=HEADERS)
     soup = BeautifulSoup(webpage.content, "lxml")
-    desi=soup.find('h1', attrs={'id': 'title'}).text.strip()
+    try:
+        body=soup.find('body').text.strip()
+    except:
+        body="" 
+    try:
+        desi=soup.find('h1', attrs={'id': 'title'}).text.strip()
+    except:
+        desi=""
     try:
         desc=soup.find('div', attrs={'id': 'feature-bullets'}).text.strip().replace('\n', ' ').replace('À propos de cet article', '').replace('Voir plus de détails', '')
     except:
         desc=""
-    img=soup.find('img', attrs={'id': 'landingImage'})['data-old-hires']
-    return desi, desc, img
+    try:
+        img=soup.find('img', attrs={'id': 'landingImage'})['data-old-hires']
+    except:
+        img=""
+    return desi, desc, img, body
 
-
-def predict(desi, descr, img, clf1, scaler):
+def predict(desi, descr, img, clf1, scaler, inclRF, inclCNN, inclDNN):
     
     print("img:",img)
     dfcleaned=clean_manualdata(desi,descr)
     print("RF")
-    weightRF=0.73
     #img="test2.jpg"
     df=add_features_to_manualdf(dfcleaned, img)
     #st.dataframe(df)   
     df=df.fillna(0)
     df_rf=df.drop(["prdtypecode","designation","description","productid","best_idf"], axis=1)
     #ypred_proba_RF=RF_predict(True, df_rf)
-    print("model RF fitted")
-    print(df_rf.head(1))
-    df_rf=scaler.transform(df_rf)
-    ypred_proba_RF = clf1.predict_proba(df_rf)
-    df_ypred_proba_RF = pd.DataFrame(ypred_proba_RF).T
-    df_ypred_proba_RF=df_ypred_proba_RF.sort_index(axis=0)
-    print (ypred_proba_RF)
+   
+    weightRF=0
+    ypred_proba_RF=0
+    if (inclRF):
+        print("RF")
+        weightRF=0.73
+        df_rf=scaler.transform(df_rf)
+        ypred_proba_RF = clf1.predict_proba(df_rf)
+        df_ypred_proba_RF = pd.DataFrame(ypred_proba_RF).T
+        df_ypred_proba_RF=df_ypred_proba_RF.sort_index(axis=0)
+        print (ypred_proba_RF)
     
-    print("CNN")
-    weightCNN=0.54
-    ypred_proba_CNN=Cnnimage_predict(img)
-    df_ypred_proba_CNN = pd.DataFrame(ypred_proba_CNN).T
-    df_ypred_proba_CNN = df_ypred_proba_CNN.sort_index(axis=0)
-    print (ypred_proba_CNN)    
+    weightCNN=0
+    ypred_proba_CNN=0
+    if (inclCNN):
+        print("CNN")
+        weightCNN=0.54
+        ypred_proba_CNN=Cnnimage_predict(img)
+        df_ypred_proba_CNN = pd.DataFrame(ypred_proba_CNN).T
+        df_ypred_proba_CNN = df_ypred_proba_CNN.sort_index(axis=0)
+        print (ypred_proba_CNN)    
     
-    print("DNN")
-    weightDNN=0.82
-    ypred_proba_DNN=Dnntexte_predict(desi, descr)
-    df_ypred_proba_DNN = pd.DataFrame(ypred_proba_DNN).T
-    df_ypred_proba_DNN=df_ypred_proba_DNN.sort_index(axis=0)
-    print (ypred_proba_DNN)
+    weightDNN=0
+    ypred_proba_DNN=0
+    if (inclDNN):
+        print("DNN")
+        weightDNN=0.82
+        ypred_proba_DNN=Dnntexte_predict(desi, descr)
+        df_ypred_proba_DNN = pd.DataFrame(ypred_proba_DNN).T
+        df_ypred_proba_DNN=df_ypred_proba_DNN.sort_index(axis=0)
+        print (ypred_proba_DNN)
     
-    print("Voting")
+    print("Proba")
     ypred_proba=(ypred_proba_DNN*weightDNN+ypred_proba_RF*weightRF+ypred_proba_CNN*weightCNN)/(weightDNN+weightRF+weightCNN)
     df_ypred_proba = pd.DataFrame(ypred_proba).T
     df_ypred_proba =df_ypred_proba.sort_index(axis=0)
@@ -86,12 +103,30 @@ def predict(desi, descr, img, clf1, scaler):
     
 
     df_code = load_df_code_designation(3).sort_index(axis=0)
-    df_ypred_proba=pd.concat([df_ypred_proba,df_code,df_ypred_proba_RF,df_ypred_proba_DNN,df_ypred_proba_CNN],axis=1)
-    df_ypred_proba=df_ypred_proba.drop("Unnamed: 0", axis=1)
-    df_ypred_proba.columns=["Voting","classe","libellé","RF","DNN txt","CNN img"]
-    df_ypred_proba=df_ypred_proba.sort_values(by='Voting', ascending=False)
+    if (inclRF and inclCNN and inclDNN):
+        df_ypred_proba=pd.concat([df_ypred_proba,df_code,df_ypred_proba_RF,df_ypred_proba_CNN,df_ypred_proba_DNN],axis=1)
+        df_ypred_proba=df_ypred_proba.drop("Unnamed: 0", axis=1)
+        df_ypred_proba.columns=["Proba","classe","libellé","RF","CNN img","DNN txt"]
+    elif (inclRF and inclCNN):    
+        df_ypred_proba=pd.concat([df_ypred_proba,df_code,df_ypred_proba_RF,df_ypred_proba_CNN],axis=1)
+        df_ypred_proba=df_ypred_proba.drop("Unnamed: 0", axis=1)
+        df_ypred_proba.columns=["Proba","classe","libellé","RF","CNN img"]
+    elif (inclRF and inclDNN):    
+        df_ypred_proba=pd.concat([df_ypred_proba,df_code,df_ypred_proba_RF,df_ypred_proba_DNN],axis=1)
+        df_ypred_proba=df_ypred_proba.drop("Unnamed: 0", axis=1)
+        df_ypred_proba.columns=["Proba","classe","libellé","RF","DNN txt"]
+    elif (inclCNN and inclDNN):    
+        df_ypred_proba=pd.concat([df_ypred_proba,df_code,df_ypred_proba_CNN,df_ypred_proba_DNN],axis=1)
+        df_ypred_proba=df_ypred_proba.drop("Unnamed: 0", axis=1)
+        df_ypred_proba.columns=["Proba","classe","libellé","CNN img","DNN txt"]
+    else:    
+        df_ypred_proba=pd.concat([df_ypred_proba,df_code],axis=1)
+        df_ypred_proba=df_ypred_proba.drop("Unnamed: 0", axis=1)
+        df_ypred_proba.columns=["Proba","classe","libellé"]
+        
+    df_ypred_proba=df_ypred_proba.sort_values(by='Proba', ascending=False)
     df_ypred_proba=df_ypred_proba.reset_index()
-    df_ypred_proba=df_ypred_proba.drop("index",axis=1)
+    df_ypred_proba=df_ypred_proba.drop("index",axis=1)    
     #df_ypred_proba.sort()
     #print(df_ypred_proba.head(5))
     st.markdown("**Classe prédite: **"+str(int(df_ypred_proba.iloc[0,1]))+" "+str(df_ypred_proba.iloc[0,2]))
@@ -118,12 +153,14 @@ def app():
     #desiinit="jeu chaise longue pcs textilène noir noir"
     #descinit="cet ensemble deux chaises longues haute qualité petite table assortie idéal passer après-midi détente jardin camping chaises longues durables faciles nettoyer revêtues textilène doux confortable construites cadre acier robuste deux chaises longues d'extérieur durables résistants intempéries l'ensemble complété table assortie élégant dessus table verre lequel pouvez mettre boissons garder livre téléphone portée main cet ensemble excellent ajout espace vie extérieur couleur noir matériau chaise longue structure acier 43 siège dossier textilène dimensions chaise longue 200 58 32 cm dimensions table 30 30 295 cm hauteur dossier réglable 62/72/80/89/95 cm comprend table dessus table verre mm d'épaisseur résistance intempéries matériel polyester 30 pvc 70"
     st.title('PREDICTION')
-    
-    alg = ['Amazon','Manuel','Aléatoire']
+    st.subheader("Modèles")
+    chkRF=st.checkbox('Random Forest: accu=0.73%, features utilisées:regexp, nb mots/phrases, moy. couleurs ...', True)
+    chkCNN=st.checkbox('CNN: accu=0.54%, feature utilisée: image de l''article', True)
+    chkDNN=st.checkbox('DNN: accu=0.82%, features utilisées: désignation et description de l''article', True)
+    alg = ['Aléatoire','Manuel','Site: Amazon']
     classifier = st.selectbox('Sélection:', alg)
-    if classifier=='Amazon':
+    if classifier=='Site: Amazon':
         st.subheader("Amazon")
-        import streamlit.components.v1 as components
         components.html('<a href="https://www.amazon.fr/gcx/Cadeaux-pour-Femmes-et-Hommes/gfhz/">Page Amazon (CTRL+click)</a>', height=25)
         url=st.text_area("URL")
         if (url != ""):
@@ -131,11 +168,12 @@ def app():
             if (indexref > -1):
                 url=url[:indexref]
             st.text(url)
-            desi,descr,img=getAmazon(url)
+            desi,descr,img,src=getAmazon(url)
+            st.text_area("HTML Source", src)
             desi=st.text_area("Entrer la désignation", desi)
             descr=st.text_area('Entrer la description', descr)
             st.image(img, width=200)
-            predict(desi, descr, img, clf1,scaler)
+            predict(desi, descr, img, clf1,scaler,chkRF,chkCNN, chkDNN)
     elif classifier=='Manuel':
         st.subheader("Mode Manuel")
         desi=st.text_area("Entrer la désignation")
@@ -149,7 +187,7 @@ def app():
             st.image(opencv_image, channels="BGR")
             img=file_input
         if st.button("Chercher"):
-            predict(desi, descr, img, clf1,scaler)
+            predict(desi, descr, img, clf1,scaler,chkRF, chkCNN, chkDNN)
             #st.markdown("**Classe réelle: **"+int(df_ypred_proba.iloc[0,0])+" "+str(ligne.iloc[0,1]))
 
     else:
@@ -169,7 +207,7 @@ def app():
         ligne=dataf_code_designation[dataf_code_designation["prdtypecode"]==codeclasse]
         classe_reelle_name=str(ligne.iloc[0,1])
         st.markdown("**Classe réelle: **"+str(codeclasse)+" "+classe_reelle_name) #TODO ajouter libellé classe
-        predict(desi, descr, img, clf1,scaler)
+        predict(desi, descr, img, clf1,scaler,chkRF,chkCNN, chkDNN)
         
 
         

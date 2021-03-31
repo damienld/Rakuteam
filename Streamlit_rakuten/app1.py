@@ -124,7 +124,7 @@ def app():
     if classifier=='Amazon':
         st.subheader("Amazon")
         import streamlit.components.v1 as components
-        components.html('<a href="https://www.amazon.fr/gcx/Cadeaux-pour-Femmes-et-Hommes/gfhz/">Page Amazon</a>')
+        components.html('<a href="https://www.amazon.fr/gcx/Cadeaux-pour-Femmes-et-Hommes/gfhz/">Page Amazon (CTRL+click)</a>', height=25)
         url=st.text_area("URL")
         if (url != ""):
             indexref=url.find("/ref=")

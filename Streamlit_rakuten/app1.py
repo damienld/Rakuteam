@@ -28,8 +28,7 @@ import streamlit.components.v1 as components
 #imgpath="https://images-na.ssl-images-amazon.com/images/I/71pVfExlo4L._AC_SL1500_.jpg"
 #image = image_url_to_numpy_array_skimage(imgpath)
 #print(image)
-def getAmazon(URL):
-    
+def getAmazon(URL):   
     HEADERS = ({'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)  Chrome/44.0.2403.157 Safari/537.36',
                                'Accept-Language': 'en-US, en;q=0.5'})  
     webpage = requests.get(URL, headers=HEADERS)
@@ -50,7 +49,38 @@ def getAmazon(URL):
         img=soup.find('img', attrs={'id': 'landingImage'})['data-old-hires']
     except:
         img=""
-    return desi, desc, img, body
+    return desi, desc, img, body, ''
+
+def getRakuten(URL):    
+    HEADERS = ({'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)  Chrome/44.0.2403.157 Safari/537.36',
+                               'Accept-Language': 'en-US, en;q=0.5'})  
+    webpage = requests.get(URL, headers=HEADERS)
+    soup = BeautifulSoup(webpage.content, "lxml")
+    try:
+        body=soup.find('body').text.strip()
+    except:
+        body="" 
+    try:
+        desi=soup.find('span', attrs={'class': 'detailHeadline'}).text.strip()
+    except:
+        desi=""
+    print(desi)
+    try:
+        desc=soup.find('div', attrs={'id': 'fp_info'}).text.strip()
+    except:
+        desc=""
+    print(desc)
+    try:
+        img=soup.find('a', attrs={'class': 'prdMainPhoto'}).img["src"]
+    except:
+        img=""
+    print(img)
+    try:
+        categ=soup.find('ul', attrs={'class': 'prdBreadcrumb'}).text.strip()
+    except:
+        categ="" 
+    print(categ)
+    return desi, desc, img, body, categ
 
 def predict(desi, descr, img, clf1, scaler, inclRF, inclCNN, inclDNN):
     
@@ -157,7 +187,7 @@ def app():
     chkRF=st.checkbox("Random Forest: accu=0.73%, features utilisées:regexp, nb mots/phrases, moy. couleurs ...", True)
     chkCNN=st.checkbox("CNN: accu=0.54%, feature utilisée: image de l''article", True)
     chkDNN=st.checkbox("DNN: accu=0.82%, features utilisées: désignation et description de l'article", True)
-    alg = ['Aléatoire','Manuel','Site: Amazon']
+    alg = ['Aléatoire','Manuel','Site: Amazon','Site: Rakuten']
     classifier = st.selectbox('Sélection:', alg)
     if classifier=='Site: Amazon':
         st.subheader("Amazon")
@@ -169,10 +199,27 @@ def app():
                 url=url[:indexref]
             st.text(url)
             desi,descr,img,src=getAmazon(url)
-            st.text_area("HTML Source", src)
+            st.text_area("Page Source", src)
             desi=st.text_area("Entrer la désignation", desi)
             descr=st.text_area('Entrer la description', descr)
             st.image(img, width=200)
+            predict(desi, descr, img, clf1,scaler,chkRF,chkCNN, chkDNN)
+    if classifier=='Site: Rakuten':
+        st.subheader("Rakuten")
+        components.html('<a href="https://fr.shopping.rakuten.com/event/rakuten-deals#xtatc=PUB-[fonc]-[Header]-[Rakuten-Deals]-[ToutUnivers]-[]-[]-[]">Page Rakuten (CTRL+click)</a>', height=25)
+        url=st.text_area("URL")
+        if (url != ""):
+            indexref=url.find("?")
+            if (indexref > -1):
+                url=url[:indexref]
+            st.text(url)
+            desi,descr,img,src,categ=getRakuten(url)
+            st.text_area("Page Source", src)
+            desi=st.text_area("Entrer la désignation", desi)
+            descr=st.text_area('Entrer la description', descr)
+            st.image(img, width=200)
+            if (categ != ""):
+                st.markdown("**Catégorie: ** "+categ) #TODO ajouter libellé classe
             predict(desi, descr, img, clf1,scaler,chkRF,chkCNN, chkDNN)
     elif classifier=='Manuel':
         st.subheader("Mode Manuel")

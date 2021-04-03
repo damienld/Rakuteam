@@ -109,8 +109,8 @@ def app():
         "Pas de motif particulier (tous les articles)": '.',
         "n°,N° ou numéro": '(numéro )',
         "Unités de longueur (m, cm, mm)": '([\d.]+)\s?(cm|mm|m|M)[\s.]',
-        "Unités de poids (kg, g, mg)": '([\d.]+)\s?(cm|mm|m|M)[\s.]',
-        "Unités de volume (l, cl, ml)": '([\d.]+)\s?(cm|mm|m|M)[\s.]',
+        "Unités de poids (kg, g, mg)": '([0-9\\.]+[kKm]?[g]\") #([\\d.]+)\\s+(lbs?|oz|g|kg)',
+        "Unités de volume (l, cl, ml)": '([\\d.]+)\\s?(mL|L|ml|l|cl)[\\s.]',
         
         }
         

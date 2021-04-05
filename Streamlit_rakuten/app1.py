@@ -18,6 +18,7 @@ import cv2
 import numpy as np
 import pandas as pd
 from sample import get_random_article
+from Dataviz import *
 
 clf1, scaler=initRF()
 
@@ -160,18 +161,47 @@ def predict(desi, descr, img, clf1, scaler, inclRF, inclCNN, inclDNN):
     #df_ypred_proba.sort()
     #print(df_ypred_proba.head(5))
     st.markdown("**Classe prédite: **"+str(int(df_ypred_proba.iloc[0,1]))+" "+str(df_ypred_proba.iloc[0,2]))
-    st.markdown("**Echantillon d'images de la classe prédite**")
-    path="./echantillons/subplot_classe_" + str(int(df_ypred_proba.iloc[0,1])) +".png"
-    st.image(path, width=600)
-    st.markdown("** DataFrame Features Textes & Image **")
-    st.dataframe(df)
-    st.markdown("**Probabilités des différents modèles par classe**")
-    df_ypred_proba = df_ypred_proba.astype({'classe': object})
-    st.dataframe(df_ypred_proba.style.highlight_max(axis=0))
+    
+    
+    
+
+    if (inclRF and inclCNN and inclDNN):
+        st.markdown("**Probabilités des 3 premières classes calculées par les différents modèles**")
+        p = get_proba_bar(df_ypred_proba)
+        st.bokeh_chart(p)
+    else:
+        st.markdown("**Probabilités calculées par les modèles sélectionnés**")
+        df_ypred_proba = df_ypred_proba.astype({'classe': object})
+        st.dataframe(df_ypred_proba.style.highlight_max(axis=0))
+
+    st.markdown("**Analyse de l'image**")
+    p = get_colors_bar(df)
+    st.bokeh_chart(p)
+
+    st.markdown("**Analyse du texte**")
+    p = get_text_features_bar(df)
+    st.bokeh_chart(p)
+
     classe_code_best_proba=int(df_ypred_proba.iloc[0,1])
     df_keywords=display_keywords_fromclasscodes(classe_code_best_proba)#,2583)
     st.markdown("**Mots-clés de la classe prédite**")
-    st.dataframe(df_keywords)
+    p = get_keywords_bar(df_keywords)
+    st.bokeh_chart(p)
+
+
+    st.markdown("**Echantillon d'images de la classe prédite**")
+    path="./echantillons/subplot_classe_" + str(int(df_ypred_proba.iloc[0,1])) +".png"
+    st.image(path, width=600)
+
+
+    #st.markdown("** DataFrame Features Textes & Image **")
+    #st.dataframe(df)
+
+
+
+
+
+    #st.dataframe(df_keywords)
     #st.markdown("**Classe réelle: **"+str(int(df_ypred_proba.iloc[0,1]))+" "+str(df_ypred_proba.iloc[0,2]))
 
 #predict("bébé","","https://www.amazon.fr/Support-Perlegear-%C3%A9crans-Inclinable-orientable/dp/B01MS4N45A",clf1, scaler)

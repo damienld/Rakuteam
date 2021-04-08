@@ -26,9 +26,6 @@ from bs4 import BeautifulSoup
 import requests
 import streamlit.components.v1 as components
 
-#imgpath="https://images-na.ssl-images-amazon.com/images/I/71pVfExlo4L._AC_SL1500_.jpg"
-#image = image_url_to_numpy_array_skimage(imgpath)
-#print(image)
 def getAmazon(URL):   
     HEADERS = ({'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)  Chrome/44.0.2403.157 Safari/537.36',
                                'Accept-Language': 'en-US, en;q=0.5'})  
@@ -50,7 +47,12 @@ def getAmazon(URL):
         img=soup.find('img', attrs={'id': 'landingImage'})['data-old-hires']
     except:
         img=""
-    return desi, desc, img, body, ''
+    try:
+        categ=soup.find('div', attrs={'id': 'wayfinding-breadcrumbs_container'}).text.strip().replace("\n","").replace("  ","")
+    except:
+        categ="" 
+    return desi, desc, img, body, categ
+#getAmazon('http://www.amazon.fr/dp/B07MMNG46Y')
 
 def getRakuten(URL):    
     HEADERS = ({'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)  Chrome/44.0.2403.157 Safari/537.36',
@@ -228,13 +230,15 @@ def app():
             if (indexref > -1):
                 url=url[:indexref]
             st.text(url)
-            desi,descr,img,src=getAmazon(url)
+            desi,descr,img,src,categ=getAmazon(url)
             st.text_area("Page Source", src)
             desi=st.text_area("Entrer la désignation", desi)
             descr=st.text_area('Entrer la description', descr)
             st.image(img, width=200)
+            if (categ != ""):
+                st.markdown("**Catégorie: ** "+categ) #TODO ajouter libellé classe
             predict(desi, descr, img, clf1,scaler,chkRF,chkCNN, chkDNN)
-    if classifier=='Site: Rakuten':
+    elif classifier=='Site: Rakuten':
         st.subheader("Rakuten")
         components.html('<a href="https://fr.shopping.rakuten.com/event/rakuten-deals#xtatc=PUB-[fonc]-[Header]-[Rakuten-Deals]-[ToutUnivers]-[]-[]-[]">Page Rakuten (CTRL+click)</a>', height=25)
         url=st.text_area("URL")

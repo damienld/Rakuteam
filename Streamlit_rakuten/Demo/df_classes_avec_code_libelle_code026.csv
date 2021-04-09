@@ -1,28 +1,28 @@
 ,prdtypecode,d√©signation,code_0a26
-11,10,LITTERATURE/ROMANS (occasions?),1
-15,40,JEUX VIDEOS (import?),19
-19,50,ACCESSOIRES CONSOLES de JEUX,3
-22,60,CONSOLES de JEUX,20
-13,1140,FIGURINES MANGAS,12
-9,1160,CARTES √† COLLECTIONNER,17
-26,1180,JEUX DE GUERRE sur TABLE,14
-5,1280,JOUETS ENFANTS,4
-18,1281,JEUX EDUCATIFS ENFANTS,9
-2,1300,JOUETS RADIO COMMANDES,15
-24,1301,VETEMENTS ENFANTS/BEBE,0
-17,1302,LOISIRS/EQUIPEMENT ext√©rieur,22
-10,1320,ACCESSOIRES BEBES,21
-1,1560,"MAISON: cusine, mobiliers",8
-8,1920,"LITERIE, TEXTILE MAISON",10
-25,1940,"ALIMENTATIONS, CONFISERIES, CAFE",26
-3,2060,"LUMINAIRES, DECO",18
-23,2220,ACCESSOIRES ANIMAUX,23
-7,2280,REVUES d'ARTS et SPECTACLES,2
-6,2403,"LIVRES & MAGASINES: histoire, mus√©es",11
-20,2462,JEUX VIDEOS OCCASIONS,16
-4,2522,FOURNITURE de BUREAU,6
-14,2582,MOBILIER & ACCESSOIRES ext√©rieur,7
-0,2583,PISCINE & ACCESSOIRES,13
-16,2585,OUTILS JARDINS,25
-12,2705,ROMAN: livre histoire?,5
-21,2905,JEUX PC,24
+11,10,Livres occasion,1
+15,40,Jeux consoles neuf,19
+19,50,Accesoires gaming,3
+22,60,Consoles de jeux,20
+13,1140,Objets pop culture,12
+9,1160,Cartes de jeux,17
+26,1180,Jeux de rÙle et figurines,14
+5,1280,Jouets enfant,4
+18,1281,Jeux enfant,9
+2,1300,ModÈlisme,15
+24,1301,Chaussettes enfant,0
+17,1302,Jeux de plein air,22
+10,1320,PuÈriculture,21
+1,1560,Mobilier,8
+8,1920,Linge de maison,10
+25,1940,Epicerie,26
+3,2060,DÈcoration,18
+23,2220,Animalerie,23
+7,2280,Journaux et revues occasion,2
+6,2403,Lots livres et magazines,11
+20,2462,Jeux videos occasion,16
+4,2522,Fournitures papeterie,6
+14,2582,Mobilier de jardin,7
+0,2583,Piscine et accessoires,13
+16,2585,Outillage de jardin,25
+12,2705,Livres neufs,5
+21,2905,Jeux PC,24

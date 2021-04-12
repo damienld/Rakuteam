@@ -16,7 +16,7 @@ from sklearn.metrics import classification_report
 from sklearn.model_selection import train_test_split
 import streamlit as st
 
-@st.cache
+@st.cache(allow_output_mutation=True)
 def initRF():
     #PARAMETERS before launching
     #define if we should keep the part "X_test_challenge" from the loaded file or ignore it

@@ -24,12 +24,14 @@ from modelisation import *
 def displayclassif_and_cross(model_index):
     st.markdown("**Classification Report: **")
     st.text(get_classifreport(model_index))   
-    cross=get_crosstab(model_index)
-    fig=plt.figure(figsize=(70,50))
-    sns.heatmap(cross, annot=True, cmap="YlGnBu");
-    plt.xticks(rotation=90);
-    st.markdown("**Confusion Matrix Heatmap: **")
-    st.pyplot(fig)   
+    path="./Demo/heatmap" + model_index +".png"
+    st.image(path, wifht=800)
+    #cross=get_crosstab(model_index)
+    #fig=plt.figure(figsize=(28,20))
+    #sns.heatmap(cross, annot=True, cmap="YlGnBu");
+    #plt.xticks(rotation=90);
+    #st.markdown("**Confusion Matrix Heatmap: **")
+    #st.pyplot(fig)   
     
 
 # app2.py

@@ -178,6 +178,9 @@ def get_crosstab(index_model):
   dfcross = dfcross.sort_index(axis=1)
   print("2")    
   df_code_designation = load_df_code_designation()
-  dfcross.columns = df_code_designation['désignation']
-  dfcross.index = df_code_designation['désignation']
+  listnames = [(str(df_code_designation.iloc[index,0]) + "-" +  str(df_code_designation.iloc[index,1])) for index in range(len(df_code_designation))]
+  dfcross.columns = listnames
+  dfcross.index = listnames
   return dfcross
+
+#get_crosstab("1")

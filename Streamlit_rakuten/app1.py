@@ -20,7 +20,7 @@ import pandas as pd
 from sample import get_random_article
 from Dataviz import *
 
-clf1, scaler=initRF()
+clf1, scaler=loadRF()
 
 from bs4 import BeautifulSoup
 import requests

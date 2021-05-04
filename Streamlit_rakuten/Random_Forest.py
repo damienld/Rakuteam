@@ -15,9 +15,11 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report
 from sklearn.model_selection import train_test_split
 import streamlit as st
-
+import joblib
+import pickle
+#sc=pickle.load(open('RFscaler.pkl','rb'))
 def loadRF():
-    sc=pickle.load(open('RFscaler.pkl','wb'))
+    sc=pickle.load(open('RFscaler.pkl','rb'))
     clf1 = joblib.load('randomforest85000_50.joblib')
     return clf1, sc
 @st.cache(allow_output_mutation=True)
@@ -72,15 +74,16 @@ def initRF():
     X_train  = scaler.transform(X_train)
     X_test = scaler.transform(X_test)
     #regenerate scaler in pickle
-    #import pickle
     #pickle.dump(scaler, open('RFscaler.pkl','wb'))
+    #test file generated
+    #sc=pickle.load(open('RFscaler.pkl','rb'))
 
     #return X_train, y_train, X_test, y_test
     clf1 = RandomForestClassifier(max_features ='sqrt', n_jobs = -1,n_estimators = 50)
     clf1.fit(X_train, y_train)
     return clf1, scaler
     
-import joblib
+
 from time import time
 
 def RF_predict(isUseJoblib, df, X_train, y_train):
@@ -88,7 +91,7 @@ def RF_predict(isUseJoblib, df, X_train, y_train):
     # {}
     if (isUseJoblib):
         #from sklearn.preprocessing import StandardScaler
-        sc=pickle.load(open('RFscaler.pkl','wb'))
+        sc=pickle.load(open('RFscaler.pkl','rb'))
         df = sc.transform(df)
         clf1 = joblib.load('randomforest85000_50.joblib')
     else:
@@ -100,7 +103,7 @@ def RF_predict(isUseJoblib, df, X_train, y_train):
     return ypred_proba
 
 #X_train, y_train, X_test, y_test = initRF()
-modelRF=initRF()
+#modelRF=initRF()
 
 #RF_predict(False, None, X_train, y_train)
 

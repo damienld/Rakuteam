@@ -10,7 +10,7 @@ import streamlit as st
 from cleaning import clean_manualdata
 from creation_features import add_features_to_manualdf
 from creation_features import add_imgfeatures
-from Random_Forest import RF_predict,initRF
+from Random_Forest import RF_predict#,initRF
 from DNN_texte import Dnntexte_predict
 from CNN_image import Cnnimage_predict
 from modelisation import load_df_code_designation, display_keywords_fromclasscodes
@@ -19,6 +19,7 @@ import numpy as np
 import pandas as pd
 from sample import get_random_article
 from Dataviz import *
+from Random_Forest import loadRF
 
 clf1, scaler=loadRF()
 

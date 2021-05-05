@@ -20,10 +20,16 @@ from bokeh.models.tools import HoverTool
 from bokeh.transform import linear_cmap
 
 @st.cache
-def get_dataset_cleaned():
+def get_dataset_cleaned_old():
   url = "https://raw.githubusercontent.com/JulienJ-44/rakuteam/main/Features/data_features_final.csv"# Make sure the url is the raw version of the file on GitHub
   download = requests.get(url).content
   dataset_cleaned = pd.read_csv(io.StringIO(download.decode('utf-8')))
+  # Remplacer les labels de 0 à 26
+  return dataset_cleaned
+
+@st.cache
+def get_dataset_cleaned():
+  dataset_cleaned = pd.read_csv("data_features_final.csv")
   # Remplacer les labels de 0 à 26
   return dataset_cleaned
 

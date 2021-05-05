@@ -25,7 +25,7 @@ def displayclassif_and_cross(model_index):
     st.markdown("**Classification Report: **")
     st.text(get_classifreport(model_index))   
     path="./Demo/heatmap" + model_index +".png"
-    st.image(path, wifht=800)
+    st.image(path)#, width=600)
     #cross=get_crosstab(model_index)
     #fig=plt.figure(figsize=(28,20))
     #sns.heatmap(cross, annot=True, cmap="YlGnBu");

@@ -9,23 +9,34 @@ import app1
 import app2
 import app3
 import app4
+import app6
 
 # General formating in CSS
 page_bg_img = '''
    <style>
     section{
-        background-color:#4db3e9;
-    color: #fff
+        background: #318CE7;
+        color: #fff
     }
                        
    h1 {
-   	color:#ffa04a
+   	
+      color:#ffa04a 
    	
    }
+
+#    .css-h2raq8{
+#        background: #f0f;
+#        color : #f0f
+#    }
+
+   .css-hi6a2p {
+       max-width: 830px;
+       }
    
    h2 {
    
-   color : #000000
+  
    	
    }
    
@@ -49,6 +60,7 @@ st.markdown(page_bg_img, unsafe_allow_html=True)
 PAGES = {
     "Présentation du projet": app4,
     "Exploration des données": app3,
+    "Démarche": app6,
     "Modélisation": app2,
     "Notre démo": app1
 }

@@ -6,20 +6,73 @@ def app():
 
     st.title('Présentation des modèles sélectionnés')
     st.subheader('**Machine learning**')
-    st.markdown("""Pour la suite, nos modèles devant exploiter à la fois les textes et les images, nous avons choisi de créer des features construites sur  
-    * la partie texte:  
-    * dénombrement de certaines expressions régulières
-Scoring TF-IDF de chaque classe
-Nombre de mots, phrases, caractères spéciaux, majuscules, symboles...
-la partie image:
-moyenne des pixels en canal de couleur R 
-moyenne des pixels en canal de couleur G
-moyenne des pixels en canal de couleur  B
-pourcentage de pixel Noir
-pourcentage de pixel  Blanc
-""")
+   
 
+    texte_ml = """
+                <div>Pour la suite, nos modèles devant exploiter à la fois les textes et les images, nous avons choisi de créer des features construites sur:</div>
+                <ul>
+                    <li><div style="font-weight: bold">la partie texte:</div>
+                        <ul>
+                            <li>dénombrement de certaines expressions régulières</li>
+                            <li>scoring TF-IDF de chaque classe</li>
+                            <li>nombre de mots, phrases, caractères spéciaux, majuscules, symboles...</li>
+                        </ul>
+                    </li>
+                    <li><div style="font-weight: bold">la partie image:</div>
+                        <ul>
+                            <li>moyenne des pixels en canal de couleur R</li>
+                            <li>moyenne des pixels en canal de couleur G</li>
+                            <li>moyenne des pixels en canal de couleur B</li>
+                            <li>pourcentage de pixel Noir</li>
+                            <li>pourcentage de pixel Blanc</li>
+                        </ul>
+                    </li>
+                </ul>
+"""
 
+    st.markdown(texte_ml,  unsafe_allow_html=True)
+
+    st.write("TODO: traduire commentaires => The original dataset is separated into a training set containing features (X_train) and labels (y_train) and a test set (X_test and y_test).")
+    code_ml = """
+        <xmp>
+            
+                from sklearn.model_selection import train_test_split
+
+                df =df.dropna(subset=['prdtypecode_x'])
+                y = df['prdtypecode_x'].values
+                df =df.drop('prdtypecode_x', axis=1)
+                X_train, X_test, y_train, y_test = train_test_split(df, y, test_size=0.2, random_state=123)
+            
+        </xmp>
+    """
+    st.markdown(code_ml,  unsafe_allow_html=True)
+    st.write("")
+    st.write("TODO ajouter commentaire.")
+    code_ml = """
+        <xmp>
+
+                from sklearn.preprocessing import StandardScaler
+
+                scaler = StandardScaler().fit(X_train)
+                X_train  = scaler.transform(X_train)
+                X_test = scaler.transform(X_test)
+        </xmp>
+    """
+    st.markdown(code_ml,  unsafe_allow_html=True)
+    st.write("")
+    st.write("TODO ajouter commentaire.")
+    code_ml = """
+    <xmp>
+
+                from sklearn.ensemble import RandomForestClassifier
+
+                clf1 = RandomForestClassifier(max_features ='sqrt', n_jobs = -1,n_estimators = 500)
+                clf1.fit(X_train, y_train)
+
+                y_pred = clf1.predict(X_test)
+    </xmp>
+    """
+    st.markdown(code_ml,  unsafe_allow_html=True)
 
     st.subheader('**Architecture CNN pour l’analyse des images:**')
     st.markdown("Pour optimiser l'analyse des images, nous avons retenu le modèle construit avec l'architecture ci-dessous:")
@@ -30,7 +83,7 @@ pourcentage de pixel  Blanc
     st.subheader('**Architecture DNN pour l’analyse du texte**')
     st.markdown("""Après plusieurs essais, pour la partie texte nous avons selectionné le modèle le plus performant 
     qui est basé sur le prétraitement et le réseau de neurones suivant:  """)
-    st.markdown(""" D'abord nous avons utilisé une méthode de tokenization, et de construction d’un dictionnaire 
+    st.markdown(""" Pour la partie texte, nous avons d'abord appliqué une méthode de tokenization, puis nous avons construit un dictionnaire 
     basé sur le corpus des champs description et désignation de l’ensemble des articles.""") 
     st.markdown("""Avec cette méthode, nous classons par ordre de fréquence décroissante les 20 000 mots les plus importants du corpus, 
     chaque mot étant remplacé par son index au sein du dictionnaire. Tous les articles n’ayant pas le même nombre de mots, 

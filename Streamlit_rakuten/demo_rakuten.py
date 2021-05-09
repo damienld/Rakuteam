@@ -86,6 +86,14 @@ page_bg_img = '''
        background: #cf3;
        border: solid 1px green;
        border-radius: 15px;
+
+   }
+
+   pre{
+       padding: 8px;
+       border-radius: 10px;
+       margin: 50px;
+
    }
 
    </style>

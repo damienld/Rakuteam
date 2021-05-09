@@ -37,7 +37,9 @@ page_bg_img = '''
    
    h2 {
    
+       color: #fff;
        
+
    	
    }
 
@@ -60,16 +62,31 @@ page_bg_img = '''
    
    h3 {
    
-   color : #ffa04a
+   color : #ffa04a;
    	
    }
    
-   label {
-   color: #fff;
-   
-   ;
+    div>div>label {
+        color: #fff;
+   }
+
+   .st-c0{
+       color: #fff;
+
+   }
+
+   div .css-1l02zno {
+       background: #1F618D;
+       border-right: solid 3px #ffa04a
+       
+       
    }
    
+   .stAlert{
+       background: #cf3;
+       border: solid 1px green;
+       border-radius: 15px;
+   }
 
    </style>
    '''
@@ -92,6 +109,7 @@ hide_streamlit_style = """
 <style>
 #MainMenu {visibility: hidden;}
 footer {visibility: hidden;}
+# .css-15uahz3.ehezqtx2 {visibility: hidden;}
 </style>   
 """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)   
@@ -115,7 +133,7 @@ st.sidebar.info("""
     
     Damien LE DIRACH https://www.linkedin.com/in/f%C3%A9lix-peyre-8997b940/
     
-    Julien JUHEL https://www.linkedin.com/in/robin-biron-48448282/
+    Julien JUHEL https://www.linkedin.com/in/julien-juhel/
 
     Manh NGUYEN
                     

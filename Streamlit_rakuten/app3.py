@@ -17,6 +17,9 @@ from bokeh.models.tools import HoverTool
 from bokeh.models import ColumnDataSource
 from bokeh.transform import factor_cmap
 from bokeh.palettes import Spectral6
+from bokeh.models.widgets import Panel, Tabs
+import bokeh.models
+import time
 
 df = get_dataset_cleaned()
 df_desig_class = load_df_code_designation(1)
@@ -28,8 +31,8 @@ from sample import *
 # @st.cache
 def app():
     st.title('Analyse exploratoire des données')
-    st.write("""Comme dans tout projet de data science, la première étape que nous avons réalisée est une analyse rapide des données. 
-    Ceci dans le but de nous approprier le jeu de données mis à notre disposition, et d'identifier d'eventuels schémas récurents qui pouvant être utilisés 
+    st.write("""Comme dans tout projet de data science, la première étape que nous avons réalisée est une analyse rapide des données.""")
+    st.write("""Ainsi nous avons pu nous approprier le jeu de données mis à notre disposition, et identifier d'eventuels schémas récurents pouvant être utilisés 
     dans le cadre du machine learning""")   
     st.write("""Pour cela, nous avons effectué une visualisation des données en utilisant les bibliothèques Matplotib, 
     Seaborn et WordCloud, ce qui nous a permis de mieux comprendre et caractériser la cohérence des articles au sein d’une même classe.""")
@@ -37,18 +40,20 @@ def app():
 
     alg = ['Texte','Expressions régulières','Image']
 
+    st.info('Merci de sélectionner ci-dessous le type de données que vous souhaitez explorer.')
     
-
-
-
-
-    classifier = st.selectbox('Sélection:', alg)
+    classifier = st.selectbox('', alg, )
 
 
 
     if classifier=='Texte':
+        # placeholder=st.image("./présentation/gif_HUD.gif", width=600)
+        # time.sleep(4)
+        # placeholder.empty()
         st.subheader("**Exploration du texte**")
-        saisie_manuelle = st.text_input("Entrer le mot à chercher")
+        
+        st.info("Vous pouvez saisir ci-dessous le mot que vous souhaitez chercher dans la désignation des articles.")
+        saisie_manuelle = st.text_input('', )
     
         PAGES = {
         "Saisie manuelle": saisie_manuelle,
@@ -82,12 +87,25 @@ def app():
                fill_color="#9b59b6",
                line_color='black')                   # épaisseur
         
-        # Affichage de la figure
+
+        text_display = "Nombre d'occurence par classe du mot"
+        # mot_display = " "+mot+" "
         
-       
-        
-        # mot = 'test'
-        # mot1 = 'margaux'
+        st.markdown("""<span style="
+                            font-weight:bold;
+                            color: white;
+                            text-decoration: underline;
+                            font-size: 20px;
+                              ">"""+text_display +"""</span><span>:  </span><span style="
+                            font-weight:bold;
+                            color: black;
+                            background:#42f566;
+                            font-size: 25px;
+                            padding: 5px 10px;
+                            border-radius: 5px;
+                              ">"""+mot+"""</span> """, unsafe_allow_html=True)
+
+        st.bokeh_chart(p1)
         
         df_regex = get_regex_sample(saisie_manuelle)
         
@@ -95,7 +113,25 @@ def app():
         import re
         s = ""
         if mot != "": 
-            st.write('Voici quelques exemples de désignations contenant le mot '+mot)  
+            # st.write('Voici quelques exemples de désignations contenant le mot '+mot) 
+
+            text_display = "Exemples de désignations contenant le mot"
+        # mot_display = " "+mot+" "
+        
+            st.markdown("""<span style="
+                                font-weight:bold;
+                                color: white;
+                                text-decoration: underline;
+                                font-size: 20px;
+                                ">"""+text_display +"""</span><span>:  </span><span style="
+                                font-weight:bold;
+                                color: black;
+                                background:#42f566;
+                                font-size: 25px;
+                                padding: 5px 10px;
+                                border-radius: 5px;
+                                ">"""+mot+"""</span> """, unsafe_allow_html=True)
+            exemple_nb = 1
             for sentence in df_regex:
                 x = re.split("\s",sentence)
                 for word in x:
@@ -103,21 +139,27 @@ def app():
                     
                     if word == mot:
                         
-                        v = '<span style="background:yellow;color: black">'+word +'</span>'
+                        v = """<span style="
+                                    background:yellow;
+                                    color: black;
+                                    background:#42f566;
+                                    padding: 0px 5px;
+                                    border-radius: 5px;">"""+word +'</span>'
                         
                     myTuple = (s, v)
     
                     s = " ".join(myTuple)
-                
+                    
+                s = str(exemple_nb) + ". " + s
                 st.markdown(s, unsafe_allow_html=True)
-
+                exemple_nb += 1
                 s=""
                 # st.text(s.replace(mot1, '\033[44;33m{}\033[m'.format(mot)))
         
-        st.bokeh_chart(p1)
+        
         
     elif classifier=='Expressions régulières':
-        st.subheader("Recherche d'expretions régulières")
+        st.subheader("**Recherche d'expressions régulières**")
     
         PAGES = {
         "Pas de motif particulier (tous les articles)": '.',
@@ -128,7 +170,8 @@ def app():
         
         }
         
-        selection = st.radio("Sélectionner le motif à rechercher", list(PAGES.keys()))
+        st.markdown("Sélectionner le motif à rechercher")
+        selection = st.radio("", list(PAGES.keys()))
         x = PAGES[selection]
         
         df_regex = get_regex_sample(x)
@@ -171,7 +214,7 @@ def app():
         st.bokeh_chart(p2)
 
     else:
-        st.subheader("Exploration des données Images")
+        st.subheader("**Exploration des données Images**")
         PAGES_2 = {
         "Moyenne de nombre de pixel 'Red'": 'R',
         "Moyenne de nombre de pixel 'Green'": 'G',
@@ -188,7 +231,8 @@ def app():
         'blanc': '#ecf0f1',
         }
         
-        selection_2 = st.radio("Sélectionner le motif à rechercher", list(PAGES_2.keys()))
+        st.markdown("Sélectionner le paramètre à afficher")
+        selection_2 = st.radio("", list(PAGES_2.keys()))
         x_2 = PAGES_2[selection_2]
         
         print(x_2)

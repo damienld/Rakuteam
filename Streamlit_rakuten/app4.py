@@ -10,7 +10,7 @@ import streamlit as st
      
 # app3.py
 def app():
-    st.title("Application de classification d'articles en ligne")
+    st.title("Application en ligne de classification automatique d'articles")
     st.subheader("**Contexte**")
     st.write("""La mise en catalogue de listes de produits via la catégorisation des titres et des images, 
     est un problème fondamental pour toute place de marché électronique, avec des applications allant 

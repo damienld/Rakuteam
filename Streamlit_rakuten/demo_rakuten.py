@@ -10,6 +10,7 @@ import app2
 import app3
 import app4
 import app6
+import app7
 
 # General formating in CSS
 page_bg_img = '''
@@ -36,8 +37,25 @@ page_bg_img = '''
    
    h2 {
    
-  
+       
    	
+   }
+
+   .bk{
+        border-radius: 15px;
+        border: solid 1px black; 
+        
+   }
+
+   .bk.bk-canvas-underlays{
+       background: rgba(0, 0, 255, 1);
+   }
+
+   img {
+
+       border-radius: 15px;
+       border: solid 1px black;
+
    }
    
    h3 {
@@ -59,7 +77,8 @@ st.markdown(page_bg_img, unsafe_allow_html=True)
 
 PAGES = {
     "Présentation du projet": app4,
-    "Exploration des données": app3,
+    "Datasets": app7,
+    "Analyse exploratoire": app3,
     "Démarche": app6,
     "Modélisation": app2,
     "Notre démo": app1
@@ -78,7 +97,7 @@ footer {visibility: hidden;}
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)   
 
 # Activate sidebar functions
-st.sidebar.header("Analyse de données (texte et image) d'un site de e-commerce")
+st.sidebar.header("Items classifier")
 st.sidebar.header("Menu")
 
 

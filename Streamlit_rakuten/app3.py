@@ -27,14 +27,27 @@ from sample import *
 # app3.py
 # @st.cache
 def app():
-    st.title('Dataviz reporting')
-    st.write('Exploration de donnée')   
+    st.title('Analyse exploratoire des données')
+    st.write("""Comme dans tout projet de data science, la première étape que nous avons réalisée est une analyse rapide des données. 
+    Ceci dans le but de nous approprier le jeu de données mis à notre disposition, et d'identifier d'eventuels schémas récurents qui pouvant être utilisés 
+    dans le cadre du machine learning""")   
+    st.write("""Pour cela, nous avons effectué une visualisation des données en utilisant les bibliothèques Matplotib, 
+    Seaborn et WordCloud, ce qui nous a permis de mieux comprendre et caractériser la cohérence des articles au sein d’une même classe.""")
 
 
     alg = ['Texte','Expressions régulières','Image']
+
+    
+
+
+
+
     classifier = st.selectbox('Sélection:', alg)
+
+
+
     if classifier=='Texte':
-        st.subheader("Exploration du texte")
+        st.subheader("**Exploration du texte**")
         saisie_manuelle = st.text_input("Entrer le mot à chercher")
     
         PAGES = {
@@ -90,13 +103,14 @@ def app():
                     
                     if word == mot:
                         
-                        v = '**' +word.upper() + '**' 
+                        v = '<span style="background:yellow;color: black">'+word +'</span>'
                         
                     myTuple = (s, v)
     
                     s = " ".join(myTuple)
                 
-                st.markdown(s)
+                st.markdown(s, unsafe_allow_html=True)
+
                 s=""
                 # st.text(s.replace(mot1, '\033[44;33m{}\033[m'.format(mot)))
         
@@ -121,7 +135,7 @@ def app():
         
         df_regex = df_regex['designation']
         if x != ".": 
-            st.write('Voici quelques exemples de désignations contenant le mot '+x)
+            st.write('Voici quelques exemples de désignations contenant '+x)
             for sentence in df_regex:
                 st.text(sentence)
         

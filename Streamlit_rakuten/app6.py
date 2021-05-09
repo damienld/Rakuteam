@@ -81,8 +81,8 @@ def app():
     
 
     st.subheader('**Architecture DNN pour l’analyse du texte**')
-    st.markdown("""Après plusieurs essais, pour la partie texte nous avons selectionné le modèle le plus performant 
-    qui est basé sur le prétraitement et le réseau de neurones suivant:  """)
+    # st.markdown("""Après plusieurs essais, pour la partie texte nous avons selectionné le modèle le plus performant 
+    # qui est basé sur le prétraitement et le réseau de neurones suivant:  """)
     st.markdown(""" Pour la partie texte, nous avons d'abord appliqué une méthode de tokenization, puis nous avons construit un dictionnaire 
     basé sur le corpus des champs description et désignation de l’ensemble des articles.""") 
     st.markdown("""Avec cette méthode, nous classons par ordre de fréquence décroissante les 20 000 mots les plus importants du corpus, 
@@ -98,7 +98,14 @@ def app():
 
 
     st.subheader('**Architecture globale**')
-    st.markdown("""  test  """)
+    st.markdown("""Afin de traiter à la fois la partie texte et la partie image nous avons décidé d’exploiter au mieux les spécificités 
+    des différents modèles définis ci-dessus, par le biais d’un système de vote.Pour cela nous nous sommes inspirés du Voting Classifier 
+    de la bibliothèque scikit-learn qui permet de combiner plusieurs estimateurs de Machine Learning conceptuellement différents.""")
+    st.markdown("""Plus précisément,  sur l’ensemble des articles, chaque modèle retourne une probabilité pour chaque classe, et la moyenne des probabilités
+     est calculée pour prédire la classe finale. De plus, nous avons appliqué une pondération à chaque estimateur afin de moduler le poids 
+     de chacun des trois modèles (RF, CNN, DNN) selon son accuracy.""")
+    st.markdown("""En appliquant ce modèle nous avons atteint une **validation accuracy de 84%, qui est supérieure à l’accuracy 
+    obtenue par chacun des modèles pris séparément.**""")
     # path="./présentation/global.jpg"
     st.image(path+"global.jpg", width=950)
 

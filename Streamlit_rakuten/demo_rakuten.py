@@ -72,7 +72,7 @@ page_bg_img = '''
 
    }
 
-   .st-aj{
+   .st-cd{
        color: #fff;
 
    }

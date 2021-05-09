@@ -26,10 +26,7 @@ page_bg_img = '''
    	
    }
 
-#    .css-h2raq8{
-#        background: #f0f;
-#        color : #f0f
-#    }
+
 
    .css-hi6a2p {
        max-width: 830px;
@@ -71,6 +68,11 @@ page_bg_img = '''
    }
 
    .st-c0{
+       color: #fff;
+
+   }
+
+   .st-aj{
        color: #fff;
 
    }

@@ -50,8 +50,10 @@ page_bg_img = '''
        background: rgba(0, 0, 255, 1);
    }
 
-   img {
 
+   img {
+    #    width: 50%;
+       margin: auto;
        border-radius: 15px;
        border: solid 1px black;
 
@@ -83,6 +85,35 @@ page_bg_img = '''
        
        
    }
+
+   .st-dd {
+    margin: auto;
+    color: black;
+    font-style: italic;
+    font-weight: bold;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    
+   }
+
+   .st-ex{
+    margin: auto;
+    color: black;
+    font-style: italic;
+    font-weight: bold;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    
+   }
+
+    .st-ax{
+    margin: auto;
+    color: black;
+    font-style: italic;
+    font-weight: bold;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    
+   }
+
+
    
    .stAlert{
        background: #cf3;

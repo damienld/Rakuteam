@@ -24,21 +24,17 @@ def app():
     
 
     st.subheader("**Objectifs du projet**")
-    st.markdown("**Pour résumer, nos objectifs lors de ce projet étaient:**"
-                "\n\n"
-                "•  entraîner différents modèles de machine et deep learning afin de classer parmi les différentes catégories les articles du jeu d' entraînement."
-                "\n\n"
-                "•  construire une méthode exploitant les modèles les plus performants."
-                "\n\n"
-                "•  appliquer la méthode développée sur l’ensemble de test fourni par Rakuten afin de  valider la généralisation du modèle."
-                "\n\n"
-                "•  développer une application permettant de classer en direct tout nouvel article proposé.")
 
 
+    texte_objectif = """
+                <div><strong>Pour résumer, nos objectifs lors de ce projet étaient:</strong></div>
+                <ol>
+                    <li>entraîner différents modèles de machine et deep learning afin de classer parmi les différentes catégories les articles du jeu d' entraînement.</li>
+                    <li>construire une méthode exploitant les modèles les plus performants.</li>
+                    <li>appliquer la méthode développée sur l’ensemble de test fourni par Rakuten afin de  valider la généralisation du modèle.</li>
+                    <li>développer une application permettant de classer en direct tout nouvel article proposé.</li>
+                </ol>
+        """
+    st.markdown(texte_objectif,  unsafe_allow_html=True)
 
-
-
-
-# 
-# "
    

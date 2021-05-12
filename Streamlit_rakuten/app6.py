@@ -32,7 +32,9 @@ def app():
 
     st.markdown(texte_ml,  unsafe_allow_html=True)
 
-    st.write("TODO: traduire commentaires => The original dataset is separated into a training set containing features (X_train) and labels (y_train) and a test set (X_test and y_test).")
+    st.write("""En partant du dataset original, nous séparons les variables (df) des étiquettes (y). 
+                Puis en utilisant la fonction train_test_split nous créons des échantillons d'entraînement (X_train et y_train) 
+                et des échantillons de test (X_test, y_test).""")
     code_ml = """
         <xmp>
             
@@ -47,7 +49,9 @@ def app():
     """
     st.markdown(code_ml,  unsafe_allow_html=True)
     st.write("")
-    st.write("TODO ajouter commentaire.")
+    st.write("Ensuite nous effectuons une normalisation des données en appliquant la méthode StandardScaler.")
+    st.write("""La normalisation standardise la moyenne et l’écart-type de tout type de distribution de données,
+     ce qui permet de simplifier le problème d’apprentissage en s’affranchissant de ces deux paramètres.""")
     code_ml = """
         <xmp>
 
@@ -60,7 +64,9 @@ def app():
     """
     st.markdown(code_ml,  unsafe_allow_html=True)
     st.write("")
-    st.write("TODO ajouter commentaire.")
+    st.write("""Puis nous effectuons un test de classification par l’algorithme du Random Forest. 
+    L’apprentissage de l’algorithme est effectué sur le jeu d’entraînement en utilisant la fonction fit.""")
+    st.write("""La prédiction des étiquettes est ensuite calculée sur le jeu de test afin d’obtenir une classification report fournissant l’accuracy.""")
     code_ml = """
     <xmp>
 
@@ -70,6 +76,8 @@ def app():
                 clf1.fit(X_train, y_train)
 
                 y_pred = clf1.predict(X_test)
+
+                classif = classification_report(y_test, y_pred)
     </xmp>
     """
     st.markdown(code_ml,  unsafe_allow_html=True)

@@ -216,14 +216,14 @@ def app():
     #desiinit="jeu chaise longue pcs textilène noir noir"
     #descinit="cet ensemble deux chaises longues haute qualité petite table assortie idéal passer après-midi détente jardin camping chaises longues durables faciles nettoyer revêtues textilène doux confortable construites cadre acier robuste deux chaises longues d'extérieur durables résistants intempéries l'ensemble complété table assortie élégant dessus table verre lequel pouvez mettre boissons garder livre téléphone portée main cet ensemble excellent ajout espace vie extérieur couleur noir matériau chaise longue structure acier 43 siège dossier textilène dimensions chaise longue 200 58 32 cm dimensions table 30 30 295 cm hauteur dossier réglable 62/72/80/89/95 cm comprend table dessus table verre mm d'épaisseur résistance intempéries matériel polyester 30 pvc 70"
     st.title('PREDICTION')
-    st.subheader("Modèles")
+    st.subheader("**Modèles**")
     chkRF=st.checkbox("Random Forest: accu=0.73%, features utilisées:regexp, nb mots/phrases, moy. couleurs ...", True)
     chkCNN=st.checkbox("CNN: accu=0.54%, feature utilisée: image de l''article", True)
     chkDNN=st.checkbox("DNN: accu=0.82%, features utilisées: désignation et description de l'article", True)
     alg = ['Aléatoire','Manuel','Site: Amazon','Site: Rakuten']
     classifier = st.selectbox('Sélection:', alg)
     if classifier=='Site: Amazon':
-        st.subheader("Amazon")
+        st.subheader("**Amazon**")
         components.html('<a href="https://www.amazon.fr/gcx/Cadeaux-pour-Femmes-et-Hommes/gfhz/">Page Amazon (CTRL+click)</a>', height=25)
         url=st.text_area("URL")
         if (url != ""):
@@ -240,7 +240,7 @@ def app():
                 st.markdown("**Catégorie: ** "+categ) #TODO ajouter libellé classe
             predict(desi, descr, img, clf1,scaler,chkRF,chkCNN, chkDNN)
     elif classifier=='Site: Rakuten':
-        st.subheader("Rakuten")
+        st.subheader("**Rakuten**")
         components.html('<a href="https://fr.shopping.rakuten.com/event/rakuten-deals#xtatc=PUB-[fonc]-[Header]-[Rakuten-Deals]-[ToutUnivers]-[]-[]-[]">Page Rakuten (CTRL+click)</a>', height=25)
         url=st.text_area("URL")
         if (url != ""):
@@ -257,7 +257,7 @@ def app():
                 st.markdown("**Catégorie: ** "+categ) #TODO ajouter libellé classe
             predict(desi, descr, img, clf1,scaler,chkRF,chkCNN, chkDNN)
     elif classifier=='Manuel':
-        st.subheader("Mode Manuel")
+        st.subheader("**Mode Manuel**")
         desi=st.text_area("Entrer la désignation")
         descr=st.text_area('Entrer la description')
         file_input = st.file_uploader("Choose a image file", type="jpg")
@@ -273,7 +273,7 @@ def app():
             #st.markdown("**Classe réelle: **"+int(df_ypred_proba.iloc[0,0])+" "+str(ligne.iloc[0,1]))
 
     else:
-        st.subheader("Mode Aléatoire")
+        st.subheader("**Mode Aléatoire**")
         df=get_random_article()
         #st.dataframe(df)
         desi=str(df.iloc[0,0])

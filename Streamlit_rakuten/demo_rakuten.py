@@ -16,13 +16,13 @@ import app7
 page_bg_img = '''
    <style>
     section{
-        background: #318CE7;
-        color: #fff
+        background: #318CE7;        
+        color: #fff;
     }
                        
    h1 {
    	
-      color:#ffa04a 
+      color:#ffa04a ;
    	
    }
 
@@ -74,7 +74,7 @@ page_bg_img = '''
 
    }
 
-   .st-cd{
+   .st-ch{
        color: #fff;
 
    }
@@ -85,6 +85,17 @@ page_bg_img = '''
        
        
    }
+
+   .css-xq1lnh-EmotionIconBase {
+    color: white;
+    fill: currentcolor;
+    font-size: 0.9rem;
+}
+
+    .st-e3 {
+        fill: black;
+    }
+
 
    .st-dd {
     margin: auto;
@@ -104,14 +115,16 @@ page_bg_img = '''
     
    }
 
-    .st-ax{
-    margin: auto;
-    color: black;
-    font-style: italic;
-    font-weight: bold;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+   
+
+#     .st-ax{
+#     margin: auto;
+#     color: black;
+#     font-style: italic;
+#     font-weight: bold;
+#     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     
-   }
+#    }
 
 
    
@@ -126,6 +139,10 @@ page_bg_img = '''
        padding: 8px;
        border-radius: 10px;
        margin: 50px;
+    #    background: #7d828a;
+       background: #686d75;
+       color: white;
+       font-weight: bold;
 
    }
 

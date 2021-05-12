@@ -189,7 +189,7 @@ st.sidebar.info("""
         
     Aylin KAYA https://www.linkedin.com/in/alexis-teskrat-a879a7195/ 
     
-    Damien LE DIRACH https://www.linkedin.com/in/f%C3%A9lix-peyre-8997b940/
+    Damien LE DIRACH https://www.linkedin.com/in/dld-76/
     
     Julien JUHEL https://www.linkedin.com/in/julien-juhel/
 

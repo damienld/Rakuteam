@@ -89,21 +89,8 @@ def app():
         
 
         text_display = "Nombre d'occurence par classe du mot"
-        # mot_display = " "+mot+" "
-        
-        st.markdown("""<span style="
-                            font-weight:bold;
-                            color: white;
-                            text-decoration: underline;
-                            font-size: 20px;
-                              ">"""+text_display +"""</span><span>:  </span><span style="
-                            font-weight:bold;
-                            color: black;
-                            background:#42f566;
-                            font-size: 25px;
-                            padding: 5px 10px;
-                            border-radius: 5px;
-                              ">"""+mot+"""</span> """, unsafe_allow_html=True)
+              
+        Affichage_titre(text_display,mot)
 
         st.bokeh_chart(p1)
         
@@ -117,20 +104,9 @@ def app():
 
             text_display = "Exemples de désignations contenant le mot"
         # mot_display = " "+mot+" "
+
+            Affichage_titre(text_display,mot)
         
-            st.markdown("""<span style="
-                                font-weight:bold;
-                                color: white;
-                                text-decoration: underline;
-                                font-size: 20px;
-                                ">"""+text_display +"""</span><span>:  </span><span style="
-                                font-weight:bold;
-                                color: black;
-                                background:#42f566;
-                                font-size: 25px;
-                                padding: 5px 10px;
-                                border-radius: 5px;
-                                ">"""+mot+"""</span> """, unsafe_allow_html=True)
             exemple_nb = 1
             for sentence in df_regex:
                 x = re.split("\s",sentence)
@@ -162,12 +138,20 @@ def app():
         st.subheader("**Recherche d'expressions régulières**")
     
         PAGES = {
-        "Pas de motif particulier (tous les articles)": '.',
-        "n°,N° ou numéro": '(numéro )',
+        "Pas de motif particulier (afficher tous les articles)": '.',
+        "n°, N° ou numéro": '(numéro )',
         "Unités de longueur (m, cm, mm)": '([\d.]+)\s?(cm|mm|m|M)[\s.]',
-        "Unités de poids (kg, g, mg)": '([0-9\\.]+[kKm]?[g]\") #([\\d.]+)\\s+(lbs?|oz|g|kg)',
+        "Unités de poids (kg, g, mg)": '([\d.]+)\s?(kg|g|mg|Kg)[\s.]',
         "Unités de volume (l, cl, ml)": '([\\d.]+)\\s?(mL|L|ml|l|cl)[\\s.]',
         
+        }
+
+        DESIGNATION = {
+        '(numéro )' : "n°, N ° ou numéro",
+        '([\d.]+)\s?(cm|mm|m|M)[\s.]' : "m, cm ou mm",
+        '([\d.]+)\s?(kg|g|mg|Kg)[\s.]': "kg, g ou mg",
+        '([\\d.]+)\\s?(mL|L|ml|l|cl)[\\s.]': "l, cl ou ml",
+
         }
         
         st.markdown("Sélectionner le motif à rechercher")
@@ -177,10 +161,7 @@ def app():
         df_regex = get_regex_sample(x)
         
         df_regex = df_regex['designation']
-        if x != ".": 
-            st.write('Voici quelques exemples de désignations contenant '+x)
-            for sentence in df_regex:
-                st.text(sentence)
+     
         
         regex = get_regex_value_counts(x)
         regex = regex.sort_values("Nombre d'articles",ascending = True)
@@ -188,6 +169,8 @@ def app():
         desi = regex["désignation"]
         
         counts = regex["Nombre d'articles"]
+
+
             
         hover2 = HoverTool(
                 tooltips=[
@@ -210,8 +193,27 @@ def app():
                line_color='black')                   # épaisseur
         
         # Affichage de la figure
+
+        if x == ".": 
+            st.write("Nombre total d'articles par classe:")
         
-        st.bokeh_chart(p2)
+            st.bokeh_chart(p2)
+
+        else: 
+            # st.write("Nombre d'articles par classe contenant" +DESIGNATION[x] )
+            text_display= "Nombre d'articles par classe contenant"
+            mot = DESIGNATION[x]
+            Affichage_titre(text_display,mot)
+            st.bokeh_chart(p2)
+            # st.write('Exemples de désignations contenant '+DESIGNATION[x])
+            text_display= "Exemples de désignations contenant"
+            mot = DESIGNATION[x]
+            Affichage_titre(text_display,mot)
+
+
+
+            for sentence in df_regex:
+                st.text(sentence)
 
     else:
         st.subheader("**Exploration des données Images**")
@@ -271,4 +273,18 @@ def app():
         
         st.bokeh_chart(p2)
     
-        
+def Affichage_titre(texte,var_select):
+     st.markdown("""<span style="
+                                font-weight:bold;
+                                color: white;
+                                text-decoration: underline;
+                                font-size: 20px;
+                                ">"""+texte +"""</span><span>:  </span><span style="
+                                font-weight:bold;
+                                color: black;
+                                background:#42f566;
+                                font-size: 22px;
+                                padding: 5px 10px;
+                                border-radius: 5px;
+                                ">"""+var_select+"""</span>""" , unsafe_allow_html=True)
+   

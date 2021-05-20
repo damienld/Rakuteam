@@ -70,11 +70,11 @@ page_bg_img = '''
    }
 
    .st-c0{
-       color: #fff;
+       color: black;
 
    }
 
-   .st-ch{
+   .st-c1{
        color: #fff;
 
    }
@@ -96,6 +96,11 @@ page_bg_img = '''
         fill: black;
     }
 
+    .css-145kmo2 {
+        font-size: 0.8rem;
+        # color: rgb(38, 39, 48);
+        margin-bottom: 0.4rem;
+    }
 
    .st-dd {
     margin: auto;
@@ -116,18 +121,6 @@ page_bg_img = '''
    }
 
    
-
-#     .st-ax{
-#     margin: auto;
-#     color: black;
-#     font-style: italic;
-#     font-weight: bold;
-#     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    
-#    }
-
-
-   
    .stAlert{
        background: #cf3;
        border: solid 1px green;
@@ -145,6 +138,18 @@ page_bg_img = '''
        font-weight: bold;
 
    }
+
+   .css-145kmo2 {
+        font-size: 0.8rem;
+        color: #fff;
+        margin-bottom: 0.4rem;
+    }
+
+    .st-cc {
+        
+        color: #fff;
+        
+    }
 
    </style>
    '''

@@ -187,7 +187,7 @@ st.sidebar.info("""
 
     Participants:
         
-    Aylin KAYA https://www.linkedin.com/in/alexis-teskrat-a879a7195/ 
+    Aylin KAYA https://www.linkedin.com/in/ay%C5%9Fe-aylin-kaya-11805441/
     
     Damien LE DIRACH https://www.linkedin.com/in/dld-76/
     

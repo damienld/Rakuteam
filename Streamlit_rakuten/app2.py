@@ -37,7 +37,7 @@ def displayclassif_and_cross(model_index):
 # app2.py
 def app():
     st.title('MODELISATION')
-
+    st.write("""Les classification report et heatmap ci-dessous représentent les résultats des 27 classes d'articles pour chacun des modèles utilisés.""")
     alg = ['1-RF', '2-CNN image', '3-DNN texte', '4-Voting Classifier']
     classifier = st.selectbox('Selection du modèle', alg)
     if classifier=='1-RF':

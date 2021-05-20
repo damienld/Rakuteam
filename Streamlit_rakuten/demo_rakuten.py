@@ -173,7 +173,7 @@ footer {visibility: hidden;}
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)   
 
 # Activate sidebar functions
-st.sidebar.header("Items classifier")
+#st.sidebar.header("Items classifier")
 st.sidebar.header("Menu")
 
 
@@ -183,7 +183,7 @@ page = PAGES[selection]
 page.app()
 
 st.sidebar.info("""
-                    Projet DS - Promotion Bootcamp Janvier 2020
+                    Projet DS - Promotion Bootcamp Janvier 2021
 
     Participants:
         
@@ -193,7 +193,7 @@ st.sidebar.info("""
     
     Julien JUHEL https://www.linkedin.com/in/julien-juhel/
 
-    Manh NGUYEN
+    Manh NGUYEN https://www.linkedin.com/in/manh-nguyen-86651b90/
                     
                     """)
 

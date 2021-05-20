@@ -216,10 +216,14 @@ def app():
     #desiinit="jeu chaise longue pcs textilène noir noir"
     #descinit="cet ensemble deux chaises longues haute qualité petite table assortie idéal passer après-midi détente jardin camping chaises longues durables faciles nettoyer revêtues textilène doux confortable construites cadre acier robuste deux chaises longues d'extérieur durables résistants intempéries l'ensemble complété table assortie élégant dessus table verre lequel pouvez mettre boissons garder livre téléphone portée main cet ensemble excellent ajout espace vie extérieur couleur noir matériau chaise longue structure acier 43 siège dossier textilène dimensions chaise longue 200 58 32 cm dimensions table 30 30 295 cm hauteur dossier réglable 62/72/80/89/95 cm comprend table dessus table verre mm d'épaisseur résistance intempéries matériel polyester 30 pvc 70"
     st.title('PREDICTION')
+    st.write("""Les différents modèles de classification peuvent être utilisés de manière indépendante ou combinés.""")
     st.subheader("**Modèles**")
     chkRF=st.checkbox("Random Forest: accu=0.73%, features utilisées:regexp, nb mots/phrases, moy. couleurs ...", True)
     chkCNN=st.checkbox("CNN: accu=0.54%, feature utilisée: image de l''article", True)
     chkDNN=st.checkbox("DNN: accu=0.82%, features utilisées: désignation et description de l'article", True)
+    st.write("""Une base d'article issue du catalogue Rakuten peut être testée de manière aléatoire.""")
+    st.write("""Mais il est aussi possible d'appliquer le modèle sur d'autres articles.""")
+    st.write("""Ils peuvent être saisis manuellement ou extraits à partir d'une url Amazon ou Vinted.""")
     alg = ['Aléatoire','Manuel','Site: Amazon','Site: Rakuten']
     classifier = st.selectbox('Sélection:', alg)
     if classifier=='Site: Amazon':

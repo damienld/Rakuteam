@@ -16,7 +16,6 @@ from bokeh.io import output_notebook
 from bokeh.transform import factor_cmap
 from bokeh.palettes import Category20b,  viridis, Turbo256, d3,cividis
 from bokeh.models.tools import HoverTool
-
 from bokeh.transform import linear_cmap
 
 @st.cache

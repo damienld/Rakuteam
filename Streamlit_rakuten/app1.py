@@ -9,8 +9,6 @@ Created on Thu Mar 18 01:45:08 2021
 import streamlit as st
 from cleaning import clean_manualdata
 from creation_features import add_features_to_manualdf
-from creation_features import add_imgfeatures
-from Random_Forest import RF_predict#,initRF
 from DNN_texte import Dnntexte_predict
 from CNN_image import Cnnimage_predict
 from modelisation import load_df_code_designation, display_keywords_fromclasscodes
@@ -18,7 +16,7 @@ import cv2
 import numpy as np
 import pandas as pd
 from sample import get_random_article
-from Dataviz import *
+from Dataviz import get_proba_bar, get_colors_bar, get_text_features_bar, get_keywords_bar
 from Random_Forest import loadRF
 
 clf1, scaler=loadRF()

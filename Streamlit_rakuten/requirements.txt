@@ -1,5 +1,5 @@
-anaconda-navigator==2.0.3
-anaconda-project==0.9.1
+#anaconda-navigator==2.0.3
+#anaconda-project==0.9.1
 argh==0.26.2
 asn1crypto==1.4.0
 astropy==4.2.1
@@ -68,7 +68,7 @@ singledispatch==0.0.0
 sip==4.19.13
 sortedcollections==2.1.0
 sphinxcontrib-websupport==1.2.4
-spyder==4.2.5
+#spyder==4.2.5
 sqlalchemy==1.4.7
 statsmodels==0.12.2
 streamlit==1.0.0

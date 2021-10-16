@@ -51,7 +51,7 @@ pathlib2==2.3.5
 pep8==1.7.1
 pip-chill==1.0.1
 ply==3.11
-pycurl==7.43.0.5
+##pycurl==7.43.0.5
 pydocstyle==6.0.0
 pyodbc==4.0.1
 pyopenssl==20.0.1

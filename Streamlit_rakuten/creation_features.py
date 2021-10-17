@@ -8,9 +8,7 @@ Original file is located at
 """
 
 #CONNEXION à google drive
-import pandas as pd
 import re  
-import requests
 import io
 from nltk.tokenize import PunktSentenceTokenizer
 import nltk as nltk

@@ -12,7 +12,6 @@ import pandas as pd
 import requests
 import io
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import classification_report
 from sklearn.model_selection import train_test_split
 import streamlit as st
 import joblib

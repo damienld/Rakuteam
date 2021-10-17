@@ -1,7 +1,18 @@
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
+"""
+to install a package for a specific virtual environment
 
+1 - Create a virtual environment (use the Python Terminal at the bottom)
+py -3 -m venv .rakuteam_venv
+2 - Activate it
+cd .\Streamlit_rakuten\
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process
+.rakuteam_venv\scripts\activate
+OPTIONAL:python -m ensurepip --upgrade
+3 - Select your new environment from the Palette:Python: Select Interpreter (might need to refresh)
+4 - Install the packages
+python -m pip install matplotlib
+5 - pip freeze > requirements.txt
+"""
 import streamlit as st
 
 #app.py

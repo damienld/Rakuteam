@@ -1,4 +1,4 @@
-
+.rakuteam_venv
 *.pyc
 *.pyc
 Streamlit_rakuten/__pycache__/app1.cpython-38.pyc

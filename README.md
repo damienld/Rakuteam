@@ -12,9 +12,9 @@ Features:
 - Explore the dataset with a dynamic EDA
 - ...
 Demo Page:<br>
-![](https://github.com/damienld/Rakuteam/blob/main/Pictures/presentation/Demo1.png)<br>
-![](https://github.com/damienld/Rakuteam/blob/main/Pictures/presentation/Demo2.png)<br>
-![](https://github.com/damienld/Rakuteam/blob/main/Pictures/presentation/Demo3.png)<br>
+![](https://github.com/damienld/Rakuteam/blob/main/Pictures/presentation/Demo1.PNG)<br>
+![](https://github.com/damienld/Rakuteam/blob/main/Pictures/presentation/Demo2.PNG)<br>
+![](https://github.com/damienld/Rakuteam/blob/main/Pictures/presentation/Demo3.PNG)<br>
 ## Dataset
 99 000 articles (85 000 in train + 14 000 in test) and 27 categories<br>
 Each article includes:<br>

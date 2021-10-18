@@ -17,9 +17,9 @@ Each article includes:<br>
 ## Model 1: Random Forest
 
 ### Features engineering
-![tf-idf for category/class 1281](https://github.com/damienld/Rakuteam/blob/main/Pictures/presentation/tdidf.png)<br>
-![frequency of regular expressions](https://github.com/damienld/Rakuteam/blob/main/Pictures/presentation/regex.png)<br>
-![% of pixels in green](https://github.com/damienld/Rakuteam/blob/main/Pictures/presentation/pixelsrgb.png)<br>
+[tf-idf for category/class 1281](https://github.com/damienld/Rakuteam/blob/main/Pictures/presentation/tdidf.png)<br>
+[frequency of regular expressions](https://github.com/damienld/Rakuteam/blob/main/Pictures/presentation/regex.png)<br>
+[% of pixels in green](https://github.com/damienld/Rakuteam/blob/main/Pictures/presentation/pixelsrgb.png)<br>
 ### Best Model selected
 ![](https://github.com/damienld/Rakuteam/blob/main/Pictures/presentation/ML1.png)<br>
 ![](https://github.com/damienld/Rakuteam/blob/main/Pictures/presentation/ML2.png)<br>

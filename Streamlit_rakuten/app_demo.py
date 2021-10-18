@@ -138,23 +138,23 @@ def predict(desi, descr, img, clf1, scaler, inclRF, inclCNN, inclDNN):
     if (inclRF and (inclCNN and img.strip()!='') and inclDNN):
         df_ypred_proba=pd.concat([df_ypred_proba,df_code,df_ypred_proba_RF,df_ypred_proba_CNN,df_ypred_proba_DNN],axis=1)
         df_ypred_proba=df_ypred_proba.drop("Unnamed: 0", axis=1)
-        df_ypred_proba.columns=["Proba","Categ","Categ.Name","RF","CNN img","DNN txt"]
+        df_ypred_proba.columns=["Proba","classe","libellé","RF","CNN img","DNN txt"]
     elif (inclRF and (inclCNN and img.strip()!='')):    
         df_ypred_proba=pd.concat([df_ypred_proba,df_code,df_ypred_proba_RF,df_ypred_proba_CNN],axis=1)
         df_ypred_proba=df_ypred_proba.drop("Unnamed: 0", axis=1)
-        df_ypred_proba.columns=["Proba","Categ","Categ.Name","RF","CNN img"]
+        df_ypred_proba.columns=["Proba","classe","libellé","RF","CNN img"]
     elif (inclRF and inclDNN):    
         df_ypred_proba=pd.concat([df_ypred_proba,df_code,df_ypred_proba_RF,df_ypred_proba_DNN],axis=1)
         df_ypred_proba=df_ypred_proba.drop("Unnamed: 0", axis=1)
-        df_ypred_proba.columns=["Proba","Categ","Categ.Name","RF","DNN txt"]
+        df_ypred_proba.columns=["Proba","classe","libellé","RF","DNN txt"]
     elif (inclCNN and inclDNN):    
         df_ypred_proba=pd.concat([df_ypred_proba,df_code,df_ypred_proba_CNN,df_ypred_proba_DNN],axis=1)
         df_ypred_proba=df_ypred_proba.drop("Unnamed: 0", axis=1)
-        df_ypred_proba.columns=["Proba","Categ","Categ.Name","CNN img","DNN txt"]
+        df_ypred_proba.columns=["Proba","classe","libellé","CNN img","DNN txt"]
     else:    
         df_ypred_proba=pd.concat([df_ypred_proba,df_code],axis=1)
         df_ypred_proba=df_ypred_proba.drop("Unnamed: 0", axis=1)
-        df_ypred_proba.columns=["Proba","Categ","Categ.Name"]
+        df_ypred_proba.columns=["Proba","classe","libellé"]
         
     df_ypred_proba=df_ypred_proba.sort_values(by='Proba', ascending=False)
     df_ypred_proba=df_ypred_proba.reset_index()
@@ -163,10 +163,11 @@ def predict(desi, descr, img, clf1, scaler, inclRF, inclCNN, inclDNN):
     #print(df_ypred_proba.head(5))
     st.markdown("**Predicted category: **"+str(int(df_ypred_proba.iloc[0,1]))+" "+str(df_ypred_proba.iloc[0,2]))
 
-    st.markdown("**Probabilities calculated from the sslected models**")
-    df_ypred_proba = df_ypred_proba.astype({'Categ': object})
-    st.dataframe(df_ypred_proba.style.highlight_max(axis=0, color=Reds))
-
+    st.markdown("**Probabilities to be in each category (calculated from the selected models)**")
+    df_ypred_proba = df_ypred_proba.astype({'classe': object})
+    df_to_print = df_ypred_proba.copy()
+    df_to_print.columns=["Proba","Category","Category Name","RF","CNN img","DNN txt"]
+    st.dataframe(df_to_print.style.highlight_max(axis=0, color="red"))
     
     if (inclRF and (inclCNN and img.strip()!='') and inclDNN):
         st.markdown("**Probabilities for the 3 most likely categories (for each model)**")

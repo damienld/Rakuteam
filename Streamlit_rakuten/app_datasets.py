@@ -6,7 +6,7 @@ def app():
     st.write("""Nous avons utilisé les données transmises par Rakuten France, constitué d'une liste d’environ 99K produits, 
     comprenant l’ensemble d’entraînement (84 916 articles) et l'ensemble de test (13 812 articles).""")
     st.subheader("**Fichier d'entrées (entrainement et test)**")
-    path=constants.path+"présentation/Pres_dataset_"
+    path=constants.path+"presentation/Pres_dataset_"
     st.image(path+"texte.jpg")
     st.write("En outre, nous disposions d’un fichier images.zip contenant les images associées à tous les articles.")
     st.image(path+"image.jpg")

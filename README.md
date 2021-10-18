@@ -11,7 +11,7 @@ Features:
 - Calculate the probablities using your own combination of all 3 models
 - Explore the dataset with a dynamic EDA
 - ...
-Demo Page:<br>
+<br>
 ![](https://github.com/damienld/Rakuteam/blob/main/Pictures/presentation/Demo1.PNG)<br>
 ![](https://github.com/damienld/Rakuteam/blob/main/Pictures/presentation/Demo2.PNG)<br>
 ![](https://github.com/damienld/Rakuteam/blob/main/Pictures/presentation/Demo3.PNG)<br>

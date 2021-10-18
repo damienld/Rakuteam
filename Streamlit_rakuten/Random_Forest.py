@@ -7,7 +7,7 @@ Original file is located at
     https://colab.research.google.com/drive/1xgCFBQOpJSbUvVwo3jdXTewIx7iUY1x5
 """
 
-
+import constants
 import pandas as pd
 import requests
 import io
@@ -18,8 +18,8 @@ import joblib
 import pickle
 #sc=pickle.load(open('RFscaler.pkl','rb'))
 def loadRF():
-    sc=pickle.load(open('RFscaler.pkl','rb'))
-    clf1 = joblib.load('randomforest85000_50.joblib')
+    sc=pickle.load(open(constants.path+'RFscaler.pkl','rb'))
+    clf1 = joblib.load(constants.path+'randomforest85000_50.joblib')
     return clf1, sc
 @st.cache(allow_output_mutation=True)
 def initRF():

@@ -16,7 +16,7 @@ import numpy as np
 import requests
 import io
 import streamlit as st
-
+import constants
   
 #y_pred_proba= pd.read_csv("../y_pred_proba/ypred_proba_RandomForest_Global_score0_74.csv")#(io.StringIO(download.decode('utf-8')))
 #y_pred_proba.head()
@@ -24,7 +24,7 @@ model_index = 1#input("Select a model: 1-RF, 2-CNN image, 3-DNN texte, default-w
 print(model_index)
 
 def load_df_code_designation(index=0):
-  url = "./Demo/df_classes_avec_code_libelle_code026.csv"
+  url = constants.path + "Demo/df_classes_avec_code_libelle_code026.csv"
   df = pd.read_csv(url, index_col=index)
   return df
 

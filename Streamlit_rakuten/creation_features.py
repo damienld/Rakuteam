@@ -25,7 +25,7 @@ import pickle
 
 def load_keywords_fromfile():
   # reading the dictionnary des 15 keyword
-  with open('dico_keywords_tfidf_15.pkl', 'rb') as handle: 
+  with open('./streamlit_rakuten/dico_keywords_tfidf_15.pkl', 'rb') as handle: 
     data = handle.read() 
   # reconstructing the data as dictionary 
   lst_keywords_byclass = pickle.loads(data) 

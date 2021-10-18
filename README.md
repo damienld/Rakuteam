@@ -38,7 +38,7 @@ Result: Accuracy 0.58
 ## Model 3: Dense neural network (on the text)
 ![](https://github.com/damienld/Rakuteam/blob/main/Pictures/presentation/dnn.png)<br>
 Result: Accuracy 0.82
-## Final Model: Voting Classifier between all the 3 weighted odels
+## Final Model: Voting Classifier between all the 3 weighted models
 Result: Accuracy 0.84
 <br>
 <br>

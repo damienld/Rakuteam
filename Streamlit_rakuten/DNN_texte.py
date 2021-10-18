@@ -12,6 +12,8 @@ from keras.models import load_model
 import pickle
 from cleaning import clean_manualdata
 import constants
+#from keras.utils.data_utils import get_file
+#import requests
 
 def Dnntexte_predict(desi, desc):
     dfmanual=clean_manualdata(desi,desc)
@@ -23,6 +25,10 @@ def Dnntexte_predict(desi, desc):
     maxlen = 400#defautl was 250, best 400
     X_test = pad_sequences(X_test, padding='post', maxlen=maxlen)
 
+    #url = "https://drive.google.com/u/1/open?id=1es-p47fLuDD-BLJQqdOYJgLbkF6xoubp" 
+    #download = requests.get(url).content    
+    #print("downloaded hdf5")
+    #model = load_model(download)
     model = load_model("text-dnn.hdf5") 
    
     ypred_proba=model.predict(X_test)

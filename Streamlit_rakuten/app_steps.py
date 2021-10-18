@@ -3,7 +3,7 @@ from keras.backend import constant
 import streamlit as st
 import constants
 def app():
-    path=constants.path+"/présentation/"
+    path=constants.path+"présentation/"
 
     st.title('Présentation des modèles sélectionnés')
     st.subheader('**Machine learning**')

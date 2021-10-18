@@ -7,6 +7,7 @@ Original file is located at
     https://colab.research.google.com/drive/1TWC2hdXarDgK2d8rVHIh5eIrnf9FJHfW
 """
 
+#from keras.saving.saved_model.load import load
 import pandas as pd
 import constants
 import matplotlib.pyplot as plt
@@ -164,8 +165,14 @@ else:
                     batch_size=200)
 """
 from keras.models import load_model
+#from keras.utils.data_utils import get_file
+
+#url = "https://drive.google.com/u/1/open?id=1es-p47fLuDD-BLJQqdOYJgLbkF6xoubp" 
+#download = requests.get(url).content    
+#print("downloaded hdf5")
+#model = load_model(download)
 model = load_model("text-dnn.hdf5") 
-   
+print("model loaded")   
 ypred_proba=model.predict(X_test)
 """score = model.evaluate(X_test, y_test, verbose = 0) 
 print('Test loss:', score[0]) 

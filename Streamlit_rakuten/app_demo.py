@@ -271,9 +271,9 @@ def app():
         descr=str(df.iloc[0,1])
         desi=st.text_area("Entrer la désignation", desi)
         descr=st.text_area('Entrer la description', descr)
-        file_input2="."+df.iloc[0,5]
-        img=file_input2
-        st.image(constants.path+img)
+        file_input2= df.iloc[0,5]
+        img=constants.path+file_input2
+        st.image(img)
         
         codeclasse=(int(df.iloc[0,4]))
         dataf_code_designation=load_df_code_designation()

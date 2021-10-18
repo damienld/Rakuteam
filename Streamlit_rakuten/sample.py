@@ -20,7 +20,7 @@ def get_random_article(classe=-1, nbrows=1):
     #print("longueur ", len(df))
     for i in range(len(df)):
         print(i)
-        path="/images/"
+        path="images/"
         img = df.iloc[i,5]
         df.iloc[i,5]=path+img
     return df
@@ -33,7 +33,7 @@ def get_sample_img_classe(classe=-1, nbrows=1):
 
     for i in range(len(df2)):
         print(i)
-        path="/echantillons/"
+        path="echantillons/"
         img = df2.iloc[i,1]
         df2.iloc[i,1]=path+img
     return df2

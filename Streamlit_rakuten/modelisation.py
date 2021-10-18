@@ -78,7 +78,7 @@ def display_keywords_fromclassnames(name_classe_reelle):#, name_classe_predite):
   return (df_comparekeywords)
 
 def get_ytest():
-  url = "../y_pred_proba/y_test.csv"# Make sure the url is the raw version of the file on GitHub
+  url = constants.pathRoot+ "y_pred_proba/y_test.csv"# Make sure the url is the raw version of the file on GitHub
   y_test = pd.read_csv(url)
   # Remplacer les labels de 0 à 26
   y_test = y_test.replace({'prdtypecode': {10: 1, 2280:2,   50:3, 1280:4, 2705:5, 2522:6, 2582:7, 1560:8, 1281:9, 1920:10, 2403:11,
@@ -113,15 +113,15 @@ def calc_y_pred(model_index):
   if (model_index == "1"):
     #url = "https://raw.githubusercontent.com/JulienJ-44/rakuteam/main/y_pred_proba/ypred_proba_RandomForest_Global_score0_74.csv"
     #download = requests.get(url).content
-    y_pred_proba= pd.read_csv("../y_pred_proba/ypred_proba_RandomForest_Global_score0_74.csv")#(io.StringIO(download.decode('utf-8')))
+    y_pred_proba= pd.read_csv(constants.pathRoot+ "y_pred_proba/ypred_proba_RandomForest_Global_score0_74.csv")#(io.StringIO(download.decode('utf-8')))
   elif (model_index == "2"):
-    y_pred_proba= pd.read_csv("../y_pred_proba/ypred_proba_model_image_final_train_test.csv")
+    y_pred_proba= pd.read_csv(constants.pathRoot+ "y_pred_proba/ypred_proba_model_image_final_train_test.csv")
   elif (model_index == "3"):
-    y_pred_proba= pd.read_csv("../y_pred_proba/ypred_proba_DnnText_score0_82.csv")
+    y_pred_proba= pd.read_csv(constants.pathRoot+ "y_pred_proba/ypred_proba_DnnText_score0_82.csv")
   else:
-    y_pred_proba_rf = pd.read_csv("../y_pred_proba/ypred_proba_RandomForest_Global_score0_74.csv")
-    y_pred_proba_dnntext = pd.read_csv("../y_pred_proba/ypred_proba_DnnText_score0_82.csv")
-    y_pred_proba_img = pd.read_csv("../y_pred_proba/ypred_proba_model_image_final_train_test.csv")
+    y_pred_proba_rf = pd.read_csv(constants.pathRoot+ "y_pred_proba/ypred_proba_RandomForest_Global_score0_74.csv")
+    y_pred_proba_dnntext = pd.read_csv(constants.pathRoot+ "y_pred_proba/ypred_proba_DnnText_score0_82.csv")
+    y_pred_proba_img = pd.read_csv(constants.pathRoot+ "y_pred_proba/ypred_proba_model_image_final_train_test.csv")
     score1_rf = 0.74
     score2_dnntext = 0.82
     score3_img = 0.58

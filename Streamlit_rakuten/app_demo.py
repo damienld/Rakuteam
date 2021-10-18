@@ -186,7 +186,7 @@ def predict(desi, descr, img, clf1, scaler, inclRF, inclCNN, inclDNN):
     st.bokeh_chart(p)
 
     st.markdown("**Echantillon d'images de la classe prédite**")
-    path="./echantillons/subplot_classe_" + str(int(df_ypred_proba.iloc[0,1])) +".png"
+    path=constants.path+"echantillons/subplot_classe_" + str(int(df_ypred_proba.iloc[0,1])) +".png"
     st.image(path, width=600)
 
     #st.markdown("** DataFrame Features Textes & Image **")

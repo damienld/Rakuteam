@@ -4,7 +4,7 @@ Created on Wed Mar 24 15:45:33 2021
 
 @author: slam_
 """
-
+import constants
 import numpy as np
 import pandas as pd
 import cv2
@@ -36,7 +36,7 @@ def Cnnimage_predict(imgpath):
     
     image = np.array(X_img)
     
-    model = load_model("model_image_all.06-1.20.h5")
+    model = load_model(constants.path+"model_image_all.06-1.20.h5")
     y_pred_proba = model.predict(image)
     y_pred_df = pd.DataFrame(y_pred_proba)
     

@@ -134,11 +134,11 @@ def predict(desi, descr, img, clf1, scaler, inclRF, inclCNN, inclDNN):
     
 
     df_code = load_df_code_designation(3).sort_index(axis=0)
-    if (inclRF and inclCNN and inclDNN):
+    if (inclRF and (inclCNN and img.strip()!='') and inclDNN):
         df_ypred_proba=pd.concat([df_ypred_proba,df_code,df_ypred_proba_RF,df_ypred_proba_CNN,df_ypred_proba_DNN],axis=1)
         df_ypred_proba=df_ypred_proba.drop("Unnamed: 0", axis=1)
         df_ypred_proba.columns=["Proba","classe","libellé","RF","CNN img","DNN txt"]
-    elif (inclRF and inclCNN):    
+    elif (inclRF and (inclCNN and img.strip()!='')):    
         df_ypred_proba=pd.concat([df_ypred_proba,df_code,df_ypred_proba_RF,df_ypred_proba_CNN],axis=1)
         df_ypred_proba=df_ypred_proba.drop("Unnamed: 0", axis=1)
         df_ypred_proba.columns=["Proba","classe","libellé","RF","CNN img"]
@@ -162,7 +162,7 @@ def predict(desi, descr, img, clf1, scaler, inclRF, inclCNN, inclDNN):
     #print(df_ypred_proba.head(5))
     st.markdown("**Classe prédite: **"+str(int(df_ypred_proba.iloc[0,1]))+" "+str(df_ypred_proba.iloc[0,2]))
 
-    if (inclRF and inclCNN and inclDNN):
+    if (inclRF and (inclCNN and img.strip()!='') and inclDNN):
         st.markdown("**Probabilités des 3 premières classes calculées par les différents modèles**")
         p = get_proba_bar(df_ypred_proba)
         st.bokeh_chart(p)

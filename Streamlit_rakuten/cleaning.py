@@ -65,7 +65,7 @@ def cleaningX_to_df(X):
   return df
 
 # Download the stopwords
-#@st.cache
+@st.cache
 def get_stopwords():
   #utiliser @st.cache !!! pour STREAMLIT
   nltk.download('punkt') #télécharge les paquets language (dont FR)

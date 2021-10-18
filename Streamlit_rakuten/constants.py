@@ -1,1 +1,1 @@
-path="./streamlit_rakuten/"
+path="/streamlit_rakuten/"

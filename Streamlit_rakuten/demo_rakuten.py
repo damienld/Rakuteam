@@ -99,12 +99,12 @@ page_bg_img = '''
 st.markdown(page_bg_img, unsafe_allow_html=True)
 
 PAGES = {
-    "Présentation du projet": app_intro,
+    "Project Presentation": app_intro,
     "Datasets": app_datasets,
-    "Analyse exploratoire": app_EDA,
-    "Démarche": app_steps,
-    "Modélisation": app_models,
-    "Démo": app_demo
+    "EDA": app_EDA,
+    "Approach": app_steps,
+    "Models": app_models,
+    "Demo": app_demo
 }
 
 # st.sidebar.title('Classification d\'articles de e-commerce')

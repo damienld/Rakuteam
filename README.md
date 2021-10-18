@@ -1,7 +1,7 @@
 # Multimodal Product Data Classification
 <br>
 In order to complete training as a Data Scientist, we developped this project as a team of 4 people.<br>
-For this [contest organized by ENS](https://challengedata.ens.fr/participants/challenges/35/), we worked on the classification of e-commerce articles by aggregating several models.<br>
+For this [contest organized by ENS](https://challengedata.ens.fr/participants/challenges/35/), we worked on the classification of e-commerce articles by developping and aggregating several models.<br>
 The data provided for each article included both some text(title and description) and a picture.
 
 ## Demo 
@@ -11,6 +11,7 @@ Features:
 - Calculate the probablities using your own combination of all 3 models
 - Explore the dataset with a dynamic EDA
 - ...
+Demo Page:<br>
 ![](https://github.com/damienld/Rakuteam/blob/main/Pictures/presentation/Demo1.png)<br>
 ![](https://github.com/damienld/Rakuteam/blob/main/Pictures/presentation/Demo2.png)<br>
 ![](https://github.com/damienld/Rakuteam/blob/main/Pictures/presentation/Demo3.png)<br>

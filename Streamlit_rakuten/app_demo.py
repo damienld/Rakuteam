@@ -226,7 +226,8 @@ def app():
             st.text_area("Page Source", src)
             desi=st.text_area("Entrer la désignation", desi)
             descr=st.text_area('Entrer la description', descr)
-            st.image(img, width=200)
+            if (img.strip() != ""):
+                st.image(img, width=200)
             if (categ != ""):
                 st.markdown("**Catégorie: ** "+categ) #TODO ajouter libellé classe
             predict(desi, descr, img, clf1,scaler,chkRF,chkCNN, chkDNN)
@@ -243,7 +244,8 @@ def app():
             st.text_area("Page Source", src)
             desi=st.text_area("Entrer la désignation", desi)
             descr=st.text_area('Entrer la description', descr)
-            st.image(img, width=200)
+            if (img.strip() != ""):
+                st.image(img, width=200)
             if (categ != ""):
                 st.markdown("**Catégorie: ** "+categ) #TODO ajouter libellé classe
             predict(desi, descr, img, clf1,scaler,chkRF,chkCNN, chkDNN)

@@ -23,6 +23,7 @@ clf1, scaler=loadRF()
 from bs4 import BeautifulSoup
 import requests
 import streamlit.components.v1 as components
+import constants
 
 def getAmazon(URL):   
     HEADERS = ({'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)  Chrome/44.0.2403.157 Safari/537.36',
@@ -184,19 +185,12 @@ def predict(desi, descr, img, clf1, scaler, inclRF, inclCNN, inclDNN):
     p = get_keywords_bar(df_keywords)
     st.bokeh_chart(p)
 
-
     st.markdown("**Echantillon d'images de la classe prédite**")
     path="./echantillons/subplot_classe_" + str(int(df_ypred_proba.iloc[0,1])) +".png"
     st.image(path, width=600)
 
-
     #st.markdown("** DataFrame Features Textes & Image **")
     #st.dataframe(df)
-
-
-
-
-
     #st.dataframe(df_keywords)
     #st.markdown("**Classe réelle: **"+str(int(df_ypred_proba.iloc[0,1]))+" "+str(df_ypred_proba.iloc[0,2]))
 
@@ -279,7 +273,7 @@ def app():
         descr=st.text_area('Entrer la description', descr)
         file_input2="."+df.iloc[0,5]
         img=file_input2
-        st.image(img)
+        st.image(constants.path+img)
         
         codeclasse=(int(df.iloc[0,4]))
         dataf_code_designation=load_df_code_designation()

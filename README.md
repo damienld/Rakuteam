@@ -40,18 +40,14 @@ Result: Accuracy 0.58
 Result: Accuracy 0.82
 ## Final Model: Voting Classifier between all the 3 weighted models
 Result: Accuracy 0.84<br>
-![](https://github.com/damienld/Rakuteam/blob/main/Pictures/presentation/voting.jpeg)<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
- 
+![](https://github.com/damienld/Rakuteam/blob/main/Pictures/presentation/voting.jpeg)
+## Demo 
+[Visit our Streamlit demo here](https://share.streamlit.io/damienld/rakuteam/main/Streamlit_rakuten/demo_rakuten.py) <br>
+Features:
+- Predict the classification of a random article (or even an article loaded from Amazon/Rakuten, or manually inputted)
+- Calculate the probablities using your own combination of all 3 models
+- Explore the dataset with a dynamic EDA
+- ...
+![](https://github.com/damienld/Rakuteam/blob/main/Pictures/presentation/Demo1.png)<br>
+![](https://github.com/damienld/Rakuteam/blob/main/Pictures/presentation/Demo2.png)<br>
+![](https://github.com/damienld/Rakuteam/blob/main/Pictures/presentation/Demo3.png)<br>

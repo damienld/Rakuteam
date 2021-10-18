@@ -7,7 +7,7 @@ def app():
     comprenant l’ensemble d’entraînement (84 916 articles) et l'ensemble de test (13 812 articles).""")
     st.subheader("**Fichier d'entrées (entrainement et test)**")
     path=constants.path+"presentation/Pres_dataset_"
-    st.image(path+"texte.jpg")
+    st.image(constants.path+"presentation/texte.jpg")
     st.write("En outre, nous disposions d’un fichier images.zip contenant les images associées à tous les articles.")
     st.image(path+"image.jpg")
     st.subheader("**Fichier de sorties d'entraînement**")

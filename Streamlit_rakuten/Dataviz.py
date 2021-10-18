@@ -17,6 +17,7 @@ from bokeh.transform import factor_cmap
 from bokeh.palettes import Category20b,  viridis, Turbo256, d3,cividis
 from bokeh.models.tools import HoverTool
 from bokeh.transform import linear_cmap
+import constants
 
 @st.cache
 def get_dataset_cleaned_old():
@@ -28,7 +29,7 @@ def get_dataset_cleaned_old():
 
 @st.cache
 def get_dataset_cleaned():
-  dataset_cleaned = pd.read_csv("data_features_final.csv")
+  dataset_cleaned = pd.read_csv(constants.path+"data_features_final.csv")
   # Remplacer les labels de 0 à 26
   return dataset_cleaned
 

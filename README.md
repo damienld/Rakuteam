@@ -4,6 +4,16 @@ In order to complete training as a Data Scientist, we developped this project as
 For this [contest organized by ENS](https://challengedata.ens.fr/participants/challenges/35/), we worked on the classification of e-commerce articles by aggregating several models.<br>
 The data provided for each article included both some text(title and description) and a picture.
 
+## Demo 
+[Visit our Streamlit demo here](https://share.streamlit.io/damienld/rakuteam/main/Streamlit_rakuten/demo_rakuten.py) <br>
+Features:
+- Predict the classification of a random article (or even an article loaded from Amazon/Rakuten, or manually inputted)
+- Calculate the probablities using your own combination of all 3 models
+- Explore the dataset with a dynamic EDA
+- ...
+![](https://github.com/damienld/Rakuteam/blob/main/Pictures/presentation/Demo1.png)<br>
+![](https://github.com/damienld/Rakuteam/blob/main/Pictures/presentation/Demo2.png)<br>
+![](https://github.com/damienld/Rakuteam/blob/main/Pictures/presentation/Demo3.png)<br>
 ## Dataset
 99 000 articles (85 000 in train + 14 000 in test) and 27 categories<br>
 Each article includes:<br>
@@ -41,13 +51,3 @@ Result: Accuracy 0.82
 ## Final Model: Voting Classifier between all the 3 weighted models
 Result: Accuracy 0.84<br>
 ![](https://github.com/damienld/Rakuteam/blob/main/Pictures/presentation/voting.jpeg)
-## Demo 
-[Visit our Streamlit demo here](https://share.streamlit.io/damienld/rakuteam/main/Streamlit_rakuten/demo_rakuten.py) <br>
-Features:
-- Predict the classification of a random article (or even an article loaded from Amazon/Rakuten, or manually inputted)
-- Calculate the probablities using your own combination of all 3 models
-- Explore the dataset with a dynamic EDA
-- ...
-![](https://github.com/damienld/Rakuteam/blob/main/Pictures/presentation/Demo1.png)<br>
-![](https://github.com/damienld/Rakuteam/blob/main/Pictures/presentation/Demo2.png)<br>
-![](https://github.com/damienld/Rakuteam/blob/main/Pictures/presentation/Demo3.png)<br>

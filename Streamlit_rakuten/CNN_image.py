@@ -50,4 +50,4 @@ def Cnnimage_predict(imgpath):
     y_pred_proba = y_pred_dff.to_numpy()
     return (y_pred_proba)
 
-Cnnimage_predict("test2.jpg")
+#Cnnimage_predict("test2.jpg")

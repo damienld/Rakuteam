@@ -115,7 +115,7 @@ def app():
      de chacun des trois modèles (RF, CNN, DNN) selon son accuracy.""")
     st.markdown("""En appliquant ce modèle nous avons atteint une **validation accuracy de 84%, qui est supérieure à l’accuracy 
     obtenue par chacun des modèles pris séparément.**""")
-    # path="./présentation/global.jpg"
+    # path="./presentation/global.jpg"
     st.image(path+"global.jpg", width=950)
 
    

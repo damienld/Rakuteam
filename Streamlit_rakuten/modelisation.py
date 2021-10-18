@@ -18,7 +18,7 @@ import io
 import streamlit as st
 import constants
   
-#y_pred_proba= pd.read_csv("../y_pred_proba/ypred_proba_RandomForest_Global_score0_74.csv")#(io.StringIO(download.decode('utf-8')))
+#y_pred_proba= pd.read_csv(constants.pathRoot+"y_pred_proba/ypred_proba_RandomForest_Global_score0_74.csv")#(io.StringIO(download.decode('utf-8')))
 #y_pred_proba.head()
 model_index = 1#input("Select a model: 1-RF, 2-CNN image, 3-DNN texte, default-weighted voting")
 print(model_index)

@@ -47,7 +47,7 @@ def app():
 
 
     if classifier=='Texte':
-        # placeholder=st.image("./présentation/gif_HUD.gif", width=600)
+        # placeholder=st.image("./presentation/gif_HUD.gif", width=600)
         # time.sleep(4)
         # placeholder.empty()
         st.subheader("**Exploration du texte**")

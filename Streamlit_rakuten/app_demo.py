@@ -5,6 +5,7 @@ Created on Thu Mar 18 01:45:08 2021
 @author: slam_
 """
 
+from bokeh.palettes import Greens, Reds
 import streamlit as st
 from cleaning import clean_manualdata
 from creation_features import add_features_to_manualdf
@@ -162,15 +163,17 @@ def predict(desi, descr, img, clf1, scaler, inclRF, inclCNN, inclDNN):
     #print(df_ypred_proba.head(5))
     st.markdown("**Classe prédite: **"+str(int(df_ypred_proba.iloc[0,1]))+" "+str(df_ypred_proba.iloc[0,2]))
 
+    st.markdown("**Probabilités calculées par les modèles sélectionnés**")
+    df_ypred_proba = df_ypred_proba.astype({'classe': object})
+    st.dataframe(df_ypred_proba.style.highlight_max(axis=0, color=Reds))
+
+"""
     if (inclRF and (inclCNN and img.strip()!='') and inclDNN):
         st.markdown("**Probabilités des 3 premières classes calculées par les différents modèles**")
         p = get_proba_bar(df_ypred_proba)
         st.bokeh_chart(p)
     else:
-        st.markdown("**Probabilités calculées par les modèles sélectionnés**")
-        df_ypred_proba = df_ypred_proba.astype({'classe': object})
-        st.dataframe(df_ypred_proba.style.highlight_max(axis=0))
-
+"""        
     st.markdown("**Analyse de l'image**")
     p = get_colors_bar(df)
     st.bokeh_chart(p)

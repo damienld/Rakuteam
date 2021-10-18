@@ -167,13 +167,12 @@ def predict(desi, descr, img, clf1, scaler, inclRF, inclCNN, inclDNN):
     df_ypred_proba = df_ypred_proba.astype({'classe': object})
     st.dataframe(df_ypred_proba.style.highlight_max(axis=0, color=Reds))
 
-"""
+    """
     if (inclRF and (inclCNN and img.strip()!='') and inclDNN):
         st.markdown("**Probabilités des 3 premières classes calculées par les différents modèles**")
         p = get_proba_bar(df_ypred_proba)
         st.bokeh_chart(p)
-    else:
-"""        
+    else:"""
     st.markdown("**Analyse de l'image**")
     p = get_colors_bar(df)
     st.bokeh_chart(p)

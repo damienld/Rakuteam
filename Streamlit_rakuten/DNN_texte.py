@@ -29,7 +29,7 @@ def Dnntexte_predict(desi, desc):
     #download = requests.get(url).content    
     #print("downloaded hdf5")
     #model = load_model(download)
-    model = load_model("text-dnn.hdf5") 
+    model = load_model(constants.path+"text-dnn.hdf5") 
    
     ypred_proba=model.predict(X_test)
     

@@ -7,9 +7,8 @@ Original file is located at
     https://colab.research.google.com/drive/1FdV82GHUgLRmlQ9o0FpkjNV60cRV_mjW
 """
 
-#CONNEXION à google drive
 import pandas as pd
-
+import streamlit as st
 
 import re  
 import requests
@@ -66,6 +65,7 @@ def cleaningX_to_df(X):
   return df
 
 # Download the stopwords
+@st.cache
 def get_stopwords():
   #utiliser @st.cache !!! pour STREAMLIT
   nltk.download('punkt') #télécharge les paquets language (dont FR)

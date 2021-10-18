@@ -5,7 +5,6 @@ Created on Thu Mar 18 01:45:08 2021
 @author: slam_
 """
 
-# app1.py
 import streamlit as st
 from cleaning import clean_manualdata
 from creation_features import add_features_to_manualdf
@@ -85,7 +84,6 @@ def getRakuten(URL):
     return desi, desc, img, body, categ
 
 def predict(desi, descr, img, clf1, scaler, inclRF, inclCNN, inclDNN):
-    
     print("img:",img)
     dfcleaned=clean_manualdata(desi,descr)
     print("RF")
@@ -162,9 +160,6 @@ def predict(desi, descr, img, clf1, scaler, inclRF, inclCNN, inclDNN):
     #df_ypred_proba.sort()
     #print(df_ypred_proba.head(5))
     st.markdown("**Classe prédite: **"+str(int(df_ypred_proba.iloc[0,1]))+" "+str(df_ypred_proba.iloc[0,2]))
-    
-    
-    
 
     if (inclRF and inclCNN and inclDNN):
         st.markdown("**Probabilités des 3 premières classes calculées par les différents modèles**")

@@ -3,10 +3,11 @@ to install a package for a specific virtual environment
 
 1 - Create a virtual environment (use the Python Terminal at the bottom)
 py -3 -m venv .rakuteam_venv
-2 - Activate it
+2 - Activate it:
 cd .\Streamlit_rakuten\
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process
 .rakuteam_venv\scripts\activate
+streamlit run demo_rakuten.py
 OPTIONAL:python -m ensurepip --upgrade
 3 - Select your new environment from the Palette:Python: Select Interpreter (might need to refresh)
 4 - Install the packages
@@ -16,12 +17,12 @@ python -m pip install matplotlib
 import streamlit as st
 
 #app.py
-import app1
-import app2
-import app3
-import app4
-import app6
-import app7
+import app_demo
+import app_models
+import app_EDA
+import app_intro
+import app_steps
+import app_datasets
 
 # General formating in CSS
 page_bg_img = '''
@@ -98,12 +99,12 @@ page_bg_img = '''
 st.markdown(page_bg_img, unsafe_allow_html=True)
 
 PAGES = {
-    "Présentation du projet": app4,
-    "Datasets": app7,
-    "Analyse exploratoire": app3,
-    "Démarche": app6,
-    "Modélisation": app2,
-    "Notre démo": app1
+    "Présentation du projet": app_intro,
+    "Datasets": app_datasets,
+    "Analyse exploratoire": app_EDA,
+    "Démarche": app_steps,
+    "Modélisation": app_models,
+    "Démo": app_demo
 }
 
 # st.sidebar.title('Classification d\'articles de e-commerce')
@@ -123,9 +124,7 @@ st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 #st.sidebar.header("Items classifier")
 st.sidebar.header("Menu")
 
-
-
-selection = st.sidebar.radio("",list(PAGES.keys()))
+selection = st.sidebar.radio("",list(PAGES.keys()), 5)
 page = PAGES[selection]
 page.app()
 

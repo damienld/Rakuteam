@@ -164,7 +164,7 @@ def predict(desi, descr, img, clf1, scaler, inclRF, inclCNN, inclDNN):
     st.markdown("**Predicted category: **"+str(int(df_ypred_proba.iloc[0,1]))+" "+str(df_ypred_proba.iloc[0,2]))
 
     st.markdown("**Probabilities calculated from the sslected models**")
-    df_ypred_proba = df_ypred_proba.astype({'classe': object})
+    df_ypred_proba = df_ypred_proba.astype({'Categ': object})
     st.dataframe(df_ypred_proba.style.highlight_max(axis=0, color=Reds))
 
     

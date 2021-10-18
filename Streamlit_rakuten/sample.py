@@ -38,11 +38,6 @@ def get_sample_img_classe(classe=-1, nbrows=1):
         df2.iloc[i,1]=path+img
     return df2
 
-
-
-
-
-
 #df=get_random_article(2583, 3)
 #print(df.head())
 """

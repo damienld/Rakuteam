@@ -50,9 +50,10 @@ def display_keywords(name_classe_reelle, name_classe_predite):
   classe_reelle_code=(dataf_code_designation[dataf_code_designation["désignation"]==name_classe_predite]).prdtypecode
 
   import pickle
-
+  import constants
+  
   # reading the dictionnary des 15 keyword
-  with open(f'{pathSaveCsv}/dico_keywords_tfidf_15.pkl', 'rb') as handle: 
+  with open(constants.path+f'{pathSaveCsv}/dico_keywords_tfidf_15.pkl', 'rb') as handle: 
     data = handle.read() 
   # reconstructing the data as dictionary 
   lst_keywords_byclass = pickle.loads(data) 

@@ -210,6 +210,8 @@ if (isRegenerateKeywords):
 
 #SAUVEGARDES des 15 keyword par classe
 import pickle
+import constants
+
 if (isSaveData):
   dict = lst_keywords_byclass
   f = open(f'{pathSaveCsv}/dico_keywords_tfidf_15.pkl',"wb")
@@ -218,7 +220,7 @@ if (isSaveData):
 
 if (not isSaveData):
   # reading the dictionnary des 15 keyword
-  with open(f'{pathSaveCsv}/dico_keywords_tfidf_15.pkl', 'rb') as handle: 
+  with open(constants.path+f'{pathSaveCsv}/dico_keywords_tfidf_15.pkl', 'rb') as handle: 
       data = handle.read() 
   print("Data type before reconstruction : ", type(data)) 
   # reconstructing the data as dictionary 

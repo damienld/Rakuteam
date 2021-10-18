@@ -11,12 +11,13 @@ from keras.preprocessing.sequence import pad_sequences
 from keras.models import load_model
 import pickle
 from cleaning import clean_manualdata
+import constants
 
 def Dnntexte_predict(desi, desc):
     dfmanual=clean_manualdata(desi,desc)
     dfmanual['sentences'] = dfmanual['designation'] + " " + dfmanual['description']
     sentences_test = dfmanual['sentences']
-    with open('tokenizer_dnn.pickle', 'rb') as handle:
+    with open(constants.path+'tokenizer_dnn.pickle', 'rb') as handle:
         tokenizer = pickle.load(handle)
     X_test = tokenizer.texts_to_sequences(sentences_test)
     maxlen = 400#defautl was 250, best 400

@@ -16,6 +16,7 @@ import PIL
 from PIL import Image
 import numpy as np
 from utils import image_url_to_numpy_array_skimage
+import constants
 
 #DEBUT PREPROCESSING
 isManualData=True
@@ -25,7 +26,7 @@ import pickle
 
 def load_keywords_fromfile():
   # reading the dictionnary des 15 keyword
-  with open('./streamlit_rakuten/dico_keywords_tfidf_15.pkl', 'rb') as handle: 
+  with open(constants.path+'dico_keywords_tfidf_15.pkl', 'rb') as handle: 
     data = handle.read() 
   # reconstructing the data as dictionary 
   lst_keywords_byclass = pickle.loads(data) 

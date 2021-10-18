@@ -6,8 +6,8 @@ py -3 -m venv .rakuteam_venv
 2 - Activate it:
 cd .\Streamlit_rakuten\
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process
-.rakuteam_venv\scripts\activate
-streamlit run demo_rakuten.py
+.\Streamlit_rakuten\rakuteam_venv\scripts\activate
+streamlit run .\Streamlit_rakuten\demo_rakuten.py
 OPTIONAL:python -m ensurepip --upgrade
 3 - Select your new environment from the Palette:Python: Select Interpreter (might need to refresh)
 4 - Install the packages

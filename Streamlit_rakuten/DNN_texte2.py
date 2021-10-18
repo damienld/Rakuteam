@@ -8,7 +8,7 @@ Original file is located at
 """
 
 import pandas as pd
-
+import constants
 import matplotlib.pyplot as plt
 plt.style.use('ggplot')
 
@@ -105,11 +105,11 @@ from keras.preprocessing.text import Tokenizer
 """tokenizer = Tokenizer(num_words=20000)#default was 10000/best 20000
 tokenizer.fit_on_texts(sentences_train)
 # saving
-with open('tokenizer_dnn.pickle', 'wb') as handle:
+with open(constants.path+'tokenizer_dnn.pickle', 'wb') as handle:
     pickle.dump(tokenizer, handle, protocol=pickle.HIGHEST_PROTOCOL)"""
 
 # loading
-with open('tokenizer_dnn.pickle', 'rb') as handle:
+with open(constants.path+'tokenizer_dnn.pickle', 'rb') as handle:
     tokenizer = pickle.load(handle)
 #X_train = tokenizer.texts_to_sequences(sentences_train)
 X_test = tokenizer.texts_to_sequences(sentences_test)

@@ -1,2 +1,2 @@
 path="Streamlit_rakuten/"
-pathRoot="/"
+pathRoot=""

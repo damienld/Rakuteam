@@ -10,7 +10,8 @@ Features:
 - Predict the classification of a random article (or even an article loaded from Amazon/Rakuten, or manually inputted)
 - Calculate the probablities using your own combination of all 3 models
 - Explore the dataset with a dynamic EDA
-- ...
+- ...<br>
+Page Preview:
 <br>
 ![](https://github.com/damienld/Rakuteam/blob/main/Pictures/presentation/Demo1.PNG)<br>
 ![](https://github.com/damienld/Rakuteam/blob/main/Pictures/presentation/Demo2.PNG)<br>

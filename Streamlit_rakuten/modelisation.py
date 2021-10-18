@@ -94,7 +94,7 @@ def get_ytrain():
   #url = "https://raw.githubusercontent.com/JulienJ-44/rakuteam/main/y_pred_proba/y_train.csv"# Make sure the url is the raw version of the file on GitHub
   #download = requests.get(url).content
   #y_train = pd.read_csv(io.StringIO(download.decode('utf-8')))
-  y_train= pd.read_csv(constants.pathRoot+"/y_pred_proba/y_train.csv")
+  y_train= pd.read_csv(constants.pathRoot+"y_pred_proba/y_train.csv")
   # Remplacer les labels de 0 à 26
   return y_train
 @st.cache

@@ -108,7 +108,7 @@ def predict(desi, descr, img, clf1, scaler, inclRF, inclCNN, inclDNN):
     
     weightCNN=0
     ypred_proba_CNN=0
-    if (inclCNN):
+    if (inclCNN and img.strip()!=''):
         print("CNN")
         weightCNN=0.54
         ypred_proba_CNN=Cnnimage_predict(img)
